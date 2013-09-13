@@ -56,31 +56,82 @@
         </div>
       </div>
 
-      <div id="images">
-        <img id="1_image">
-        <img id="2_image">
-        <img id="3_image">
+      <div id="images_panel" class="row col-xs-12 col-sm-12 col-md-12 col-lg-10">
+        <div id="images" class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          
+          <div id="image_1_main_panel" class="panel col-xs-12 col-sm-12 col-md-12 col-lg-4">
+            <div id="image_1_panel" class="panel col-xs-12 col-sm-12 col-md-12 col-lg-12">
+              <img id="image_1" class="img-thumbnail"/>
+            </div>
+            <div id="subimage_1_panel" class="panel col-xs-12 col-sm-12 col-md-12 col-lg-12">
+              <div id="subimage_1_1_panel" class="panel col-xs-12 col-sm-12 col-md-12 col-lg-4">
+                <img id="subimage_1_1" src="{% static "img/egg_example.png" %}" class="img-thumbnail"/>
+              </div>
+              <div id="subimage_1_2_panel" class="panel col-xs-12 col-sm-12 col-md-12 col-lg-4">
+                <img id="subimage_1_2" src="{% static "img/egg_example.png" %}" class="img-thumbnail"/>
+              </div>
+              <div id="subimage_1_3_panel" class="panel col-xs-12 col-sm-12 col-md-12 col-lg-4">
+                <img id="subimage_1_3" src="{% static "img/egg_example.png" %}" class="img-thumbnail"/>
+              </div>
+            </div>
+            <button type="button" id="image_1_button" class="btn btn-info btn-lg btn-block">Show more >></button>
+          </div>
+          <div id="image_2_main_panel" class="col-xs-12 col-sm-12 col-md-12 col-lg-4">
+            <div id="image_2_panel" class="panel col-xs-12 col-sm-12 col-md-12 col-lg-12">
+              <img id="image_2" class="img-thumbnail"/>
+            </div>
+            <div id="subimage_2_panel" class="panel col-xs-12 col-sm-12 col-md-12 col-lg-12">
+              <div id="subimage_2_1_panel" class="panel col-xs-12 col-sm-12 col-md-12 col-lg-4">
+                <img id="subimage_2_1" src="{% static "img/egg_example.png" %}" class="img-thumbnail"/>
+              </div>
+              <div id="subimage_2_2_panel" class="panel col-xs-12 col-sm-12 col-md-12 col-lg-4">
+                <img id="subimage_2_2" src="{% static "img/egg_example.png" %}" class="img-thumbnail"/>
+              </div>
+              <div id="subimage_2_3_panel" class="panel col-xs-12 col-sm-12 col-md-12 col-lg-4">
+                <img id="subimage_2_3" src="{% static "img/egg_example.png" %}" class="img-thumbnail"/>
+              </div>
+            </div>
+            <button type="button" id="image_2_button" class="btn btn-info btn-lg btn-block">Show more >></button>
+          </div>
+          <div id="image_3_main_panel" class="col-xs-12 col-sm-12 col-md-12 col-lg-4">
+            <div id="image_3_panel" class="panel col-xs-12 col-sm-12 col-md-12 col-lg-12">
+              <img id="image_3" class="img-thumbnail"/>
+            </div>
+            <div id="subimage_3_panel" class="panel col-xs-12 col-sm-12 col-md-12 col-lg-12">
+              <div id="subimage_3_1_panel" class="panel col-xs-12 col-sm-12 col-md-12 col-lg-4">
+                <img id="subimage_3_1" src="{% static "img/egg_example.png" %}" class="img-thumbnail"/>
+              </div>
+              <div id="subimage_3_2_panel" class="panel col-xs-12 col-sm-12 col-md-12 col-lg-4">
+                <img id="subimage_3_2" src="{% static "img/egg_example.png" %}" class="img-thumbnail"/>
+              </div>
+              <div id="subimage_3_3_panel" class="panel col-xs-12 col-sm-12 col-md-12 col-lg-4">
+                <img id="subimage_3_3" src="{% static "img/egg_example.png" %}" class="img-thumbnail"/>
+              </div>
+            </div>
+            <button type="button" id="image_3_button" class="btn btn-info btn-lg btn-block">Show more >></button>
+          </div>
+        </div>
       </div>
 
 
   </body>	
 
 <script type="text/javascript">
+var image_1 = document.getElementById('image_1');
+var image_2 = document.getElementById('image_2');
+var image_3 = document.getElementById('image_3');
 
-  // setInterval(function() {
-  //   var image_1 = document.getElementById('1_image');
-  //   //image_1.src = 'http://192.168.0.156/image.jpg?rand=' + Math.random();
-  // }, 1000);
+  setInterval(function() {
+    image_1.src = 'http://192.168.0.156/image.jpg?rand=' + Math.random();
+  }, 1000);
 
-  // setInterval(function() {
-  //   var image_2 = document.getElementById('2_image');
-  //   //image_2.src = 'http://192.168.0.153/image.jpg?rand=' + Math.random();
-  // }, 1000);
+  setInterval(function() {
+    image_2.src = 'http://192.168.0.153/image.jpg?rand=' + Math.random();
+  }, 1000);
 
-  // setInterval(function() {
-  //   var image_3 = document.getElementById('3_image');
-  //   //image_.src = 'http://192.168.0.152/image.jpg?rand=' + Math.random();
-  // }, 1000);
+  setInterval(function() {
+    image_3.src = 'http://192.168.0.152/image.jpg?rand=' + Math.random();
+  }, 1000);
 
   setInterval(function() {
     $.get("DATA", function(data) {
