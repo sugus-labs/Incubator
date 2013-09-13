@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="description" content="">
+      <meta name="author" content="">
+
+      <title>Incubator</title>
+
+      {% load staticfiles %}
+      <link rel="icon" href="{% static "img/incubator_24x24.png" %}" type="image/x-icon" />
+
+      <script type="text/javascript" charset="utf-8" src="{% static "js/jquery-1.9.1.js" %}"></script>
+      <script type="text/javascript" charset="utf-8" src="{% static "js/jquery-ui.js" %}"></script>
+      <script type="text/javascript" charset="utf-8" src="{% static "js/jquery.ui.touch-punch.js" %}"></script>
+      <script type="text/javascript" charset="utf-8" src="{% static "js/bootstrap.js" %}"></script>
+
+      <link href="{% static "css/bootstrap.css" %}" rel="stylesheet">
+
+      <style>
+        body {
+          padding-top: 56px; /* 50-60px to make the container go all the way to the bottom of the topbar */
+        }
+      </style>
+
+  </head>
+
+  <body>
+
+    <div class="navbar navbar-inverse navbar-fixed-top">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">&nbsp;&nbsp;Incubator</a>
+          </div>
+      </div>
+
+      <div id="gauges_panel" class="col-xs-12 col-sm-12 col-md-12 col-lg-2">
+        <div id="gauges" class="col-xs-12 col-sm-12 col-md-12 col-lg-12">       
+          <div id="TEMP_gauge" class="col-xs-12 col-sm-12 col-md-12 col-lg-12"> 
+            <h4><p class="text-center text-muted">TEMPERATURE</p></h4>
+            <b><button type="button" id="TEMP" class="btn btn-success btn-lg btn-block disabled">Loading ...</button></b>
+          </div>
+          <div id="HUMI_gauge" class="col-xs-12 col-sm-12 col-md-12 col-lg-12"> 
+            <h4><p class="text-center text-muted">HUMIDITY</p></h4>
+            <b>
+              <button type="button" id="HUMI" class="btn btn-success btn-lg btn-block disabled">
+              Loading ...
+              </button>
+            </b>
+          </div>
+        </div>
+      </div>
+
+      <div id="images">
+        <img id="1_image">
+        <img id="2_image">
+        <img id="3_image">
+      </div>
+
+
+  </body>	
+
+<script type="text/javascript">
+
+  // setInterval(function() {
+  //   var image_1 = document.getElementById('1_image');
+  //   //image_1.src = 'http://192.168.0.156/image.jpg?rand=' + Math.random();
+  // }, 1000);
+
+  // setInterval(function() {
+  //   var image_2 = document.getElementById('2_image');
+  //   //image_2.src = 'http://192.168.0.153/image.jpg?rand=' + Math.random();
+  // }, 1000);
+
+  // setInterval(function() {
+  //   var image_3 = document.getElementById('3_image');
+  //   //image_.src = 'http://192.168.0.152/image.jpg?rand=' + Math.random();
+  // }, 1000);
+
+  setInterval(function() {
+    $.get("DATA", function(data) {
+      parsed_data = $.parseJSON(data);
+      $('button[id=TEMP]').html(parsed_data.TEMP)
+      $('button[id=HUMI]').html(parsed_data.HUMI)
+    });
+  }, 1000);
+
+</script>
