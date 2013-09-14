@@ -7,8 +7,8 @@ from django.conf.urls import patterns, include, url
 urlpatterns = patterns('',
     # Examples:
     url(r'^$', 'Incubator.views.home', name='home'),
-    url(r'^DATA$', 'Incubator.views.DATA', name='DATA'),
-    url(r'^lights/(?P<light_number>\d{1})/(?P<command>\w+)/$', 'Incubator.views.lights', name='lights')
+    url(r'^measures$', 'Incubator.views.measures', name='measures'),
+    url(r'^lights/(?P<light_number>\w+)/(?P<command>\w+)/$', 'Incubator.views.lights', name='lights')
     # url(r'^Incubator/', include('Incubator.foo.urls')),
 
     # Uncomment the admin/doc line below to enable admin documentation:
