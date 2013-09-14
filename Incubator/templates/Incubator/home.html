@@ -134,7 +134,7 @@ var image_3 = document.getElementById('image_3');
   }, 1000);
 
   setInterval(function() {
-    $.get("DATA", function(data) {
+    $.get("measures", function(data) {
       parsed_data = $.parseJSON(data);
       $('button[id=TEMP]').html(parsed_data.TEMP)
       $('button[id=HUMI]').html(parsed_data.HUMI)

@@ -22,9 +22,13 @@ def DATA(request):
 			DATA_JSON = json.dumps(DATA)
 			print DATA_JSON
 			#return render(request, 'mastermind/basic_game.html', {"balls_json": balls_json, "balls_db": balls_db, "attempts": range(attempts_num), "liquids_json": liquids_json })
-			return HttpResponse(DATA_JSON)
+			return HttpResponse("200 OK")
 		except urllib2.HTTPError, e:
 			return HttpResponse("404 - NOT FOUND")
+
+def lights(request, light_number, command):
+	print "LIGHT: %s. COMMAND: %s" % (light_number, command)
+	return HttpResponse("200 OK")
 
 def home(request):
 	return render(request, 'Incubator/home.html')

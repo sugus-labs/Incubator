@@ -1,4 +1,6 @@
 # Django settings for Incubator project.
+import os
+ROOT_PATH = os.getcwd()
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
@@ -72,7 +74,9 @@ STATICFILES_DIRS = (
     # Put strings here, like "/home/html/static" or "C:/www/django/static".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
-    "/home/weblord/Desktop/Incubator/Incubator/static",
+    #"/home/weblord/Desktop/Incubator/Incubator/static",
+    ROOT_PATH +'/Incubator/static',
+
 )
 
 # List of finder classes that know how to find static files in
@@ -112,7 +116,8 @@ TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
-    "/home/weblord/Desktop/Incubator/Incubator/templates",
+    #"/home/weblord/Desktop/Incubator/Incubator/templates",
+    ROOT_PATH +'/Incubator/templates',
 )
 
 INSTALLED_APPS = (
