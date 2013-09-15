@@ -39,21 +39,37 @@
           </div>
       </div>
 
+<div class="row">
+     <div id="main_alert" class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <div class="alert alert-info">
+       <center><strong>This eggs starts to hatching in september 12, 2013. 7 days ago. 14 days remaining.</strong></center>
+      </div>
+      </div>
+      </div>
+
+<div class="row">
       <div id="gauges_panel" class="panel col-xs-12 col-sm-12 col-md-12 col-lg-2">
         <div id="gauges" class="col-xs-12 col-sm-12 col-md-12 col-lg-12">       
           <div id="TEMP_gauge" class="col-xs-12 col-sm-12 col-md-12 col-lg-12"> 
-            <h4><p class="text-center text-muted">TEMPERATURE</p></h4>
-            <b><button type="button" id="TEMP" class="btn btn-success btn-lg btn-block disabled">Loading ...</button></b>
+            <!-- <h4><p class="text-center text-muted">TEMPERATURE</p></h4> -->
+            <!-- <b><button type="button" id="TEMP" class="btn btn-success btn-lg btn-block disabled">Loading ...</button></b> -->
+            <center><h1><span class="label label-default label-success">36.65 ºC</span></center></h1>
           </div>
           <div id="HUMI_gauge" class="col-xs-12 col-sm-12 col-md-12 col-lg-12"> 
-            <h4><p class="text-center text-muted">HUMIDITY</p></h4>
+           <!--  <h4><p class="text-center text-muted">HUMIDITY</p></h4>
             <b>
               <button type="button" id="HUMI" class="btn btn-success btn-lg btn-block disabled">
               Loading ...
               </button>
-            </b>
+            </b> -->
+            <h1><center><span class="label label-default label-success">62.54 % Hr</span></center></h1>
           </div>
+<!--           <p>What you should see in the 7th day?</p> -->
+          <div id="day_panel" class="panel col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <img id="day" src="{% static "img/day_7.png" %}" class="img-responsive"/>
+            <p class="alert alert-info">This image above represents the egg with 7 days of hatching.</p>
         </div>
+          </div>
       </div>
 
       <div id="images_panel" class="row col-xs-12 col-sm-12 col-md-12 col-lg-10">
@@ -133,7 +149,14 @@
           </div>
         </div>
       </div>
+      </div>
 
+<!--       <div class="row">
+      <div id="calendar" class="panel col-xs-12 col-sm-12 col-md-12 col-lg-12">
+
+        <img id="subimage_3_3" src="{% static "img/egg_example.png" %}" class="img-responsive"/>
+      </div>  -->
+      </div>
 
   </body>	
 
