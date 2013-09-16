@@ -1,61 +1,21 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>CV demo</title>
+    <title>Incubator Logout</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="WebLab Deusto">
 
     {% load staticfiles %}
-    <link rel="icon" href="{% static "ico/favicon.png" %}" type="image/x-icon" />
+    <link rel="icon" href="{% static "img/incubator_24x24.png" %}" type="image/x-icon" />
 
     <script type="text/javascript" charset="utf-8" src="{% static "js/jquery-1.9.1.js" %}"></script>
     <script type="text/javascript" charset="utf-8" src="{% static "js/jquery-ui.js" %}"></script>
     <script type="text/javascript" charset="utf-8" src="{% static "js/jquery.ui.touch-punch.js" %}"></script>
-    <script type="text/javascript" charset="utf-8" src="{% static "js/bootbox.js" %}"></script>
     <script type="text/javascript" charset="utf-8" src="{% static "js/bootstrap.js" %}"></script>
 
     <link href="{% static "css/bootstrap.css" %}" rel="stylesheet">
     <!--<link href="{% static "css/todc-bootstrap.css" %}" rel="stylesheet">-->
-
-    <style type="text/css">
-      body {
-        padding-top: 40px;
-        padding-bottom: 40px;
-        background-color: #f5f5f5;
-      }
-
-      .alert, .alert-error {
-        max-width: 400px;
-        margin: 0 auto 20px;
-      }
-
-      .form-signin {
-        max-width: 400px;
-        padding: 19px 29px 29px;
-        margin: 0 auto 20px;
-        background-color: #fff;
-        border: 1px solid #e5e5e5;
-        -webkit-border-radius: 5px;
-           -moz-border-radius: 5px;
-                border-radius: 5px;
-        -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.05);
-           -moz-box-shadow: 0 1px 2px rgba(0,0,0,.05);
-                box-shadow: 0 1px 2px rgba(0,0,0,.05);
-      }
-      .form-signin .form-signin-heading,
-      .form-signin .checkbox {
-        margin-bottom: 10px;
-      }
-      .form-signin input[type="text"],
-      .form-signin input[type="password"] {
-        font-size: 16px;
-        height: auto;
-        margin-bottom: 15px;
-        padding: 7px 9px;
-      }
-
-    </style>
 
     <style>
       body {
@@ -63,32 +23,13 @@
       }
     </style>
 
-    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
-    <!--[if lt IE 9]>
-      <script src="../assets/js/html5shiv.js"></script>
-    <![endif]-->
-
-    <!-- Fav and touch icons -->
-    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="bootstrap/ico/apple-touch-icon-144-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="bootstrap/ico/apple-touch-icon-114-precomposed.png">
-      <link rel="apple-touch-icon-precomposed" sizes="72x72" href="bootstrap/ico/apple-touch-icon-72-precomposed.png">
-                    <link rel="apple-touch-icon-precomposed" href="bootstrap/ico/apple-touch-icon-57-precomposed.png">
-                                   <link rel="shortcut icon" href="static/ico/favicon.png">
   </head>
   <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-      <div class="navbar-inner">
-        <div class="container-fluid">
-          
-          <div class="nav-collapse collapse" >
-            <a class="brand" href="">CV</a>
-            <ul class="nav">
-              <!--<li class="active"><a href="/RoMIE"><i class="icon-pencil icon-white"></i>&nbsp;Remote Laboratory&nbsp;</a></li>
-              <li class=""><a href="/RoMIE/blockly"><i></i>&nbsp;Blockly&nbsp;</a></li>-->
-            </ul>
-          </div><!--/.nav-collapse -->
+     <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="#"><img src="{% static "img/incubator_24x24.png" %}"/>&nbsp;&nbsp;Incubator</a>
         </div>
       </div>
-    </div>
-<p>Gracias por utilizar nuestra pagina.</p>
-<p>Vuelve a la pagina principal de los CV pinchando <a href="/CV/">AQUI</a>.</p>
+      
+<p>Thank you!</p>
+<p>TYou are now logged out!</p>

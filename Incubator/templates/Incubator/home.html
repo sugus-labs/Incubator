@@ -40,47 +40,38 @@
         </div>
         <div class="navbar-collapse collapse">
           <div class="navbar-form navbar-right">
-            <a href="login" class="btn btn-success">Sign in</a>
+            {% if user.is_authenticated %}
+              <a href="#" class="btn btn-success">Hello, {{ user.username }}</a>
+            {% else %}
+              <a href="login" class="btn btn-danger">Sign in</a>
+            {% endif %}
           </div>
         </div><!--/.navbar-collapse -->
     </div>
 
-
-
-
-
-
-<div class="row">
-     <div id="main_alert" class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-      <div class="alert alert-info">
-       <center><strong>This eggs starts to hatching in september 12, 2013. 7 days ago. 14 days remaining.</strong></center>
+    <div class="row">
+      <div id="main_alert" class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <div class="alert alert-info">
+          <center><strong>This eggs starts to hatching in september 12, 2013. 7 days ago. 14 days remaining.</strong></center>
+        </div>
       </div>
-      </div>
-      </div>
+    </div>
 
-<div class="row">
+    <div class="row">
       <div id="gauges_panel" class="panel col-xs-12 col-sm-12 col-md-12 col-lg-2">
         <div id="gauges" class="col-xs-12 col-sm-12 col-md-12 col-lg-12">       
           <div id="TEMP_gauge" class="col-xs-12 col-sm-12 col-md-12 col-lg-12"> 
-            <!-- <h4><p class="text-center text-muted">TEMPERATURE</p></h4> -->
-            <!-- <b><button type="button" id="TEMP" class="btn btn-success btn-lg btn-block disabled">Loading ...</button></b> -->
             <center><h1><span id="TEMP" class="label label-default label-success">Loading</span></center></h1>
           </div>
           <div id="HUMI_gauge" class="col-xs-12 col-sm-12 col-md-12 col-lg-12"> 
-           <!--  <h4><p class="text-center text-muted">HUMIDITY</p></h4>
-            <b>
-              <button type="button" id="HUMI" class="btn btn-success btn-lg btn-block disabled">
-              Loading ...
-              </button>
-            </b> -->
             <h1><center><span id="HUMI" class="label label-default label-success">Loading</span></center></h1>
           </div>
           <!-- <p>What you should see in the 7th day?</p> -->
-          <div id="day_panel" class="panel col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <div id="day_panel" class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
             <center><img id="day" src="{% static "img/day_7.png" %}" class="img-responsive"/></center>
             <p class="alert alert-info"><strong>The image above represents what you should see in the 7th day of hatching.</strong></p>
-        </div>
           </div>
+        </div>
       </div>
 
       <div id="images_panel" class="row col-xs-12 col-sm-12 col-md-12 col-lg-10">
@@ -198,7 +189,9 @@ setInterval(function() {
 }, 17000);
 
 $("#exit_button").click(function() {  
-  $.get("lights/ALL/OFF");
+  $.get("lights/ALL/OFF").done(function( data ) {
+    window.location.href = "http://google.com";
+  });
 });
 
 </script>
