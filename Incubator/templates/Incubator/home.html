@@ -53,7 +53,7 @@
           <div id="TEMP_gauge" class="col-xs-12 col-sm-12 col-md-12 col-lg-12"> 
             <!-- <h4><p class="text-center text-muted">TEMPERATURE</p></h4> -->
             <!-- <b><button type="button" id="TEMP" class="btn btn-success btn-lg btn-block disabled">Loading ...</button></b> -->
-            <center><h1><span class="label label-default label-success">36.65 ºC</span></center></h1>
+            <center><h1><span id="TEMP" class="label label-default label-success">Loading</span></center></h1>
           </div>
           <div id="HUMI_gauge" class="col-xs-12 col-sm-12 col-md-12 col-lg-12"> 
            <!--  <h4><p class="text-center text-muted">HUMIDITY</p></h4>
@@ -62,12 +62,12 @@
               Loading ...
               </button>
             </b> -->
-            <h1><center><span class="label label-default label-success">62.54 % Hr</span></center></h1>
+            <h1><center><span id="HUMI" class="label label-default label-success">Loading</span></center></h1>
           </div>
-<!--           <p>What you should see in the 7th day?</p> -->
+          <!-- <p>What you should see in the 7th day?</p> -->
           <div id="day_panel" class="panel col-xs-12 col-sm-12 col-md-12 col-lg-12">
-            <img id="day" src="{% static "img/day_7.png" %}" class="img-responsive"/>
-            <p class="alert alert-info">This image above represents the egg with 7 days of hatching.</p>
+            <center><img id="day" src="{% static "img/day_7.png" %}" class="img-responsive"/></center>
+            <p class="alert alert-info">The image above represents what you should see in the 7th day of hatching.</p>
         </div>
           </div>
       </div>
@@ -179,12 +179,12 @@ $.get("lights/ALL/ON");
 //   image_3.src = 'http://192.168.0.152/image.jpg?rand=' + Math.random();
 // }, 1000);
 
-// setInterval(function() {
-//   $.get("measures", function(data) {
-//     parsed_data = $.parseJSON(data);
-//     $('button[id=TEMP]').html(parsed_data.TEMP)
-//     $('button[id=HUMI]').html(parsed_data.HUMI)
-//   });
-// }, 1000);
+setInterval(function() {
+  $.get("measures", function(data) {
+    parsed_data = $.parseJSON(data);
+    $('span[id=TEMP]').html(parsed_data.TEMP)
+    $('span[id=HUMI]').html(parsed_data.HUMI)
+  });
+}, 17000);
 
 </script>
