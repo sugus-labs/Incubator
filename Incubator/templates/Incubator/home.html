@@ -28,16 +28,27 @@
 
   <body>
 
-    <div class="navbar navbar-inverse navbar-fixed-top">
-          <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="#"><img src="{% static "img/incubator_24x24.png" %}"/>&nbsp;&nbsp;Incubator</a>
+
+       <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#"><img src="{% static "img/incubator_24x24.png" %}"/>&nbsp;&nbsp;Incubator</a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <div class="navbar-form navbar-right">
+            <a href="login" class="btn btn-success">Sign in</a>
           </div>
-      </div>
+        </div><!--/.navbar-collapse -->
+    </div>
+
+
+
+
+
 
 <div class="row">
      <div id="main_alert" class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
@@ -67,7 +78,7 @@
           <!-- <p>What you should see in the 7th day?</p> -->
           <div id="day_panel" class="panel col-xs-12 col-sm-12 col-md-12 col-lg-12">
             <center><img id="day" src="{% static "img/day_7.png" %}" class="img-responsive"/></center>
-            <p class="alert alert-info">The image above represents what you should see in the 7th day of hatching.</p>
+            <p class="alert alert-info"><strong>The image above represents what you should see in the 7th day of hatching.</strong></p>
         </div>
           </div>
       </div>
@@ -168,15 +179,15 @@ $.get("lights/ALL/ON");
 
 setInterval(function() {
   image_1.src = 'http://192.168.0.156/image.jpg?rand=' + Math.random();
-}, 1000);
+}, 3000);
 
 setInterval(function() {
   image_2.src = 'http://192.168.0.153/image.jpg?rand=' + Math.random();
-}, 1000);
+}, 3000);
 
 setInterval(function() {
   image_3.src = 'http://192.168.0.152/image.jpg?rand=' + Math.random();
-}, 1000);
+}, 3000);
 
 setInterval(function() {
   $.get("measures", function(data) {
