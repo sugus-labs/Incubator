@@ -43,11 +43,9 @@ def lights(request, light_number, command):
 	print "LIGHT: %s. COMMAND: %s" % (light_number, command)
 	if light_number == "ALL":
 		if command == "ON":
-			# POST /EGGSON
 			resp = request_without_proxy_POST(URL_BASIC + 'EGGSON', {})
 		else:
 			resp = request_without_proxy_POST(URL_BASIC + 'EGGSOFF', {})
-			# POST /EGGSOFF
 	# else:
 
 	return HttpResponse("200 OK")
