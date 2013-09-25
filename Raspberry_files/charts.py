@@ -6,6 +6,16 @@ import paramiko
 from datetime import datetime
 import matplotlib.pyplot as plt
 
+datetime_format = '%Y-%m-%d %H:%M:%S'
+
+temp_param_MAX = 37.1
+temp_param_MIN = 36.5
+temp_MIN = 36.0
+temp_MAX = 37.6
+humi_param_MAX = 60.5
+humi_param_MIN = 55.5
+humi_MIN = 60.0
+humi_MAX = 75.0
 
 server = "192.168.0.110"
 host_username = "pi"
@@ -13,9 +23,9 @@ host_password = "letmein"
 
 # thermo.db is the sqlite3 DB that shows sht1x values. We will rename to SHT1x.db
 # The format is: table|read|read|2|CREATE TABLE READ(date text, temp real, humi real)
-local_path_sht1xdb = "/home/weblord/Desktop/Incubator/Raspberry_files/SHT1x/SHT1x.db"
-remote_path_sht1xdb = "/home/pi/test/thermo.db"
-sht1xdb_utils_dict = {
+local_path_SHT1xdb = "/home/weblord/Desktop/Incubator/Raspberry_files/SHT1x/SHT1x.db"
+remote_path_SHT1xdb = "/home/pi/test/thermo.db"
+SHT1xdb_utils_dict = {
 	'table_name' : 'READ',
 	'table_columns' : ['date', 'temp', 'humi']
 }
@@ -43,7 +53,7 @@ def retrieve_DBs():
 	#stdin, stdout, stderr = ssh_client.exec_command('ls -l')
 	#print stdout.readlines()
 	sftp_client = ssh_client.open_sftp()
-	get_file_from_remote_host(remote_path_sht1xdb, local_path_sht1xdb, sftp_client)
+	get_file_from_remote_host(remote_path_SHT1xdb, local_path_SHT1xdb, sftp_client)
 	get_file_from_remote_host(remote_path_thermodb, local_path_thermodb, sftp_client)
 	sftp_client.close()
 	ssh_client.close()
@@ -62,45 +72,76 @@ def extract_util_data_from_DB(DB_path, db_utils_dict):
 #for ID_LOG, DATE_LOG, TEMP_LOG, STATUS_LOG in cursor.execute('SELECT * FROM LOG'):
 #	print DATE_LOG
 
-retrieve_DBs()
 #sht1x_data = extract_util_data_from_DB(local_path_sht1xdb, sht1xdb_utils_dict)
 #thermo_data = extract_util_data_from_DB(local_path_thermodb, thermodb_utils_dict)
 
-# Extract data from thermo.db 
-thermo_conn = sqlite3.connect(local_path_thermodb)
-cursor = thermo_conn.cursor()
-dates = []
-status = []
-temperatures = []
-datetime_format = '%Y-%m-%d %H:%M:%S'
+def thermo_charts(datetime_format):
+	# Extract data from thermo.db
+	thermo_conn = sqlite3.connect(local_path_thermodb)
+	cursor = thermo_conn.cursor()
+	dates = []
+	status = []
+	temps = []
 
-for ID_LOG, DATE_LOG, TEMP_LOG, STATUS_LOG in cursor.execute('SELECT * FROM LOG'):
-	datetime_log = datetime.strptime(DATE_LOG, datetime_format)
-	dates.append(datetime_log)
-	temperatures.append(TEMP_LOG)
-	status.append(STATUS_LOG)
+	for ID_LOG, DATE_LOG, TEMP_LOG, STATUS_LOG in cursor.execute('SELECT * FROM LOG'):
+		datetime_log = datetime.strptime(DATE_LOG, datetime_format)
+		dates.append(datetime_log)
+		temps.append(TEMP_LOG)
+		status.append(STATUS_LOG)
 
-# plot
-plt.title('Data from thermometer')
+	# plot
+	plt.title('Data from thermometer')
 
-plt.subplot(2, 1, 1)
-yticks = ['BAD', 'PERFECT']
-y=[0,1]
-plt.yticks(y,yticks)
-plt.plot(dates,status)
-plt.ylim(-0.1, 1.1)
-#plt.gcf().autofmt_xdate()
-plt.ylabel('It is in the range?')
+	plt.subplot(2, 1, 1)
+	yticks = ['BAD', 'PERFECT']
+	y=[0,1]
+	plt.yticks(y,yticks)
+	plt.plot(dates,status)
+	plt.ylim(-0.1, 1.1)
 
-plt.subplot(2, 1, 2)
-#yticks = ['MIN', 'MAX']
-#y=[36.5,37.1]
-#plt.yticks(y,yticks)
-plot_date(dates, temperatures, 'b-')
-plt.ylim(33, 42)
-plt.axhspan(36.5, 37.1, facecolor='r', alpha=0.5)
-plt.gcf().autofmt_xdate()
-plt.xlabel('time')
-plt.ylabel('Temperature')
+	plt.subplot(2, 1, 2)
+	plot_date(dates, temps, 'k-')
+	plt.ylim(35, 40)
+	plt.axhspan(temp_MIN, temp_MAX, facecolor='r', alpha=0.3)
+	plt.axhspan(temp_param_MIN, temp_param_MAX, facecolor='r', alpha=0.8)
+	plt.gcf().autofmt_xdate()
+	plt.xlabel('time')
+	plt.ylabel('Temperature')
 
-plt.show()
+	plt.show()
+
+def SHT1x_charts(datetime_format):
+	SHT1x_conn = sqlite3.connect(local_path_SHT1xdb)
+	cursor = SHT1x_conn.cursor()
+	dates = []
+	humis = []
+	temps = []
+
+	for date, temp, humi in cursor.execute('SELECT * FROM READ'):
+		datetime_log = datetime.strptime(date, datetime_format)
+		dates.append(datetime_log)
+		temps.append(temp)
+		humis.append(humi)
+
+	plt.title('Data from SHT1x')
+
+	plt.subplot(2, 1, 1)
+	plt.plot(dates, humis)
+	plt.axhspan(humi_MIN, humi_MAX, facecolor='r', alpha=0.3)
+	plt.axhspan(humi_param_MIN, humi_param_MAX, facecolor='r', alpha=0.8)
+	plt.ylabel('Humidity')
+
+	plt.subplot(2, 1, 2)
+	plot_date(dates, temps, 'k-')
+	plt.ylim(35, 40)
+	plt.axhspan(temp_MIN, temp_MAX, facecolor='r', alpha=0.3)
+	plt.axhspan(temp_param_MIN, temp_param_MAX, facecolor='r', alpha=0.8)
+	plt.gcf().autofmt_xdate()
+	plt.xlabel('time')
+	plt.ylabel('Temperature')	
+
+	plt.show()
+
+retrieve_DBs()
+thermo_charts(datetime_format)
+SHT1x_charts(datetime_format)
