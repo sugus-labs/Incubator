@@ -1,10 +1,13 @@
 // Compile with: gcc -o testSHT1x ./../bcm2835-1.3/src/bcm2835.c ./RPi_SHT1x.c testSHT1x.c
 
 /*
-Raspberry Pi SHT1x communication library.
-By:      John Burns (www.john.geek.nz)
-Date:    14 August 2012
-License: CC BY-SA v3.0 - http://creativecommons.org/licenses/by-sa/3.0/
+Gustavo Martin
+
+This is a derivative work based on
+	Name:	Raspberry Pi SHT1x communication library.
+	By:      John Burns (www.john.geek.nz)
+	Date:    14 August 2012
+	License: CC BY-SA v3.0 - http://creativecommons.org/licenses/by-sa/3.0/
 
 This is a derivative work based on
 	Name: Nice Guy SHT11 library

@@ -93,7 +93,7 @@ def thermo_charts(datetime_format):
 	plt.title('Data from thermometer')
 
 	plt.subplot(2, 1, 1)
-	yticks = ['BAD', 'PERFECT']
+	yticks = ['BAD', 'GOOD']
 	y=[0,1]
 	plt.yticks(y,yticks)
 	plt.plot(dates,status)
