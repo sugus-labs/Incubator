@@ -107,8 +107,9 @@ def thermo_charts(datetime_format):
 	plt.gcf().autofmt_xdate()
 	plt.xlabel('time')
 	plt.ylabel('Temperature')
-
-	plt.show()
+	plt.savefig('thermo.png', orientation='landscape')
+	#plt.show()
+	plt.close()
 
 def SHT1x_charts(datetime_format):
 	SHT1x_conn = sqlite3.connect(local_path_SHT1xdb)
@@ -139,8 +140,9 @@ def SHT1x_charts(datetime_format):
 	plt.gcf().autofmt_xdate()
 	plt.xlabel('time')
 	plt.ylabel('Temperature')	
-
-	plt.show()
+	plt.savefig('SHT1x.png', orientation='landscape')
+	#plt.show()
+	plt.close()
 
 retrieve_DBs()
 thermo_charts(datetime_format)
