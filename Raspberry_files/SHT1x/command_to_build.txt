@@ -1,0 +1,1 @@
+gcc DBtestSHT1x.c RPi_SHT1x.c -o SHT1x -lbcm2835 -lsqlite3
