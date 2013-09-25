@@ -1,10 +1,11 @@
 # sudo pip install paramiko
-
+from pylab import *
 import os
 import sqlite3
 import paramiko
 from datetime import datetime
 import matplotlib.pyplot as plt
+
 
 server = "192.168.0.110"
 host_username = "pi"
@@ -70,16 +71,36 @@ thermo_conn = sqlite3.connect(local_path_thermodb)
 cursor = thermo_conn.cursor()
 dates = []
 status = []
+temperatures = []
 datetime_format = '%Y-%m-%d %H:%M:%S'
+
 for ID_LOG, DATE_LOG, TEMP_LOG, STATUS_LOG in cursor.execute('SELECT * FROM LOG'):
 	datetime_log = datetime.strptime(DATE_LOG, datetime_format)
 	dates.append(datetime_log)
+	temperatures.append(TEMP_LOG)
 	status.append(STATUS_LOG)
-print dates
+
 # plot
+plt.title('Data from thermometer')
+
+plt.subplot(2, 1, 1)
+yticks = ['BAD', 'PERFECT']
+y=[0,1]
+plt.yticks(y,yticks)
 plt.plot(dates,status)
-# beautify the x-labels
+plt.ylim(-0.1, 1.1)
+#plt.gcf().autofmt_xdate()
+plt.ylabel('It is in the range?')
+
+plt.subplot(2, 1, 2)
+#yticks = ['MIN', 'MAX']
+#y=[36.5,37.1]
+#plt.yticks(y,yticks)
+plot_date(dates, temperatures, 'b-')
+plt.ylim(33, 42)
+plt.axhspan(36.5, 37.1, facecolor='r', alpha=0.5)
 plt.gcf().autofmt_xdate()
+plt.xlabel('time')
+plt.ylabel('Temperature')
 
 plt.show()
-#print dates
