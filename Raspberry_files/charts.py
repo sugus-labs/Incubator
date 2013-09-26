@@ -13,7 +13,7 @@ import pandas.io.sql as psql
 MAD=pytz.timezone('Europe/Madrid')
 datetime_format = '%Y-%m-%d %H:%M:%S'
 
-temp_param_MAX = 37.35
+temp_param_MAX = 37.3
 temp_param_MIN = 37.2
 temp_MIN = 37.0
 temp_MAX = 38.0
@@ -167,4 +167,7 @@ generate_SHT1x_plot_and_save(SHT1x_dates, SHT1x_temps, SHT1x_humis, humi_param_M
 #     df_sqlite = psql.frame_query('select * from READ', con=conn)    
 #     print 'loaded dataframe from sqlite', len(df_sqlite)
 #     print df_sqlite
+#     df_sqlite.index = pd.to_datetime(df_sqlite.pop('date'))
+#     #df_sqlite.head()
+#     print df_sqlite.temp['2013-09-26']
 
