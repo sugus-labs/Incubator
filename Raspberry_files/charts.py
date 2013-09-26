@@ -8,6 +8,7 @@ import matplotlib.pyplot as plt
 import pandas as pd
 import numpy as np
 import pytz
+import pandas.io.sql as psql
 
 MAD=pytz.timezone('Europe/Madrid')
 datetime_format = '%Y-%m-%d %H:%M:%S'
@@ -98,6 +99,8 @@ def extract_SHT1x_data(datetime_format, db_local_path, db_utils_dict):
 def generate_comparing_temperature_with_dates_and_save(thermo_dates, thermo_temps, SHT1x_dates, SHT1x_temps, temp_param_MAX, temp_param_MIN, temp_MAX, temp_MIN, temp_limit_SUP, temp_limit_INF):
 	plt.plot(thermo_dates, thermo_temps, 'r', SHT1x_dates, SHT1x_temps,)
 	plt.ylim(temp_limit_INF, temp_limit_SUP)
+	y=np.arange(temp_limit_INF, temp_limit_SUP, 0.5)
+	plt.grid()
 	plt.gcf().autofmt_xdate()
 	legend( ('thermo', 'SHT1x') ,
         loc = 'upper right')
@@ -116,13 +119,13 @@ def generate_thermo_plot_and_save(thermo_dates, thermo_temps, thermo_status, tem
 	# plt.ylim(-0.1, 1.1)
 	# Second subplot
 	#plt.subplot(2, 1, 2)
-	plot_date(thermo_datesx, thermo_temps, 'k-', tz=MAD)
+	plot_date(thermo_dates, thermo_temps, 'b-', tz=MAD)
 	plt.ylim(temp_limit_INF, temp_limit_SUP)
 	y=np.arange(temp_limit_INF, temp_limit_SUP, 0.5)
 	plt.grid()
 	plt.yticks(y)
-	plt.axhspan(temp_MIN, temp_MAX, facecolor='r', alpha=0.8)
-	plt.axhspan(temp_param_MIN, temp_param_MAX, facecolor='m', alpha=0.5)
+	plt.axhspan(temp_MIN, temp_MAX, facecolor='r', alpha=0.5)
+	plt.axhspan(temp_param_MIN, temp_param_MAX, facecolor='m', alpha=0.2)
 	plt.gcf().autofmt_xdate()
 	plt.xlabel('time')
 	plt.ylabel('Temperature')
@@ -134,16 +137,18 @@ def generate_SHT1x_plot_and_save(SHT1x_dates, SHT1x_temps, SHT1x_humis, humi_par
 	plt.title('Data from SHT1x')
 	# First subplot
 	plt.subplot(2, 1, 1)
-	plt.plot(SHT1x_dates, SHT1x_humis, tz=MAD)
-	plt.axhspan(humi_MIN, humi_MAX, facecolor='r', alpha=0.8)
-	plt.axhspan(humi_param_MIN, humi_param_MAX, facecolor='m', alpha=0.5)
+	plot_date(SHT1x_dates, SHT1x_humis, 'b-', tz=MAD)
+	plt.axhspan(humi_MIN, humi_MAX, facecolor='r', alpha=0.5)
+	plt.axhspan(humi_param_MIN, humi_param_MAX, facecolor='m', alpha=0.2)
 	plt.ylabel('Humidity')
 	# Second subplot
 	plt.subplot(2, 1, 2)
-	plot_date(SHT1x_dates, SHT1x_temps, 'k-', tz=MAD)
+	plot_date(SHT1x_dates, SHT1x_temps, 'b-', tz=MAD)
 	plt.ylim(temp_limit_INF, temp_limit_SUP)
-	plt.axhspan(temp_MIN, temp_MAX, facecolor='r', alpha=0.8)
-	plt.axhspan(temp_param_MIN, temp_param_MAX, facecolor='m', alpha=0.5)
+	y=np.arange(temp_limit_INF, temp_limit_SUP, 0.5)
+	plt.grid()
+	plt.axhspan(temp_MIN, temp_MAX, facecolor='r', alpha=0.5)
+	plt.axhspan(temp_param_MIN, temp_param_MAX, facecolor='m', alpha=0.2)
 	plt.gcf().autofmt_xdate()
 	plt.xlabel('time')
 	plt.ylabel('Temperature')	
@@ -154,8 +159,12 @@ def generate_SHT1x_plot_and_save(SHT1x_dates, SHT1x_temps, SHT1x_humis, humi_par
 retrieve_DBs()
 thermo_dates, thermo_temps, thermo_status = extract_thermo_data(datetime_format, local_path_thermodb, thermodb_utils_dict)
 SHT1x_dates, SHT1x_temps, SHT1x_humis = extract_SHT1x_data(datetime_format, local_path_SHT1xdb, SHT1xdb_utils_dict)
-generate_comparing_temperature_with_dates_and_save(thermo_dates, thermo_temps, SHT1x_dates, SHT1x_temps, temp_param_MAX, temp_param_MIN, temp_MAX, temp_param_MIN, 43, 32)
+generate_comparing_temperature_with_dates_and_save(thermo_dates, thermo_temps, SHT1x_dates, SHT1x_temps, temp_param_MAX, temp_param_MIN, temp_MAX, temp_param_MIN, 40, 35)
 generate_thermo_plot_and_save(thermo_dates, thermo_temps, thermo_status, temp_param_MAX, temp_param_MIN, temp_MAX, temp_MIN, 40, 35)
 generate_SHT1x_plot_and_save(SHT1x_dates, SHT1x_temps, SHT1x_humis, humi_param_MAX, humi_param_MIN, humi_MAX, humi_MIN, 40, 35)
 
+# with sqlite3.connect('/home/weblord/Desktop/Incubator/Raspberry_files/SHT1x/SHT1x.db', detect_types=sqlite3.PARSE_DECLTYPES) as conn:
+#     df_sqlite = psql.frame_query('select * from READ', con=conn)    
+#     print 'loaded dataframe from sqlite', len(df_sqlite)
+#     print df_sqlite
 
