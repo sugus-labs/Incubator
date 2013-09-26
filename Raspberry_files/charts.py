@@ -7,7 +7,9 @@ from datetime import datetime
 import matplotlib.pyplot as plt
 import pandas as pd
 import numpy as np
+import pytz
 
+MAD=pytz.timezone('Europe/Madrid')
 datetime_format = '%Y-%m-%d %H:%M:%S'
 
 temp_param_MAX = 37.35
@@ -16,10 +18,8 @@ temp_MIN = 37.0
 temp_MAX = 38.0
 humi_param_MAX = 60.5
 humi_param_MIN = 55.5
-humi_MIN = 60.0
-humi_MAX = 75.0
-
-gray_color = '#778899'
+humi_MIN = 55.0
+humi_MAX = 70.0
 
 server = "192.168.0.110"
 host_username = "pi"
@@ -108,18 +108,21 @@ def generate_comparing_temperature_with_dates_and_save(thermo_dates, thermo_temp
 def generate_thermo_plot_and_save(thermo_dates, thermo_temps, thermo_status, temp_param_MAX, temp_param_MIN, temp_MAX, temp_MIN, temp_limit_SUP, temp_limit_INF):
 	plt.title('Data from thermometer')
 	# First subplot
-	plt.subplot(2, 1, 1)
-	yticks = ['BAD', 'GOOD']
-	y=[0,1]
-	plt.yticks(y,yticks)
-	plt.plot(thermo_dates,thermo_status)
-	plt.ylim(-0.1, 1.1)
+	# plt.subplot(2, 1, 1)
+	# yticks = ['BAD', 'GOOD']
+	# y=[0,1]
+	# plt.yticks(y,yticks)
+	# plt.plot(thermo_dates,thermo_status)
+	# plt.ylim(-0.1, 1.1)
 	# Second subplot
-	plt.subplot(2, 1, 2)
-	plot_date(thermo_dates, thermo_temps, 'k-')
+	#plt.subplot(2, 1, 2)
+	plot_date(thermo_datesx, thermo_temps, 'k-', tz=MAD)
 	plt.ylim(temp_limit_INF, temp_limit_SUP)
+	y=np.arange(temp_limit_INF, temp_limit_SUP, 0.5)
+	plt.grid()
+	plt.yticks(y)
 	plt.axhspan(temp_MIN, temp_MAX, facecolor='r', alpha=0.8)
-	plt.axhspan(temp_param_MIN, temp_param_MAX, facecolor='r', alpha=0.5)
+	plt.axhspan(temp_param_MIN, temp_param_MAX, facecolor='m', alpha=0.5)
 	plt.gcf().autofmt_xdate()
 	plt.xlabel('time')
 	plt.ylabel('Temperature')
@@ -131,16 +134,16 @@ def generate_SHT1x_plot_and_save(SHT1x_dates, SHT1x_temps, SHT1x_humis, humi_par
 	plt.title('Data from SHT1x')
 	# First subplot
 	plt.subplot(2, 1, 1)
-	plt.plot(SHT1x_dates, SHT1x_humis)
+	plt.plot(SHT1x_dates, SHT1x_humis, tz=MAD)
 	plt.axhspan(humi_MIN, humi_MAX, facecolor='r', alpha=0.8)
-	plt.axhspan(humi_param_MIN, humi_param_MAX, facecolor='r', alpha=0.5)
+	plt.axhspan(humi_param_MIN, humi_param_MAX, facecolor='m', alpha=0.5)
 	plt.ylabel('Humidity')
 	# Second subplot
 	plt.subplot(2, 1, 2)
-	plot_date(SHT1x_dates, SHT1x_temps, 'k-')
+	plot_date(SHT1x_dates, SHT1x_temps, 'k-', tz=MAD)
 	plt.ylim(temp_limit_INF, temp_limit_SUP)
 	plt.axhspan(temp_MIN, temp_MAX, facecolor='r', alpha=0.8)
-	plt.axhspan(temp_param_MIN, temp_param_MAX, facecolor='r', alpha=0.5)
+	plt.axhspan(temp_param_MIN, temp_param_MAX, facecolor='m', alpha=0.5)
 	plt.gcf().autofmt_xdate()
 	plt.xlabel('time')
 	plt.ylabel('Temperature')	
