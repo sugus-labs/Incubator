@@ -5,13 +5,15 @@ import sqlite3
 import paramiko
 from datetime import datetime
 import matplotlib.pyplot as plt
+import pandas as pd
+import numpy as np
 
 datetime_format = '%Y-%m-%d %H:%M:%S'
 
-temp_param_MAX = 37.1
-temp_param_MIN = 36.5
-temp_MIN = 36.0
-temp_MAX = 37.6
+temp_param_MAX = 37.35
+temp_param_MIN = 37.2
+temp_MIN = 37.2
+temp_MAX = 37.8
 humi_param_MAX = 60.5
 humi_param_MIN = 55.5
 humi_MIN = 60.0
