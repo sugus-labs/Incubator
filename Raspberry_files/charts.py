@@ -12,12 +12,14 @@ datetime_format = '%Y-%m-%d %H:%M:%S'
 
 temp_param_MAX = 37.35
 temp_param_MIN = 37.2
-temp_MIN = 37.2
-temp_MAX = 37.8
+temp_MIN = 37.0
+temp_MAX = 38.0
 humi_param_MAX = 60.5
 humi_param_MIN = 55.5
 humi_MIN = 60.0
 humi_MAX = 75.0
+
+gray_color = '#778899'
 
 server = "192.168.0.110"
 host_username = "pi"
@@ -116,8 +118,8 @@ def generate_thermo_plot_and_save(thermo_dates, thermo_temps, thermo_status, tem
 	plt.subplot(2, 1, 2)
 	plot_date(thermo_dates, thermo_temps, 'k-')
 	plt.ylim(temp_limit_INF, temp_limit_SUP)
-	plt.axhspan(temp_MIN, temp_MAX, facecolor='r', alpha=0.3)
-	plt.axhspan(temp_param_MIN, temp_param_MAX, facecolor='r', alpha=0.8)
+	plt.axhspan(temp_MIN, temp_MAX, facecolor='r', alpha=0.8)
+	plt.axhspan(temp_param_MIN, temp_param_MAX, facecolor='r', alpha=0.5)
 	plt.gcf().autofmt_xdate()
 	plt.xlabel('time')
 	plt.ylabel('Temperature')
@@ -130,15 +132,15 @@ def generate_SHT1x_plot_and_save(SHT1x_dates, SHT1x_temps, SHT1x_humis, humi_par
 	# First subplot
 	plt.subplot(2, 1, 1)
 	plt.plot(SHT1x_dates, SHT1x_humis)
-	plt.axhspan(humi_MIN, humi_MAX, facecolor='r', alpha=0.3)
-	plt.axhspan(humi_param_MIN, humi_param_MAX, facecolor='r', alpha=0.8)
+	plt.axhspan(humi_MIN, humi_MAX, facecolor='r', alpha=0.8)
+	plt.axhspan(humi_param_MIN, humi_param_MAX, facecolor='r', alpha=0.5)
 	plt.ylabel('Humidity')
 	# Second subplot
 	plt.subplot(2, 1, 2)
 	plot_date(SHT1x_dates, SHT1x_temps, 'k-')
 	plt.ylim(temp_limit_INF, temp_limit_SUP)
-	plt.axhspan(temp_MIN, temp_MAX, facecolor='r', alpha=0.3)
-	plt.axhspan(temp_param_MIN, temp_param_MAX, facecolor='r', alpha=0.8)
+	plt.axhspan(temp_MIN, temp_MAX, facecolor='r', alpha=0.8)
+	plt.axhspan(temp_param_MIN, temp_param_MAX, facecolor='r', alpha=0.5)
 	plt.gcf().autofmt_xdate()
 	plt.xlabel('time')
 	plt.ylabel('Temperature')	
