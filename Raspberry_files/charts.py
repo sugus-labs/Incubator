@@ -3,12 +3,18 @@ from pylab import *
 import os
 import sqlite3
 import paramiko
-from datetime import datetime
+from datetime import datetime, timedelta, date
 import matplotlib.pyplot as plt
 import pandas as pd
 import numpy as np
 import pytz
 import pandas.io.sql as psql
+from pandas import ExcelWriter
+
+# TODO: No hardcoded please! It is unuseful. Only for DEBUG
+first_day = date(2013, 9, 25)
+num_days = 21
+days_list = [ first_day + timedelta(days=x) for x in range(0,num_days) ]
 
 MAD=pytz.timezone('Europe/Madrid')
 datetime_format = '%Y-%m-%d %H:%M:%S'
@@ -21,6 +27,11 @@ humi_param_MAX = 60.5
 humi_param_MIN = 55.5
 humi_MIN = 55.0
 humi_MAX = 70.0
+
+temp_limit_INF = 36.8
+temp_limit_SUP = 39
+humi_limit_INF = 50
+humi_limit_SUP = 75
 
 server = "192.168.0.110"
 host_username = "pi"
@@ -101,6 +112,8 @@ def save_temp_from_dataframe_by_day(dataframe, string_day, temp_param_MAX, temp_
 	plt.axhspan(temp_MIN, temp_MAX, facecolor='g', alpha=0.2)
 	today_plot_mean = today_plot.mean()
 	legend( ('MEAN: %.2f' % today_plot_mean, 'Recommended zone') , loc = 'upper right')
+	plt.ylabel('Temperature')
+	plt.xlabel('Hours')
 	plt.savefig('temp_%s.png' % string_day, orientation='landscape')
 	plt.close()
 
@@ -117,6 +130,8 @@ def comparing_temps_from_dataframe_by_day(dataframe_thermo, dataframe_SHT1x, str
 	plt.axhspan(temp_param_MIN, temp_param_MAX, facecolor='g', alpha=0.2)
 	plt.axhspan(temp_MIN, temp_MAX, facecolor='g', alpha=0.2)
 	legend( ('thermo', 'SHT1x', 'Recommended zone') , loc = 'upper right')
+	plt.ylabel('Temperature')
+	plt.xlabel('Hours')
 	plt.savefig('comparing_temps_%s.png' % string_day, orientation='landscape')
 	plt.close()
 
@@ -132,6 +147,7 @@ def comparing_humi_temps_from_dataframe_by_day(dataframe_thermo, dataframe_SHT1x
 	today_plot_thermo.plot()
 	plt.axhspan(temp_param_MIN, temp_param_MAX, facecolor='g', alpha=0.2)
 	plt.axhspan(temp_MIN, temp_MAX, facecolor='g', alpha=0.2)
+	plt.ylabel('Temperature')
 	# Second subplot
  	plt.subplot(2, 1, 2)
 	today_plot_SHT1x = dataframe_SHT1x.humi[string_day]
@@ -140,18 +156,30 @@ def comparing_humi_temps_from_dataframe_by_day(dataframe_thermo, dataframe_SHT1x
 	today_plot_SHT1x.plot()
 	plt.axhspan(humi_param_MIN, humi_param_MAX, facecolor='g', alpha=0.2)
 	plt.axhspan(humi_MIN, humi_MAX, facecolor='g', alpha=0.2)
+	plt.ylabel('Humidity')
+	plt.xlabel('Hours')
 	#legend( ('thermo', 'SHT1x', 'Recommended zone') , loc = 'upper right')
 	plt.savefig('comparing_humi_temps_%s.png' % string_day, orientation='landscape')
 	plt.close()
 
+def extract_SHT1x_data_day_by_day(SHT1x_dataframe, days_list):
+	# the 'with' statement dont work
+	#today = date.now()
+	writer = ExcelWriter('SHT1x.xlsx')
+    	for day in days_list:
+    		#if day <= today:
+    		day_SHT1x = SHT1x_dataframe[str(first_day)]
+        	day_SHT1x.to_excel(writer, sheet_name=str(first_day))
+    	writer.save()
 
 retrieve_DBs()
 SHT1x_dataframe = extract_data_from_DB(datetime_format, local_path_SHT1xdb, SHT1xdb_utils_dict)
 thermo_dataframe = extract_data_from_DB(datetime_format, local_path_thermodb, thermodb_utils_dict)
-save_humi_from_dataframe_by_day(SHT1x_dataframe, '2013-09-27', humi_param_MAX, humi_param_MIN, humi_MAX, humi_MIN, 75, 50)
-save_temp_from_dataframe_by_day(thermo_dataframe, '2013-09-27', temp_param_MAX, temp_param_MIN, temp_MAX, temp_MIN, 39, 36.8)
-comparing_temps_from_dataframe_by_day(thermo_dataframe, SHT1x_dataframe, '2013-09-27', temp_param_MAX, temp_param_MIN, temp_MAX, temp_MIN, 39, 36.8)
-comparing_humi_temps_from_dataframe_by_day(thermo_dataframe, SHT1x_dataframe, '2013-09-27', temp_param_MAX, temp_param_MIN, temp_MAX, temp_MIN, 39, 36.8, 75, 50)
-#print SHT1x_dataframe
-#print thermo_dataframe
+save_humi_from_dataframe_by_day(SHT1x_dataframe, '2013-09-27', humi_param_MAX, humi_param_MIN, humi_MAX, humi_MIN, humi_limit_SUP, humi_limit_INF)
+save_temp_from_dataframe_by_day(thermo_dataframe, '2013-09-27', temp_param_MAX, temp_param_MIN, temp_MAX, temp_MIN, temp_limit_SUP, temp_limit_INF)
+comparing_temps_from_dataframe_by_day(thermo_dataframe, SHT1x_dataframe, '2013-09-27', temp_param_MAX, temp_param_MIN, temp_MAX, temp_MIN, temp_limit_SUP, temp_limit_INF)
+comparing_humi_temps_from_dataframe_by_day(thermo_dataframe, SHT1x_dataframe, '2013-09-27', temp_param_MAX, temp_param_MIN, temp_MAX, temp_MIN, temp_limit_SUP, temp_limit_INF, humi_limit_SUP, humi_limit_INF)
 
+#extract_SHT1x_data_day_by_day(SHT1x_dataframe, days_list)
+#print type(str(first_day))
+#print thermo_dataframe
