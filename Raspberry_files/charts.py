@@ -64,110 +64,88 @@ def retrieve_DBs():
 	ssh_client.close()
 
 # Extract data from thermo DB
-def extract_thermo_data(datetime_format, db_local_path, db_utils_dict):
-	# Extract data from thermo.db
-	thermo_conn = sqlite3.connect(db_local_path)
-	cursor = thermo_conn.cursor()
-	dates = []
-	status = []
-	temps = []
+def extract_data_from_DB(datetime_format, db_local_path, db_utils_dict):
+	with sqlite3.connect(db_local_path, detect_types=sqlite3.PARSE_DECLTYPES) as conn:
+	    dataframe_sqlite = psql.frame_query('select * from ' + db_utils_dict['table_name'], con=conn)    
+	    print 'loaded dataframe from sqlite', len(dataframe_sqlite)
 
-	for db_utils_dict['table_columns'] in cursor.execute('SELECT * FROM ' + db_utils_dict['table_name']):
-		datetime_log = datetime.strptime(db_utils_dict['table_columns'][1], datetime_format)
-		dates.append(datetime_log)
-		temps.append(db_utils_dict['table_columns'][2])
-		status.append(db_utils_dict['table_columns'][3])
+# def generate_comparing_temperature_with_dates_and_save(thermo_dates, thermo_temps, SHT1x_dates, SHT1x_temps, temp_param_MAX, temp_param_MIN, temp_MAX, temp_MIN, temp_limit_SUP, temp_limit_INF):
+# 	plt.plot(thermo_dates, thermo_temps, 'r', SHT1x_dates, SHT1x_temps,)
+# 	plt.ylim(temp_limit_INF, temp_limit_SUP)
+# 	y=np.arange(temp_limit_INF, temp_limit_SUP, 0.5)
+# 	plt.grid()
+# 	plt.gcf().autofmt_xdate()
+# 	legend( ('thermo', 'SHT1x') ,
+#         loc = 'upper right')
+# 	plt.savefig('thermo_comparation.png', orientation='landscape')
+# 	#plt.show()
+# 	plt.close()
 
-	return dates, temps, status
-	
+# def generate_thermo_plot_and_save(thermo_dates, thermo_temps, thermo_status, temp_param_MAX, temp_param_MIN, temp_MAX, temp_MIN, temp_limit_SUP, temp_limit_INF):
+# 	plt.title('Data from thermometer')
+# 	# First subplot
+# 	# plt.subplot(2, 1, 1)
+# 	# yticks = ['BAD', 'GOOD']
+# 	# y=[0,1]
+# 	# plt.yticks(y,yticks)
+# 	# plt.plot(thermo_dates,thermo_status)
+# 	# plt.ylim(-0.1, 1.1)
+# 	# Second subplot
+# 	#plt.subplot(2, 1, 2)
+# 	plot_date(thermo_dates, thermo_temps, 'b-', tz=MAD)
+# 	plt.ylim(temp_limit_INF, temp_limit_SUP)
+# 	y=np.arange(temp_limit_INF, temp_limit_SUP, 0.5)
+# 	plt.grid()
+# 	plt.yticks(y)
+# 	plt.axhspan(temp_MIN, temp_MAX, facecolor='r', alpha=0.5)
+# 	plt.axhspan(temp_param_MIN, temp_param_MAX, facecolor='m', alpha=0.2)
+# 	plt.gcf().autofmt_xdate()
+# 	plt.xlabel('time')
+# 	plt.ylabel('Temperature')
+# 	plt.savefig('thermo.png', orientation='landscape')
+# 	#plt.show()
+# 	plt.close()
 
-def extract_SHT1x_data(datetime_format, db_local_path, db_utils_dict):
-	SHT1x_conn = sqlite3.connect(db_local_path)
-	cursor = SHT1x_conn.cursor()
-	dates = []
-	humis = []
-	temps = []
+# def generate_SHT1x_plot_and_save(SHT1x_dates, SHT1x_temps, SHT1x_humis, humi_param_MAX, humi_param_MIN, humi_MAX, humi_MIN, temp_limit_SUP, temp_limit_INF):
+# 	plt.title('Data from SHT1x')
+# 	# First subplot
+# 	plt.subplot(2, 1, 1)
+# 	plot_date(SHT1x_dates, SHT1x_humis, 'b-', tz=MAD)
+# 	plt.axhspan(humi_MIN, humi_MAX, facecolor='r', alpha=0.5)
+# 	plt.axhspan(humi_param_MIN, humi_param_MAX, facecolor='m', alpha=0.2)
+# 	plt.ylabel('Humidity')
+# 	# Second subplot
+# 	plt.subplot(2, 1, 2)
+# 	plot_date(SHT1x_dates, SHT1x_temps, 'b-', tz=MAD)
+# 	plt.ylim(temp_limit_INF, temp_limit_SUP)
+# 	y=np.arange(temp_limit_INF, temp_limit_SUP, 0.5)
+# 	plt.grid()
+# 	plt.axhspan(temp_MIN, temp_MAX, facecolor='r', alpha=0.5)
+# 	plt.axhspan(temp_param_MIN, temp_param_MAX, facecolor='m', alpha=0.2)
+# 	plt.gcf().autofmt_xdate()
+# 	plt.xlabel('time')
+# 	plt.ylabel('Temperature')	
+# 	plt.savefig('SHT1x.png', orientation='landscape')
+# 	#plt.show()
+# 	plt.close()
 
-	for db_utils_dict['table_columns'] in cursor.execute('SELECT * FROM ' + db_utils_dict['table_name']):
-		datetime_log = datetime.strptime(db_utils_dict['table_columns'][0], datetime_format)
-		dates.append(datetime_log)
-		temps.append(db_utils_dict['table_columns'][1])
-		humis.append(db_utils_dict['table_columns'][2])
+# retrieve_DBs()
+# thermo_dates, thermo_temps, thermo_status = extract_thermo_data(datetime_format, local_path_thermodb, thermodb_utils_dict)
+# SHT1x_dates, SHT1x_temps, SHT1x_humis = extract_SHT1x_data(datetime_format, local_path_SHT1xdb, SHT1xdb_utils_dict)
+# generate_comparing_temperature_with_dates_and_save(thermo_dates, thermo_temps, SHT1x_dates, SHT1x_temps, temp_param_MAX, temp_param_MIN, temp_MAX, temp_param_MIN, 40, 35)
+# generate_thermo_plot_and_save(thermo_dates, thermo_temps, thermo_status, temp_param_MAX, temp_param_MIN, temp_MAX, temp_MIN, 40, 35)
+# generate_SHT1x_plot_and_save(SHT1x_dates, SHT1x_temps, SHT1x_humis, humi_param_MAX, humi_param_MIN, humi_MAX, humi_MIN, 40, 35)
 
-	return dates, temps, humis
+# def retrieve_DB():
+# 	with sqlite3.connect('/home/weblord/Desktop/Incubator/Raspberry_files/SHT1x/SHT1x.db', detect_types=sqlite3.PARSE_DECLTYPES) as conn:
+# 	    df_sqlite = psql.frame_query('select * from READ', con=conn)    
+# 	    print 'loaded dataframe from sqlite', len(df_sqlite)
+# 	    df_sqlite.index = pd.to_datetime(df_sqlite.pop('date'))
+# 	    today_data =  df_sqlite['2013-09-26']
+# 	    today_data.plot()
+# 	    plt.show()
 
-def generate_comparing_temperature_with_dates_and_save(thermo_dates, thermo_temps, SHT1x_dates, SHT1x_temps, temp_param_MAX, temp_param_MIN, temp_MAX, temp_MIN, temp_limit_SUP, temp_limit_INF):
-	plt.plot(thermo_dates, thermo_temps, 'r', SHT1x_dates, SHT1x_temps,)
-	plt.ylim(temp_limit_INF, temp_limit_SUP)
-	y=np.arange(temp_limit_INF, temp_limit_SUP, 0.5)
-	plt.grid()
-	plt.gcf().autofmt_xdate()
-	legend( ('thermo', 'SHT1x') ,
-        loc = 'upper right')
-	plt.savefig('thermo_comparation.png', orientation='landscape')
-	#plt.show()
-	plt.close()
+extract_data_from_DB(datetime_format, local_path_SHT1xdb, SHT1xdb_utils_dict)
+extract_data_from_DB(datetime_format, local_path_thermodb, thermodb_utils_dict)
 
-def generate_thermo_plot_and_save(thermo_dates, thermo_temps, thermo_status, temp_param_MAX, temp_param_MIN, temp_MAX, temp_MIN, temp_limit_SUP, temp_limit_INF):
-	plt.title('Data from thermometer')
-	# First subplot
-	# plt.subplot(2, 1, 1)
-	# yticks = ['BAD', 'GOOD']
-	# y=[0,1]
-	# plt.yticks(y,yticks)
-	# plt.plot(thermo_dates,thermo_status)
-	# plt.ylim(-0.1, 1.1)
-	# Second subplot
-	#plt.subplot(2, 1, 2)
-	plot_date(thermo_dates, thermo_temps, 'b-', tz=MAD)
-	plt.ylim(temp_limit_INF, temp_limit_SUP)
-	y=np.arange(temp_limit_INF, temp_limit_SUP, 0.5)
-	plt.grid()
-	plt.yticks(y)
-	plt.axhspan(temp_MIN, temp_MAX, facecolor='r', alpha=0.5)
-	plt.axhspan(temp_param_MIN, temp_param_MAX, facecolor='m', alpha=0.2)
-	plt.gcf().autofmt_xdate()
-	plt.xlabel('time')
-	plt.ylabel('Temperature')
-	plt.savefig('thermo.png', orientation='landscape')
-	#plt.show()
-	plt.close()
-
-def generate_SHT1x_plot_and_save(SHT1x_dates, SHT1x_temps, SHT1x_humis, humi_param_MAX, humi_param_MIN, humi_MAX, humi_MIN, temp_limit_SUP, temp_limit_INF):
-	plt.title('Data from SHT1x')
-	# First subplot
-	plt.subplot(2, 1, 1)
-	plot_date(SHT1x_dates, SHT1x_humis, 'b-', tz=MAD)
-	plt.axhspan(humi_MIN, humi_MAX, facecolor='r', alpha=0.5)
-	plt.axhspan(humi_param_MIN, humi_param_MAX, facecolor='m', alpha=0.2)
-	plt.ylabel('Humidity')
-	# Second subplot
-	plt.subplot(2, 1, 2)
-	plot_date(SHT1x_dates, SHT1x_temps, 'b-', tz=MAD)
-	plt.ylim(temp_limit_INF, temp_limit_SUP)
-	y=np.arange(temp_limit_INF, temp_limit_SUP, 0.5)
-	plt.grid()
-	plt.axhspan(temp_MIN, temp_MAX, facecolor='r', alpha=0.5)
-	plt.axhspan(temp_param_MIN, temp_param_MAX, facecolor='m', alpha=0.2)
-	plt.gcf().autofmt_xdate()
-	plt.xlabel('time')
-	plt.ylabel('Temperature')	
-	plt.savefig('SHT1x.png', orientation='landscape')
-	#plt.show()
-	plt.close()
-
-retrieve_DBs()
-thermo_dates, thermo_temps, thermo_status = extract_thermo_data(datetime_format, local_path_thermodb, thermodb_utils_dict)
-SHT1x_dates, SHT1x_temps, SHT1x_humis = extract_SHT1x_data(datetime_format, local_path_SHT1xdb, SHT1xdb_utils_dict)
-generate_comparing_temperature_with_dates_and_save(thermo_dates, thermo_temps, SHT1x_dates, SHT1x_temps, temp_param_MAX, temp_param_MIN, temp_MAX, temp_param_MIN, 40, 35)
-generate_thermo_plot_and_save(thermo_dates, thermo_temps, thermo_status, temp_param_MAX, temp_param_MIN, temp_MAX, temp_MIN, 40, 35)
-generate_SHT1x_plot_and_save(SHT1x_dates, SHT1x_temps, SHT1x_humis, humi_param_MAX, humi_param_MIN, humi_MAX, humi_MIN, 40, 35)
-
-# with sqlite3.connect('/home/weblord/Desktop/Incubator/Raspberry_files/SHT1x/SHT1x.db', detect_types=sqlite3.PARSE_DECLTYPES) as conn:
-#     df_sqlite = psql.frame_query('select * from READ', con=conn)    
-#     print 'loaded dataframe from sqlite', len(df_sqlite)
-#     print df_sqlite
-#     df_sqlite.index = pd.to_datetime(df_sqlite.pop('date'))
-#     #df_sqlite.head()
-#     print df_sqlite.temp['2013-09-26']
 
