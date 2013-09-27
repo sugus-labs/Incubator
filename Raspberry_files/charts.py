@@ -67,7 +67,7 @@ def retrieve_DBs():
 def extract_data_from_DB(datetime_format, db_local_path, db_utils_dict):
 	with sqlite3.connect(db_local_path, detect_types=sqlite3.PARSE_DECLTYPES) as conn:
 	    dataframe_sqlite = psql.frame_query('select ' + db_utils_dict['table_columns'][0] + ', ' + db_utils_dict['table_columns'][1] + 
-	    	', ' + db_utils_dict['table_columns'][2] + ' from ' + db_utils_dict['table_name'], con=conn)
+	    	', ' + db_utils_dict['table_columns'][2] + ' from ' + db_utils_dict['table_name'] , con=conn)
 	    # TODO: change the hour to 2 hours more! -> http://pandas.pydata.org/pandas-docs/dev/generated/pandas.tseries.tools.to_datetime.html 
 	    # This solution is a bit hacky ... and slow!!!   
 	    dataframe_sqlite.index = pd.to_datetime(dataframe_sqlite.pop(db_utils_dict['table_columns'][0]))
@@ -78,17 +78,22 @@ def extract_data_from_DB(datetime_format, db_local_path, db_utils_dict):
 def save_humi_from_dataframe_by_day(dataframe, string_day):
 	plt.title('Humidity of day  %s' % string_day)
 	today_plot = dataframe.humi[string_day]
-	today_plot.plot()
-	plt.savefig('humi_%s.png' % string_day, orientation='landscape')
-	#plt.show()
+	today_plot.tail(100).plot()
+	#plt.savefig('humi_%s.png' % string_day, orientation='landscape')
+	plt.show()
 	plt.close()
 
 def save_temp_from_dataframe_by_day(dataframe, string_day, temp_param_MAX, temp_param_MIN, temp_MAX, temp_MIN, temp_limit_SUP, temp_limit_INF):
 	plt.title('Temperature of day  %s' % string_day)
 	today_plot = dataframe.TEMP_LOG[string_day]
 	plt.ylim(temp_limit_INF, temp_limit_SUP)
- 	y=np.arange(temp_limit_INF, temp_limit_SUP, 0.5)
-	today_plot.plot()
+ 	y=np.arange(temp_limit_INF, temp_limit_SUP, 0.2)
+ 	plt.yticks(y)
+	today_plot.tail(600).plot()
+	#today_plot_mean = today_plot.tail(100).mean()
+	today_plot_last = today_plot.tail(1).mean()
+	legend( (today_plot_last, 'SHT1x') , loc = 'upper left')
+	#print "MEAN: ", today_plot_mean
 	plt.savefig('temp_%s.png' % string_day, orientation='landscape')
 	#plt.show()
 	plt.close()
@@ -172,8 +177,8 @@ def save_temp_from_dataframe_by_day(dataframe, string_day, temp_param_MAX, temp_
 retrieve_DBs()
 SHT1x_dataframe = extract_data_from_DB(datetime_format, local_path_SHT1xdb, SHT1xdb_utils_dict)
 thermo_dataframe = extract_data_from_DB(datetime_format, local_path_thermodb, thermodb_utils_dict)
-save_humi_from_dataframe_by_day(SHT1x_dataframe, '2013-09-26')
-save_temp_from_dataframe_by_day(thermo_dataframe, '2013-09-26')
+save_humi_from_dataframe_by_day(SHT1x_dataframe, '2013-09-27')
+save_temp_from_dataframe_by_day(thermo_dataframe, '2013-09-27', temp_param_MAX, temp_param_MIN, temp_MAX, temp_param_MIN, 41, 36)
 #print SHT1x_dataframe
 #print thermo_dataframe
 
