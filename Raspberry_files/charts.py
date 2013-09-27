@@ -164,12 +164,25 @@ def comparing_humi_temps_from_dataframe_by_day(dataframe_thermo, dataframe_SHT1x
 
 def extract_SHT1x_data_day_by_day(SHT1x_dataframe, days_list):
 	# the 'with' statement dont work
-	#today = date.now()
+	today = date.today()
 	writer = ExcelWriter('SHT1x.xlsx')
     	for day in days_list:
-    		#if day <= today:
-    		day_SHT1x = SHT1x_dataframe[str(first_day)]
-        	day_SHT1x.to_excel(writer, sheet_name=str(first_day))
+    		if day <= today:
+    			day_SHT1x = SHT1x_dataframe[str(day)]
+        		day_SHT1x.to_excel(writer, sheet_name=str(day))
+    	writer.save()
+
+def extract_thermo_data_day_by_day(thermo_dataframe, days_list):
+	# the 'with' statement dont work
+	# replace dont work properly
+	#thermo_dataframe_sustituted = thermo_dataframe.replace({'0': 'OFF', '1': 'ON'})
+	#print thermo_dataframe_sustituted
+	today = date.today()
+	writer = ExcelWriter('thermo.xlsx')
+    	for day in days_list:
+    		if day <= today:
+    			day_thermo = thermo_dataframe[str(day)]
+        		day_thermo.to_excel(writer, sheet_name=str(day))
     	writer.save()
 
 retrieve_DBs()
@@ -180,6 +193,7 @@ save_temp_from_dataframe_by_day(thermo_dataframe, '2013-09-27', temp_param_MAX, 
 comparing_temps_from_dataframe_by_day(thermo_dataframe, SHT1x_dataframe, '2013-09-27', temp_param_MAX, temp_param_MIN, temp_MAX, temp_MIN, temp_limit_SUP, temp_limit_INF)
 comparing_humi_temps_from_dataframe_by_day(thermo_dataframe, SHT1x_dataframe, '2013-09-27', temp_param_MAX, temp_param_MIN, temp_MAX, temp_MIN, temp_limit_SUP, temp_limit_INF, humi_limit_SUP, humi_limit_INF)
 
-#extract_SHT1x_data_day_by_day(SHT1x_dataframe, days_list)
-#print type(str(first_day))
+extract_SHT1x_data_day_by_day(SHT1x_dataframe, days_list)
+extract_thermo_data_day_by_day(thermo_dataframe, days_list)
+
 #print thermo_dataframe
