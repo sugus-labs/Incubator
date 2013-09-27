@@ -41,7 +41,7 @@ local_path_thermodb = "/home/weblord/Desktop/Incubator/Raspberry_files/thermo/th
 remote_path_thermodb = "/home/pi/test/thermostate/incubator.db"
 thermodb_utils_dict = {
 	'table_name' : 'LOG',
-	'table_columns' : ['ID_LOG', 'DATE_LOG', 'TEMP_LOG', 'STATUS_LOG']
+	'table_columns' : ['DATE_LOG', 'TEMP_LOG', 'STATUS_LOG']
 }
 
 def get_file_from_remote_host(remote_path_file, local_path_file, sftp_client):
@@ -66,8 +66,13 @@ def retrieve_DBs():
 # Extract data from thermo DB
 def extract_data_from_DB(datetime_format, db_local_path, db_utils_dict):
 	with sqlite3.connect(db_local_path, detect_types=sqlite3.PARSE_DECLTYPES) as conn:
-	    dataframe_sqlite = psql.frame_query('select * from ' + db_utils_dict['table_name'], con=conn)    
-	    print 'loaded dataframe from sqlite', len(dataframe_sqlite)
+	    dataframe_sqlite = psql.frame_query('select ' + db_utils_dict['table_columns'][0] + ', ' + db_utils_dict['table_columns'][1] + 
+	    	', ' + db_utils_dict['table_columns'][2] + ' from ' + db_utils_dict['table_name'], con=conn)    
+	    #print 'loaded dataframe from sqlite', len(dataframe_sqlite)
+	    print dataframe_sqlite
+	    dataframe_sqlite.index = pd.to_datetime(dataframe_sqlite.pop(db_utils_dict['table_columns'][0]))
+	    print dataframe_sqlite
+	    return dataframe_sqlite
 
 # def generate_comparing_temperature_with_dates_and_save(thermo_dates, thermo_temps, SHT1x_dates, SHT1x_temps, temp_param_MAX, temp_param_MIN, temp_MAX, temp_MIN, temp_limit_SUP, temp_limit_INF):
 # 	plt.plot(thermo_dates, thermo_temps, 'r', SHT1x_dates, SHT1x_temps,)
