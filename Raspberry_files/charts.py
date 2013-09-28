@@ -11,6 +11,8 @@ import pytz
 import pandas.io.sql as psql
 from pandas import ExcelWriter
 
+degree_sign= u'\N{DEGREE SIGN}'
+
 # TODO: No hardcoded please! It is unuseful. Only for DEBUG
 first_day = date(2013, 9, 25)
 num_days = 21
@@ -39,7 +41,8 @@ host_password = "letmein"
 
 # thermo.db is the sqlite3 DB that shows sht1x values. We will rename to SHT1x.db
 # The format is: table|read|read|2|CREATE TABLE READ(date text, temp real, humi real)
-local_path_SHT1xdb = "/home/weblord/Desktop/Incubator/Raspberry_files/SHT1x/SHT1x.db"
+local_path_SHT1xdb = "/home/gustavo/Desktop/Incubator/Raspberry_files/SHT1x/SHT1x.db"
+#local_path_SHT1xdb = "/home/weblord/Desktop/Incubator/Raspberry_files/SHT1x/SHT1x.db"
 remote_path_SHT1xdb = "/home/pi/test/thermo.db"
 SHT1xdb_utils_dict = {
 	'table_name' : 'READ',
@@ -48,7 +51,8 @@ SHT1xdb_utils_dict = {
 
 # incubator.db is the sqlite3 DB that shows thermostate values. We will rename to thermo.db
 # The format is: table|LOG|LOG|2|CREATE TABLE LOG (ID_LOG INTEGER PRIMARY KEY AUTOINCREMENT,DATE_LOG DATETIME DEFAULT CURRENT_TIMESTAMP,TEMP_LOG REAL, STATUS_LOG INT DEFAULT 0)
-local_path_thermodb = "/home/weblord/Desktop/Incubator/Raspberry_files/thermo/thermo.db"
+local_path_thermodb = "/home/gustavo/Desktop/Incubator/Raspberry_files/thermo/thermo.db"
+#local_path_thermodb = "/home/weblord/Desktop/Incubator/Raspberry_files/thermo/thermo.db"
 remote_path_thermodb = "/home/pi/test/thermostate/incubator.db"
 thermodb_utils_dict = {
 	'table_name' : 'LOG',
@@ -94,8 +98,9 @@ def save_humi_from_dataframe_by_day(dataframe, string_day, humi_param_MAX, humi_
 	plt.axhspan(humi_param_MIN, humi_param_MAX, facecolor='g', alpha=0.2)
 	plt.axhspan(humi_MIN, humi_MAX, facecolor='g', alpha=0.2)
  	today_plot_mean = today_plot.mean()
- 	legend( ('MEAN: %.2f' % today_plot_mean, 'Recommended zone') , loc = 'upper right')
- 	plt.ylabel('Humidity')
+ 	today_plot_std = today_plot.std()
+ 	legend( ('MEAN: %.2f %%\nSTD: %.2f %%' % (today_plot_mean, today_plot_std), 'Recommended zone') , loc = 'upper right')
+ 	plt.ylabel('Humidity (%)')
 	plt.xlabel('Hours')
 	plt.savefig('humi_%s.png' % string_day, orientation='landscape')
 	plt.close()
@@ -111,8 +116,9 @@ def save_temp_from_dataframe_by_day(dataframe, string_day, temp_param_MAX, temp_
 	plt.axhspan(temp_param_MIN, temp_param_MAX, facecolor='g', alpha=0.2)
 	plt.axhspan(temp_MIN, temp_MAX, facecolor='g', alpha=0.2)
 	today_plot_mean = today_plot.mean()
-	legend( ('MEAN: %.2f' % today_plot_mean, 'Recommended zone') , loc = 'upper right')
-	plt.ylabel('Temperature')
+	today_plot_std = today_plot.std()
+	legend( ('MEAN: %.2f %sC\nSTD: %.2f %sC' % (today_plot_mean, degree_sign, today_plot_std, degree_sign), 'Recommended zone') , loc = 'upper right')
+	plt.ylabel('Temperature (%sC)' % degree_sign)
 	plt.xlabel('Hours')
 	plt.savefig('temp_%s.png' % string_day, orientation='landscape')
 	plt.close()
@@ -130,7 +136,7 @@ def comparing_temps_from_dataframe_by_day(dataframe_thermo, dataframe_SHT1x, str
 	plt.axhspan(temp_param_MIN, temp_param_MAX, facecolor='g', alpha=0.2)
 	plt.axhspan(temp_MIN, temp_MAX, facecolor='g', alpha=0.2)
 	legend( ('thermo', 'SHT1x', 'Recommended zone') , loc = 'upper right')
-	plt.ylabel('Temperature')
+	plt.ylabel('Temperature (%sC)' % degree_sign)
 	plt.xlabel('Hours')
 	plt.savefig('comparing_temps_%s.png' % string_day, orientation='landscape')
 	plt.close()
@@ -147,7 +153,7 @@ def comparing_humi_temps_from_dataframe_by_day(dataframe_thermo, dataframe_SHT1x
 	today_plot_thermo.plot()
 	plt.axhspan(temp_param_MIN, temp_param_MAX, facecolor='g', alpha=0.2)
 	plt.axhspan(temp_MIN, temp_MAX, facecolor='g', alpha=0.2)
-	plt.ylabel('Temperature')
+	plt.ylabel('Temperature (C)')
 	# Second subplot
  	plt.subplot(2, 1, 2)
 	today_plot_SHT1x = dataframe_SHT1x.humi[string_day]
@@ -156,7 +162,7 @@ def comparing_humi_temps_from_dataframe_by_day(dataframe_thermo, dataframe_SHT1x
 	today_plot_SHT1x.plot()
 	plt.axhspan(humi_param_MIN, humi_param_MAX, facecolor='g', alpha=0.2)
 	plt.axhspan(humi_MIN, humi_MAX, facecolor='g', alpha=0.2)
-	plt.ylabel('Humidity')
+	plt.ylabel('Humidity (%)')
 	plt.xlabel('Hours')
 	#legend( ('thermo', 'SHT1x', 'Recommended zone') , loc = 'upper right')
 	plt.savefig('comparing_humi_temps_%s.png' % string_day, orientation='landscape')
@@ -185,15 +191,15 @@ def extract_thermo_data_day_by_day(thermo_dataframe, days_list):
         		day_thermo.to_excel(writer, sheet_name=str(day))
     	writer.save()
 
-retrieve_DBs()
+#retrieve_DBs()
 SHT1x_dataframe = extract_data_from_DB(datetime_format, local_path_SHT1xdb, SHT1xdb_utils_dict)
 thermo_dataframe = extract_data_from_DB(datetime_format, local_path_thermodb, thermodb_utils_dict)
-save_humi_from_dataframe_by_day(SHT1x_dataframe, '2013-09-27', humi_param_MAX, humi_param_MIN, humi_MAX, humi_MIN, humi_limit_SUP, humi_limit_INF)
-save_temp_from_dataframe_by_day(thermo_dataframe, '2013-09-27', temp_param_MAX, temp_param_MIN, temp_MAX, temp_MIN, temp_limit_SUP, temp_limit_INF)
-comparing_temps_from_dataframe_by_day(thermo_dataframe, SHT1x_dataframe, '2013-09-27', temp_param_MAX, temp_param_MIN, temp_MAX, temp_MIN, temp_limit_SUP, temp_limit_INF)
-comparing_humi_temps_from_dataframe_by_day(thermo_dataframe, SHT1x_dataframe, '2013-09-27', temp_param_MAX, temp_param_MIN, temp_MAX, temp_MIN, temp_limit_SUP, temp_limit_INF, humi_limit_SUP, humi_limit_INF)
+save_humi_from_dataframe_by_day(SHT1x_dataframe, '2013-09-28', humi_param_MAX, humi_param_MIN, humi_MAX, humi_MIN, humi_limit_SUP, humi_limit_INF)
+save_temp_from_dataframe_by_day(thermo_dataframe, '2013-09-28', temp_param_MAX, temp_param_MIN, temp_MAX, temp_MIN, temp_limit_SUP, temp_limit_INF)
+comparing_temps_from_dataframe_by_day(thermo_dataframe, SHT1x_dataframe, '2013-09-28', temp_param_MAX, temp_param_MIN, temp_MAX, temp_MIN, temp_limit_SUP, temp_limit_INF)
+comparing_humi_temps_from_dataframe_by_day(thermo_dataframe, SHT1x_dataframe, '2013-09-28', temp_param_MAX, temp_param_MIN, temp_MAX, temp_MIN, temp_limit_SUP, temp_limit_INF, humi_limit_SUP, humi_limit_INF)
 
-extract_SHT1x_data_day_by_day(SHT1x_dataframe, days_list)
-extract_thermo_data_day_by_day(thermo_dataframe, days_list)
+#extract_SHT1x_data_day_by_day(SHT1x_dataframe, days_list)
+#extract_thermo_data_day_by_day(thermo_dataframe, days_list)
 
 #print thermo_dataframe
