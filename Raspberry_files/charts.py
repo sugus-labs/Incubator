@@ -148,7 +148,7 @@ def comparing_temps_from_dataframe_by_day(dataframe_thermo, dataframe_SHT1x, str
 	plt.close()
 
 def comparing_humi_temps_from_dataframe_by_day(dataframe_thermo, dataframe_SHT1x, string_day, temp_param_MAX, temp_param_MIN, temp_MAX, temp_MIN, temp_limit_SUP, temp_limit_INF, humi_limit_SUP, humi_limit_INF):
-	plt.title('Correlation between temperature and humidity')
+ 	f, axarr = plt.subplots(2, sharex=True)
  	# First subplot
  	plt.subplot(2, 1, 1)
 	today_plot_thermo = dataframe_thermo.TEMP_LOG[string_day]
@@ -160,17 +160,23 @@ def comparing_humi_temps_from_dataframe_by_day(dataframe_thermo, dataframe_SHT1x
 	plt.axhspan(temp_param_MIN, temp_param_MAX, facecolor='g', alpha=0.2)
 	plt.axhspan(temp_MIN, temp_MAX, facecolor='g', alpha=0.2)
 	plt.ylabel('Temperature (C)')
+	plt.xlabel('')
 	# Second subplot
  	plt.subplot(2, 1, 2)
-	today_plot_SHT1x = dataframe_SHT1x.humi[string_day]
+	today_plot_SHT1x_humi = dataframe_SHT1x.humi[string_day]
+	today_plot_SHT1x_temp = dataframe_SHT1x.temp[string_day]
 	plt.ylim(humi_limit_INF, humi_limit_SUP)
  	plt.grid()
-	today_plot_SHT1x.plot()
+	today_plot_SHT1x_humi.plot()
 	plt.axhspan(humi_param_MIN, humi_param_MAX, facecolor='g', alpha=0.2)
 	plt.axhspan(humi_MIN, humi_MAX, facecolor='g', alpha=0.2)
 	plt.ylabel('Humidity (%)')
 	plt.xlabel('Hours')
-	#legend( ('thermo', 'SHT1x', 'Recommended zone') , loc = 'upper right')
+	# Pearson correlation: http://en.wikipedia.org/wiki/Pearson_product-moment_correlation_coefficient
+	# 0 implies that there is no linear correlation between the variables.
+	pearson_corr_index = today_plot_SHT1x_temp.corr(today_plot_SHT1x_humi)
+	plt.suptitle('Correlation between temperature and humidity\n')
+	plt.suptitle('\n\nCalculated Pearson correlation index: %.2f' % pearson_corr_index, color='b')
 	plt.savefig('comparing_humi_temps_%s.png' % string_day, orientation='landscape')
 	plt.close()
 
@@ -200,9 +206,9 @@ def extract_thermo_data_day_by_day(thermo_dataframe, days_list):
 #retrieve_DBs()
 SHT1x_dataframe = extract_data_from_DB(datetime_format, local_path_SHT1xdb, SHT1xdb_utils_dict)
 thermo_dataframe = extract_data_from_DB(datetime_format, local_path_thermodb, thermodb_utils_dict)
-save_humi_from_dataframe_by_day(SHT1x_dataframe, '2013-09-28', humi_param_MAX, humi_param_MIN, humi_MAX, humi_MIN, humi_limit_SUP, humi_limit_INF)
-save_temp_from_dataframe_by_day(thermo_dataframe, '2013-09-28', temp_param_MAX, temp_param_MIN, temp_MAX, temp_MIN, temp_limit_SUP, temp_limit_INF)
-comparing_temps_from_dataframe_by_day(thermo_dataframe, SHT1x_dataframe, '2013-09-28', temp_param_MAX, temp_param_MIN, temp_MAX, temp_MIN, temp_limit_SUP, temp_limit_INF)
+#save_humi_from_dataframe_by_day(SHT1x_dataframe, '2013-09-28', humi_param_MAX, humi_param_MIN, humi_MAX, humi_MIN, humi_limit_SUP, humi_limit_INF)
+#save_temp_from_dataframe_by_day(thermo_dataframe, '2013-09-28', temp_param_MAX, temp_param_MIN, temp_MAX, temp_MIN, temp_limit_SUP, temp_limit_INF)
+#comparing_temps_from_dataframe_by_day(thermo_dataframe, SHT1x_dataframe, '2013-09-28', temp_param_MAX, temp_param_MIN, temp_MAX, temp_MIN, temp_limit_SUP, temp_limit_INF)
 comparing_humi_temps_from_dataframe_by_day(thermo_dataframe, SHT1x_dataframe, '2013-09-28', temp_param_MAX, temp_param_MIN, temp_MAX, temp_MIN, temp_limit_SUP, temp_limit_INF, humi_limit_SUP, humi_limit_INF)
 
 #extract_SHT1x_data_day_by_day(SHT1x_dataframe, days_list)
