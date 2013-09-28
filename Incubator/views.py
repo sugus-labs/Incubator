@@ -52,3 +52,12 @@ def lights(request, light_number, command):
 
 def home(request):
 	return render(request, 'Incubator/home.html')
+
+def download_temp(request):
+	return render(request, 'Incubator/home.html')
+
+def download_humi(request):
+	return render(request, 'Incubator/home.html')
+
+def download_excel(request):
+	return render(request, 'Incubator/home.html')
