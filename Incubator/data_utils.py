@@ -20,13 +20,12 @@ db = MySQLdb.connect(host="localhost", # your host, usually localhost
 cursor = db.cursor()
 cursor.execute("SELECT start_datetime FROM Incubator_hatching ORDER BY id DESC LIMIT 1")
 last_datetime = cursor.fetchone()
-print last_datetime[0]
+#print type(last_datetime[0])
 
 degree_sign= u'\N{DEGREE SIGN}'
 
 # TODO: No hardcoded please! It is unuseful. Only for DEBUG
-print last_hatching
-first_day = last_datetime
+first_day = last_datetime[0].date()
 num_days = 21
 days_list = [ first_day + timedelta(days=x) for x in range(0,num_days) ]
 
@@ -216,12 +215,12 @@ def extract_thermo_data_day_by_day(thermo_dataframe, days_list):
     	writer.save()
 
 #retrieve_DBs()
-#SHT1x_dataframe = extract_data_from_DB(datetime_format, local_path_SHT1xdb, SHT1xdb_utils_dict)
-#thermo_dataframe = extract_data_from_DB(datetime_format, local_path_thermodb, thermodb_utils_dict)
-#save_humi_from_dataframe_by_day(SHT1x_dataframe, '2013-09-25', humi_param_MAX, humi_param_MIN, humi_MAX, humi_MIN, humi_limit_SUP, humi_limit_INF)
-#save_temp_from_dataframe_by_day(thermo_dataframe, '2013-09-25', temp_param_MAX, temp_param_MIN, temp_MAX, temp_MIN, temp_limit_SUP, temp_limit_INF)
-#comparing_temps_from_dataframe_by_day(thermo_dataframe, SHT1x_dataframe, '2013-09-25', temp_param_MAX, temp_param_MIN, temp_MAX, temp_MIN, temp_limit_SUP, temp_limit_INF)
-#comparing_humi_temps_from_dataframe_by_day(thermo_dataframe, SHT1x_dataframe, '2013-09-25', temp_param_MAX, temp_param_MIN, temp_MAX, temp_MIN, temp_limit_SUP, temp_limit_INF, humi_limit_SUP, humi_limit_INF)
+SHT1x_dataframe = extract_data_from_DB(datetime_format, local_path_SHT1xdb, SHT1xdb_utils_dict)
+thermo_dataframe = extract_data_from_DB(datetime_format, local_path_thermodb, thermodb_utils_dict)
+save_humi_from_dataframe_by_day(SHT1x_dataframe, '2013-09-29', humi_param_MAX, humi_param_MIN, humi_MAX, humi_MIN, humi_limit_SUP, humi_limit_INF)
+save_temp_from_dataframe_by_day(thermo_dataframe, '2013-09-29', temp_param_MAX, temp_param_MIN, temp_MAX, temp_MIN, temp_limit_SUP, temp_limit_INF)
+comparing_temps_from_dataframe_by_day(thermo_dataframe, SHT1x_dataframe, '2013-09-29', temp_param_MAX, temp_param_MIN, temp_MAX, temp_MIN, temp_limit_SUP, temp_limit_INF)
+comparing_humi_temps_from_dataframe_by_day(thermo_dataframe, SHT1x_dataframe, '2013-09-29', temp_param_MAX, temp_param_MIN, temp_MAX, temp_MIN, temp_limit_SUP, temp_limit_INF, humi_limit_SUP, humi_limit_INF)
 
 #extract_SHT1x_data_day_by_day(SHT1x_dataframe, days_list)
 #extract_thermo_data_day_by_day(thermo_dataframe, days_list)
