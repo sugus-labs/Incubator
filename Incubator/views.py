@@ -1,5 +1,7 @@
 from django.shortcuts import render, render_to_response, redirect
 from django.http import HttpResponse
+from Incubator.models import Hatching, HatchingForm
+from django.forms.models import modelformset_factory
 import urllib2, urllib
 import json
 
@@ -61,3 +63,14 @@ def download_humi(request):
 
 def download_excel(request):
 	return render(request, 'Incubator/home.html')
+
+def new_hatching(request):
+	HatchingFormSet = modelformset_factory(Hatching)
+	if request.method == 'POST':
+		hatching_formset = HatchingFormSet(request.POST, request.FILES)
+		print hatching_formset.errors
+		if hatching_formset.is_valid():
+			hatching_formset.save()
+	else:
+		hatching_formset = HatchingFormSet()
+	return render_to_response('Incubator/new_hatching.html', {'hatching_formset': hatching_formset})

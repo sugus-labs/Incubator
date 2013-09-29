@@ -54,10 +54,10 @@
     <div class="row">
       <div id="main_alert" class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
         <div id="TEMP_gauge" class="col-xs-12 col-sm-12 col-md-2 col-lg-2"> 
-          <center><h3><span class="label label-success">Temperature</span></h3><h1 id="TEMP">37.5 ºC</h1></center>
+          <center><h3><span class="label label-success">Temperature</span></h3><h1><p class="text-primary"><b id="TEMP">37.5 ºC</b></p></h1></center>
         </div>
         <div id="HUMI_gauge" class="col-xs-12 col-sm-12 col-md-2 col-lg-2"> 
-          <center><h3><span class="label label-success">Humidity</span></h3><h1 id="HUMI">61.3 %</h1></center>
+          <center><h3><span class="label label-success">Humidity</span></h3><h1><p class="text-primary"><b id="HUMI">61.3 %</b></p></h1></center>
         </div>
         <div id="" class="col-xs-12 col-sm-12 col-md-2 col-lg-2"> 
           <center></center>
@@ -73,24 +73,6 @@
         </div>
       </div>
     </div>
-
-
-<!--   <div class="row">
-    <div id="gauges_panel" class="panel col-xs-12 col-sm-12 col-md-12 col-lg-2">
-      <div id="gauges" class="col-xs-12 col-sm-12 col-md-12 col-lg-12">       
-        <div id="TEMP_gauge" class="col-xs-12 col-sm-12 col-md-12 col-lg-12"> 
-          <center><h1><span id="TEMP" class="label label-default label-success">Loading</span></center></h1>
-        </div>
-        <div id="HUMI_gauge" class="col-xs-12 col-sm-12 col-md-12 col-lg-12"> 
-          <h1><center><span id="HUMI" class="label label-default label-success">Loading</span></center></h1>
-        </div>
-        <p>What you should see in the 7th day?</p>
-        <div id="day_panel" class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-          <center><img id="day" src="{% static "img/day_7.png" %}" class="img-responsive"/></center>
-          <p class="alert alert-info"><strong>The image above represents what you should see in the 7th day of hatching.</strong></p>
-        </div>
-      </div>
-    </div> -->
 
     <div id="images_panel" class="row col-xs-12 col-sm-12 col-md-12 col-lg-12">
       <div id="images" class="col-xs-12 col-sm-12 col-md-12 col-lg-12">    
@@ -171,8 +153,8 @@
   </div>
   <hr/>
     <div class="row">
-      <div id="exit_div" class="col-xs-12 col-sm-12 col-md-12 col-lg-2 col-lg-offset-5">
-        <a id="exit_button" class="btn btn-primary btn-lg btn-block btn-danger">Exit and turn off the lights</a>
+      <div id="exit_div" class="col-xs-12 col-sm-12 col-md-12 col-lg-2 col-lg-12">
+        <center><a id="exit_button" class="btn btn-primary btn-lg btn-block btn-danger">Exit and turn off the lights</a></center>
       </div> 
     </div>
 
@@ -200,8 +182,8 @@
 // setInterval(function() {
 //   $.get("measures", function(data) {
 //     parsed_data = $.parseJSON(data);
-//     $('h1[id=TEMP]').html(parsed_data.TEMP)
-//     $('h1[id=HUMI]').html(parsed_data.HUMI)
+//     $('b[id=TEMP]').html(parsed_data.TEMP + 'ºC')
+//     $('b[id=HUMI]').html(parsed_data.HUMI + ' %')
 //   });
 // }, 17000);
 
