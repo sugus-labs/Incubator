@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block title %}Temperatures{% endblock %}
+
+{% block content %} 
+
+  {% load staticfiles %}
+
+
+
+
+	<table class="table col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <thead>
+          <tr>
+            <th>Time</th>
+            <th>Humidity</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for index, humidity in humidities_today_list %}
+            <tr>
+              <td>{{ index|date:"d M Y" }} - {{ index|time:"H:i A" }}</td>
+              <td>{{ humidity }}</td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+
+{% endblock %}

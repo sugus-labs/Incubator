@@ -3,13 +3,17 @@ from django.http import HttpResponse
 from Incubator.models import Hatching, HatchingForm
 from django.forms.models import modelformset_factory
 import urllib2, urllib
-import datetime
+#import datetime
 import json
+from data_utils import *
 
 data = Hatching.objects.latest('id')
 last_hatching_data = data.start_datetime
 #print type(data.start_datetime)
-end_date = last_hatching_data + datetime.timedelta(days=21)
+end_date = last_hatching_data + timedelta(days=21)
+
+retrieve_DBs()
+
 
 URL_BASIC = 'http://192.168.0.110:8000/'
 URL_TEMP = URL_BASIC + 'TEMP'
@@ -83,3 +87,24 @@ def new_hatching(request):
 	else:
 		hatching_formset = HatchingFormSet()
 	return render_to_response('Incubator/new_hatching.html', {'hatching_formset': hatching_formset})
+
+def temperatures(request):
+	#retrieve_DBs()
+	thermo_dataframe = extract_data_from_DB(datetime_format, local_path_thermodb, thermodb_utils_dict)
+	today = date.today()
+	day_thermo = thermo_dataframe['TEMP_LOG'][str(today)]
+	temperatures_today = day_thermo[::(day_thermo.count()/10)]
+	index_temperatures_today = day_thermo.index[::(day_thermo.count()/10)]
+	temperatures_today_list = zip(index_temperatures_today, temperatures_today)
+	return render_to_response('Incubator/temperatures.html', {'temperatures_today_list': temperatures_today_list})
+
+def humidities(request):
+	#retrieve_DBs()
+	SHT1x_dataframe = extract_data_from_DB(datetime_format, local_path_SHT1xdb, SHT1xdb_utils_dict)
+	today = date.today()
+	print SHT1x_dataframe
+	day_SHT1x = SHT1x_dataframe['humi'][str(today)]
+	humidities_today = day_SHT1x[::(day_SHT1x.count()/10)]
+	index_humidities_today = day_SHT1x.index[::(day_SHT1x.count()/10)]
+	humidities_today_list = zip(index_humidities_today, humidities_today)
+	return render_to_response('Incubator/humidities.html', {'humidities_today_list': humidities_today_list})
