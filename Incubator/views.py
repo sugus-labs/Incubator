@@ -33,8 +33,8 @@ def measures(request):
 		try:
 			DATA = {}
 			TEMP, HUMI = request_without_proxy(URL_list_measures)
-			DATA['TEMP'] = ' ' + TEMP[0:5] + ' *C '
-			DATA['HUMI'] = HUMI[0:5] + ' % Hr'
+			DATA['TEMP'] = TEMP[0:5]
+			DATA['HUMI'] = HUMI[0:5]
 			DATA_JSON = json.dumps(DATA)
 			print DATA_JSON
 			return HttpResponse(DATA_JSON)

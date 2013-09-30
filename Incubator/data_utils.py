@@ -15,7 +15,7 @@ import MySQLdb
 
 db = MySQLdb.connect(host="localhost", # your host, usually localhost
                      user="root", # your username
-                      passwd="221186", # your password
+                      passwd="letmein", # your password
                       db="Incubator") # name of the data base
 cursor = db.cursor()
 cursor.execute("SELECT start_datetime FROM Incubator_hatching ORDER BY id DESC LIMIT 1")
@@ -25,9 +25,9 @@ last_datetime = cursor.fetchone()
 degree_sign= u'\N{DEGREE SIGN}'
 
 # TODO: No hardcoded please! It is unuseful. Only for DEBUG
-first_day = last_datetime[0].date()
-num_days = 21
-days_list = [ first_day + timedelta(days=x) for x in range(0,num_days) ]
+# first_day = last_datetime[0].date()
+# num_days = 21
+# days_list = [ first_day + timedelta(days=x) for x in range(0,num_days) ]
 
 MAD=pytz.timezone('Europe/Madrid')
 datetime_format = '%Y-%m-%d %H:%M:%S'
@@ -52,8 +52,8 @@ host_password = "letmein"
 
 # thermo.db is the sqlite3 DB that shows sht1x values. We will rename to SHT1x.db
 # The format is: table|read|read|2|CREATE TABLE READ(date text, temp real, humi real)
-local_path_SHT1xdb = "/home/gustavo/Desktop/Incubator/Incubator/static/data/SHT1x.db"
-#local_path_SHT1xdb = "/home/weblord/Desktop/Incubator/Incubator/static/data/SHT1x.db"
+#local_path_SHT1xdb = "/home/gustavo/Desktop/Incubator/Incubator/static/data/SHT1x.db"
+local_path_SHT1xdb = "/home/weblord/Desktop/Incubator/Incubator/static/data/SHT1x.db"
 remote_path_SHT1xdb = "/home/pi/test/thermo.db"
 SHT1xdb_utils_dict = {
 	'table_name' : 'READ',
@@ -62,8 +62,8 @@ SHT1xdb_utils_dict = {
 
 # incubator.db is the sqlite3 DB that shows thermostate values. We will rename to thermo.db
 # The format is: table|LOG|LOG|2|CREATE TABLE LOG (ID_LOG INTEGER PRIMARY KEY AUTOINCREMENT,DATE_LOG DATETIME DEFAULT CURRENT_TIMESTAMP,TEMP_LOG REAL, STATUS_LOG INT DEFAULT 0)
-local_path_thermodb = "/home/gustavo/Desktop/Incubator/Incubator/static/data/thermo.db"
-#local_path_thermodb = "/home/weblord/Desktop/Incubator/Incubator/static/data/thermo.db"
+#local_path_thermodb = "/home/gustavo/Desktop/Incubator/Incubator/static/data/thermo.db"
+local_path_thermodb = "/home/weblord/Desktop/Incubator/Incubator/static/data/thermo.db"
 remote_path_thermodb = "/home/pi/test/thermostate/incubator.db"
 thermodb_utils_dict = {
 	'table_name' : 'LOG',
@@ -214,11 +214,11 @@ def extract_thermo_data_day_by_day(thermo_dataframe, days_list):
         		day_thermo.to_excel(writer, sheet_name=str(day))
     	writer.save()
 
-#retrieve_DBs()
-#SHT1x_dataframe = extract_data_from_DB(datetime_format, local_path_SHT1xdb, SHT1xdb_utils_dict)
-#thermo_dataframe = extract_data_from_DB(datetime_format, local_path_thermodb, thermodb_utils_dict)
-#save_humi_from_dataframe_by_day(SHT1x_dataframe, '2013-09-29', humi_param_MAX, humi_param_MIN, humi_MAX, humi_MIN, humi_limit_SUP, humi_limit_INF)
-#save_temp_from_dataframe_by_day(thermo_dataframe, '2013-09-29', temp_param_MAX, temp_param_MIN, temp_MAX, temp_MIN, temp_limit_SUP, temp_limit_INF)
+retrieve_DBs()
+SHT1x_dataframe = extract_data_from_DB(datetime_format, local_path_SHT1xdb, SHT1xdb_utils_dict)
+thermo_dataframe = extract_data_from_DB(datetime_format, local_path_thermodb, thermodb_utils_dict)
+save_humi_from_dataframe_by_day(SHT1x_dataframe, '2013-09-30', humi_param_MAX, humi_param_MIN, humi_MAX, humi_MIN, humi_limit_SUP, humi_limit_INF)
+save_temp_from_dataframe_by_day(thermo_dataframe, '2013-09-30', temp_param_MAX, temp_param_MIN, temp_MAX, temp_MIN, temp_limit_SUP, temp_limit_INF)
 #comparing_temps_from_dataframe_by_day(thermo_dataframe, SHT1x_dataframe, '2013-09-29', temp_param_MAX, temp_param_MIN, temp_MAX, temp_MIN, temp_limit_SUP, temp_limit_INF)
 #comparing_humi_temps_from_dataframe_by_day(thermo_dataframe, SHT1x_dataframe, '2013-09-29', temp_param_MAX, temp_param_MIN, temp_MAX, temp_MIN, temp_limit_SUP, temp_limit_INF, humi_limit_SUP, humi_limit_INF)
 

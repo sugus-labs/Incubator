@@ -44,22 +44,39 @@
       </div><!--/.navbar-collapse -->
     </div>
 
-    <div class="row">
-      <div id="main_alert" class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+    <div id="messages_row" class="row">
+      <div id="main_alert" class="col-xs-12 col-sm-12 col-md-12 col-lg-6">
         <div class="alert alert-info">
-          <center><strong>This eggs starts to hatching in september 12, 2013. 7 days ago. 14 days remaining.</strong></center>
+          <p class="text-center"><strong>This eggs starts to hatch in september 30, 2013 at 11:40 AM. 0 days ago. 21 days remaining.</strong></p>
+        </div>
+      </div>
+      <div id="main_alert" class="col-xs-12 col-sm-12 col-md-12 col-lg-6">
+        <div class="alert alert-info">
+          <p class="text-center">You have only 30 second of light to dont disturb to the eggs.</p>
         </div>
       </div>
     </div>
-    <div class="row">
-      <div id="main_alert" class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-        <div id="TEMP_gauge" class="col-xs-12 col-sm-12 col-md-2 col-lg-2"> 
-          <center><h3><span class="label label-success">Temperature</span></h3><h1><p class="text-primary"><b id="TEMP">37.5 ºC</b></p></h1></center>
-        </div>
-        <div id="HUMI_gauge" class="col-xs-12 col-sm-12 col-md-2 col-lg-2"> 
-          <center><h3><span class="label label-success">Humidity</span></h3><h1><p class="text-primary"><b id="HUMI">61.3 %</b></p></h1></center>
-        </div>
-        <div id="" class="col-xs-12 col-sm-12 col-md-2 col-lg-2"> 
+
+
+    <div id="gauges_column" class="col-xs-12 col-sm-12 col-md-2 col-lg-2">
+      <div id="TEMP_gauge" class="well col-xs-12 col-sm-12 col-md-12 col-lg-12"> 
+        <center>
+          <h2><span class="label label-success">Current Temperature</span></h2>
+          <h1><p class="text-primary"><b id="TEMP">37.5 ºC</b></p></h1>
+          <p class="text-center">Do you want more detailed temperature information over the time?</p>
+          <button type="button" id="temperature_button" class="btn btn-info btn-block">Detailed temperatures >></button>
+          </center>
+      </div>
+      <div id="HUMI_gauge" class="well col-xs-12 col-sm-12 col-md-12 col-lg-12"> 
+        <center>
+          <h2><span class="label label-success">Current Humidity</span></h2>
+          <h1><p class="text-primary"><b id="HUMI">61.3 %</b></p></h1>
+          <p class="text-center">Do you want more detailed humidity information over the time?</p>
+          <button type="button" id="temperature_button" class="btn btn-info btn-block">Detailed humidities >></button>
+        </center>
+      </div>
+
+ <!--        <div id="" class="col-xs-12 col-sm-12 col-md-2 col-lg-2"> 
           <center></center>
         </div>
         <div id="" class="col-xs-12 col-sm-12 col-md-2 col-lg-2"> 
@@ -70,127 +87,156 @@
         </div>
         <div id="excel_files" class="col-xs-12 col-sm-12 col-md-2 col-lg-2"> 
           <center><br/><a href="download_excel"><p class="text-primary">Download the data in .xls</p><img id="day" src="{% static "img/excel.png" %}" class="img-responsive"/></center></a>
-        </div>
-      </div>
-    </div>
-
-    <div id="images_panel" class="row col-xs-12 col-sm-12 col-md-12 col-lg-12">
-      <div id="images" class="col-xs-12 col-sm-12 col-md-12 col-lg-12">    
-        <div id="image_1_main_panel" class="panel col-xs-12 col-sm-12 col-md-4 col-lg-4">
-          <div id="image_1_panel" class="panel col-xs-12 col-sm-12 col-md-12 col-lg-12">
-            <img id="image_1" class="img-responsive"/>
-          </div>
-          <p class="text-center text-primary">Last three days images<p>
-          <div id="subimage_1_panel" class="panel col-xs-12 col-sm-12 col-md-12 col-lg-12">
-            <div id="subimage_1_1_panel" class="panel col-xs-4 col-sm-4 col-md-4 col-lg-4">
-              <a href="{% static "img/egg_example.png" %}">
-                <img id="subimage_1_1" src="{% static "img/egg_example.png" %}" class="img-responsive"/>
-              </a>
-            </div>
-            <div id="subimage_1_2_panel" class="panel col-xs-4 col-sm-4 col-md-4 col-lg-4">
-              <a href="{% static "img/egg_example.png" %}">  
-                <img id="subimage_1_2" src="{% static "img/egg_example.png" %}" class="img-responsive"/>
-              </a>
-            </div>
-            <div id="subimage_1_3_panel" class="panel col-xs-4 col-sm-4 col-md-4 col-lg-4">
-              <a href="{% static "img/egg_example.png" %}">
-                <img id="subimage_1_3" src="{% static "img/egg_example.png" %}" class="img-responsive"/>
-              </a>
-            </div>
-          </div>
-          <button type="button" id="image_1_button" class="btn btn-info btn-lg btn-block">Show more >></button>
-        </div>
-        <div id="image_2_main_panel" class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
-          <div id="image_2_panel" class="panel col-xs-12 col-sm-12 col-md-12 col-lg-12">
-            <img id="image_2" class="img-responsive"/>
-          </div>
-          <p class="text-center text-primary">Last three days images<p>
-          <div id="subimage_2_panel" class="panel col-xs-12 col-sm-12 col-md-12 col-lg-12">
-            <div id="subimage_2_1_panel" class="panel col-xs-4 col-sm-4 col-md-4 col-lg-4">
-              <a href="{% static "img/egg_example.png" %}">
-                <img id="subimage_2_1" src="{% static "img/egg_example.png" %}" class="img-responsive"/>
-              </a>
-            </div>
-            <div id="subimage_2_2_panel" class="panel col-xs-4 col-sm-4 col-md-4 col-lg-4">
-              <a href="{% static "img/egg_example.png" %}">
-                <img id="subimage_2_2" src="{% static "img/egg_example.png" %}" class="img-responsive"/>
-              </a>
-            </div>
-            <div id="subimage_2_3_panel" class="panel col-xs-4 col-sm-4 col-md-4 col-lg-4">
-              <a href="{% static "img/egg_example.png" %}">
-                <img id="subimage_2_3" src="{% static "img/egg_example.png" %}" class="img-responsive"/>
-              </a>
-            </div>
-          </div>
-          <button type="button" id="image_2_button" class="btn btn-info btn-lg btn-block">Show more >></button>
-        </div>
-        <div id="image_3_main_panel" class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
-          <div id="image_3_panel" class="panel col-xs-12 col-sm-12 col-md-12 col-lg-12">
-            <img id="image_3" class="img-responsive"/>
-          </div>
-          <p class="text-center text-primary">Last three days images<p>
-          <div id="subimage_3_panel" class="panel col-xs-12 col-sm-12 col-md-12 col-lg-12">
-            <div id="subimage_3_1_panel" class="panel col-xs-4 col-sm-4 col-md-4 col-lg-4">
-              <a href="{% static "img/egg_example.png" %}">
-                <img id="subimage_3_1" src="{% static "img/egg_example.png" %}" class="img-responsive"/>
-              </a>
-            </div>
-            <div id="subimage_3_2_panel" class="panel col-xs-4 col-sm-4 col-md-4 col-lg-4">
-              <a href="{% static "img/egg_example.png" %}">
-                <img id="subimage_3_2" src="{% static "img/egg_example.png" %}" class="img-responsive"/>
-              </a>
-            </div>
-            <div id="subimage_3_3_panel" class="panel col-xs-4 col-sm-4 col-md-4 col-lg-4">
-              <a href="{% static "img/egg_example.png" %}">
-                <img id="subimage_3_3" src="{% static "img/egg_example.png" %}" class="img-responsive"/>
-              </a>
-            </div>
-          </div>
-          <button type="button" id="image_3_button" class="btn btn-info btn-lg btn-block">Show more >></button>
-        </div>
-      </div>
-    </div>
-  </div>
-  <hr/>
-    <div class="row">
+        </div> -->
+      <hr/>
       <div id="exit_div" class="col-xs-12 col-sm-12 col-md-12 col-lg-2 col-lg-12">
         <center><a id="exit_button" class="btn btn-primary btn-lg btn-block btn-danger">Exit and turn off the lights</a></center>
       </div> 
     </div>
 
+    <div id="images_panel" class="col-xs-12 col-sm-12 col-md-12 col-lg-10">
+      
+      <div id="images_1" class="row well col-xs-12 col-sm-12 col-md-12 col-lg-12">    
+        <div id="image_1_main_panel" class="panel col-xs-12 col-sm-12 col-md-4 col-lg-6">
+          <div id="image_1_panel" class="panel col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <img id="image_1" class="img-responsive"/>
+          </div>
+        </div>
+        <div id="image_1_second_panel" class="panel col-xs-12 col-sm-12 col-md-4 col-lg-6">
+            <p class="text-center text-primary">Download images from previous days.</p>
+            <div id="subimage_1_panel" class="panel col-xs-12 col-sm-12 col-md-12 col-lg-12">
+              <div id="subimage_1_1_panel" class="panel col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                <a href="{% static "img/egg_example.png" %}">
+                  <img id="subimage_1_1" src="{% static "img/egg_example.png" %}" class="img-responsive"/>
+                  <p class="text-center">27 sept 2013</p>
+                </a>
+              </div>
+              <div id="subimage_1_2_panel" class="panel col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                <a href="{% static "img/egg_example.png" %}">  
+                  <img id="subimage_1_2" src="{% static "img/egg_example.png" %}" class="img-responsive"/>
+                  <p class="text-center">28 sept 2013</p>
+                </a>
+              </div>
+              <div id="subimage_1_3_panel" class="panel col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                <a href="{% static "img/egg_example.png" %}">
+                  <img id="subimage_1_3" src="{% static "img/egg_example.png" %}" class="img-responsive"/>
+                  <p class="text-center">29 sept 2013</p>
+                </a>
+              </div>
+            </div>
+            <button type="button" id="image_1_button" class="btn btn-info btn-lg btn-block">Show more >></button>
+          </div>
+        </div>
+
+      <div id="images_2" class="row well col-xs-12 col-sm-12 col-md-12 col-lg-12">    
+        <div id="image_2_main_panel" class="panel col-xs-12 col-sm-12 col-md-4 col-lg-6">
+          <div id="image_2_panel" class="panel col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <img id="image_2" class="img-responsive"/>
+          </div>
+        </div>
+        <div id="image_2_second_panel" class="panel col-xs-12 col-sm-12 col-md-4 col-lg-6">
+            <p class="text-center text-primary">Download images from previous days.</p>
+            <div id="subimage_2_panel" class="panel col-xs-12 col-sm-12 col-md-12 col-lg-12">
+              <div id="subimage_2_1_panel" class="panel col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                <a href="{% static "img/egg_example.png" %}">
+                  <img id="subimage_2_1" src="{% static "img/egg_example.png" %}" class="img-responsive"/>
+                  <p class="text-center">27 sept 2013</p>
+                </a>
+              </div>
+              <div id="subimage_2_2_panel" class="panel col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                <a href="{% static "img/egg_example.png" %}">  
+                  <img id="subimage_2_2" src="{% static "img/egg_example.png" %}" class="img-responsive"/>
+                  <p class="text-center">28 sept 2013</p>
+                </a>
+              </div>
+              <div id="subimage_2_3_panel" class="panel col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                <a href="{% static "img/egg_example.png" %}">
+                  <img id="subimage_2_3" src="{% static "img/egg_example.png" %}" class="img-responsive"/>
+                  <p class="text-center">29 sept 2013</p>
+                </a>
+              </div>
+            </div>
+            <button type="button" id="image_2_button" class="btn btn-info btn-lg btn-block">Show more >></button>
+          </div>
+        </div>
+
+      <div id="images_3" class="row well col-xs-12 col-sm-12 col-md-12 col-lg-12">    
+        <div id="image_3_main_panel" class="panel col-xs-12 col-sm-12 col-md-4 col-lg-6">
+          <div id="image_3_panel" class="panel col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <img id="image_3" class="img-responsive"/>
+          </div>
+        </div>
+        <div id="image_3_second_panel" class="panel col-xs-12 col-sm-12 col-md-4 col-lg-6">
+            <p class="text-center text-primary">Download images from previous days.</p>
+            <div id="subimage_3_panel" class="panel col-xs-12 col-sm-12 col-md-12 col-lg-12">
+              <div id="subimage_3_1_panel" class="panel col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                <a href="{% static "img/egg_example.png" %}">
+                  <img id="subimage_3_1" src="{% static "img/egg_example.png" %}" class="img-responsive"/>
+                  <p class="text-center">27 sept 2013</p>
+                </a>
+              </div>
+              <div id="subimage_3_2_panel" class="panel col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                <a href="{% static "img/egg_example.png" %}">  
+                  <img id="subimage_3_2" src="{% static "img/egg_example.png" %}" class="img-responsive"/>
+                  <p class="text-center">28 sept 2013</p>
+                </a>
+              </div>
+              <div id="subimage_3_3_panel" class="panel col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                <a href="{% static "img/egg_example.png" %}">
+                  <img id="subimage_3_3" src="{% static "img/egg_example.png" %}" class="img-responsive"/>
+                  <p class="text-center">29 sept 2013</p>
+                </a>
+              </div>
+            </div>
+            <button type="button" id="image_3_button" class="btn btn-info btn-lg btn-block">Show more >></button>
+          </div>
+        </div>
+
+
+      </div>
+
+
   </body>	
 
-// <script type="text/javascript">
-// var image_1 = document.getElementById('image_1');
-// var image_2 = document.getElementById('image_2');
-// var image_3 = document.getElementById('image_3');
+<script type="text/javascript">
 
-// $.get("lights/ALL/ON");
+lights_ON = 1;
 
-// setInterval(function() {
-//   image_1.src = 'http://192.168.0.156/image.jpg?rand=' + Math.random();
-// }, 3000);
-
-// setInterval(function() {
-//   image_2.src = 'http://192.168.0.153/image.jpg?rand=' + Math.random();
-// }, 3000);
-
-// setInterval(function() {
-//   image_3.src = 'http://192.168.0.152/image.jpg?rand=' + Math.random();
-// }, 3000);
-
-// setInterval(function() {
-//   $.get("measures", function(data) {
-//     parsed_data = $.parseJSON(data);
-//     $('b[id=TEMP]').html(parsed_data.TEMP + 'ºC')
-//     $('b[id=HUMI]').html(parsed_data.HUMI + ' %')
-//   });
-// }, 17000);
-
-// $("#exit_button").click(function() {  
-//   $.get("lights/ALL/OFF").done(function( data ) {
-//     window.location.href = "http://google.com";
-//   });
+// $( document ).ready(function() {
+//     $.get("lights/ALL/ON");
 // });
+
+var image_1 = document.getElementById('image_1');
+var image_2 = document.getElementById('image_2');
+var image_3 = document.getElementById('image_3');
+
+setInterval(function() {
+  image_1.src = 'http://192.168.0.156/image.jpg?rand=' + Math.random();
+}, 3000);
+
+setInterval(function() {
+  image_2.src = 'http://192.168.0.153/image.jpg?rand=' + Math.random();
+}, 3000);
+
+setInterval(function() {
+  image_3.src = 'http://192.168.0.152/image.jpg?rand=' + Math.random();
+}, 3000);
+
+setInterval(function() {
+  $.get("measures", function(data) {
+    parsed_data = $.parseJSON(data);
+    $('b[id=TEMP]').html(parsed_data.TEMP + 'ºC')
+    $('b[id=HUMI]').html(parsed_data.HUMI + ' %')
+    if (lights_ON == 1) {
+      $.get("lights/ALL/OFF")
+    }
+  });
+}, 12000);
+
+$("#exit_button").click(function() {  
+  $.get("lights/ALL/OFF").done(function( data ) {
+    window.location.href = "http://google.com";
+  });
+});
 
 // </script>
