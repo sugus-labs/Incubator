@@ -89,7 +89,7 @@ def new_hatching(request):
 	return render_to_response('Incubator/new_hatching.html', {'hatching_formset': hatching_formset})
 
 def temperatures(request):
-	#retrieve_DBs()
+	retrieve_DBs()
 	thermo_dataframe = extract_data_from_DB(datetime_format, local_path_thermodb, thermodb_utils_dict)
 	today = date.today()
 	day_thermo = thermo_dataframe['TEMP_LOG'][str(today)]
@@ -99,11 +99,12 @@ def temperatures(request):
 	return render_to_response('Incubator/temperatures.html', {'temperatures_today_list': temperatures_today_list})
 
 def humidities(request):
-	#retrieve_DBs()
+	retrieve_DBs()
 	SHT1x_dataframe = extract_data_from_DB(datetime_format, local_path_SHT1xdb, SHT1xdb_utils_dict)
 	today = date.today()
-	print SHT1x_dataframe
 	day_SHT1x = SHT1x_dataframe['humi'][str(today)]
+	day_SHT1x_csv = day_SHT1x.to_csv("Incubator/static/data/day_SHT1x.csv", header=True)
+	print day_SHT1x_csv
 	humidities_today = day_SHT1x[::(day_SHT1x.count()/10)]
 	index_humidities_today = day_SHT1x.index[::(day_SHT1x.count()/10)]
 	humidities_today_list = zip(index_humidities_today, humidities_today)

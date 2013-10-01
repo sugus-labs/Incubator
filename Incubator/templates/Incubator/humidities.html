@@ -2,28 +2,97 @@
 
 {% block title %}Temperatures{% endblock %}
 
+
 {% block content %} 
 
   {% load staticfiles %}
 
 
+	<table class="table col-xs-12 col-sm-12 col-md-3 col-lg-3">
+    <thead>
+      <tr>
+        <th>Time</th>
+        <th>Humidity</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for index, humidity in humidities_today_list %}
+        <tr>
+          <td>{{ index|date:"d M Y" }} - {{ index|time:"H:i A" }}</td>
+          <td>{{ humidity }}</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
 
 
-	<table class="table col-xs-12 col-sm-12 col-md-12 col-lg-12">
-        <thead>
-          <tr>
-            <th>Time</th>
-            <th>Humidity</th>
-          </tr>
-        </thead>
-        <tbody>
-          {% for index, humidity in humidities_today_list %}
-            <tr>
-              <td>{{ index|date:"d M Y" }} - {{ index|time:"H:i A" }}</td>
-              <td>{{ humidity }}</td>
-            </tr>
-          {% endfor %}
-        </tbody>
-      </table>
+<script src="http://d3js.org/d3.v3.js"></script>
+<script>
+
+var margin = {top: 20, right: 20, bottom: 30, left: 50},
+    width = 960 - margin.left - margin.right,
+    height = 500 - margin.top - margin.bottom;
+
+var parseDate = d3.time.format("%Y-%m-%d %H:%M:%S").parse;
+
+var x = d3.time.scale()
+    .range([0, width]);
+
+var y = d3.scale.linear()
+    .range([height, 0]);
+
+var xAxis = d3.svg.axis()
+    .scale(x)
+    .orient("bottom");
+
+var yAxis = d3.svg.axis()
+    .scale(y)
+    .orient("left");
+
+var area = d3.svg.area()
+    .x(function(d) { return x(d.date); })
+    .y0(height)
+    .y1(function(d) { return y(d.humi); });
+
+var svg = d3.select("body").append("svg")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+  .append("g")
+    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+d3.csv("/static/data/day_SHT1x.csv", function(error, data) {
+  data.forEach(function(d) {
+    //alert(d.date);
+    var date_without_timezone = d.date.split("+");
+    //alert(date_without_timezone[0]);
+    d.date = parseDate(date_without_timezone[0]);
+    d.humi = +d.humi;
+  });
+
+  x.domain(d3.extent(data, function(d) { return d.date; }));
+  y.domain([55, d3.max(data, function(d) { return d.humi; })]);
+
+  svg.append("path")
+      .datum(data)
+      .attr("class", "area")
+      .attr("d", area);
+
+  svg.append("g")
+      .attr("class", "x axis")
+      .attr("transform", "translate(0," + height + ")")
+      .call(xAxis);
+
+  svg.append("g")
+      .attr("class", "y axis")
+      .call(yAxis)
+    .append("text")
+      .attr("transform", "rotate(-90)")
+      .attr("y", 6)
+      .attr("dy", ".71em")
+      .style("text-anchor", "end")
+      .text("Humidity (%)");
+});
+
+</script>
 
 {% endblock %}
