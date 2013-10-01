@@ -93,6 +93,7 @@ def temperatures(request):
 	thermo_dataframe = extract_data_from_DB(datetime_format, local_path_thermodb, thermodb_utils_dict)
 	today = date.today()
 	day_thermo = thermo_dataframe['TEMP_LOG'][str(today)]
+	day_thermo_csv = day_thermo.to_csv("Incubator/static/data/day_thermo.csv", header=True)
 	temperatures_today = day_thermo[::(day_thermo.count()/10)]
 	index_temperatures_today = day_thermo.index[::(day_thermo.count()/10)]
 	temperatures_today_list = zip(index_temperatures_today, temperatures_today)
@@ -104,7 +105,6 @@ def humidities(request):
 	today = date.today()
 	day_SHT1x = SHT1x_dataframe['humi'][str(today)]
 	day_SHT1x_csv = day_SHT1x.to_csv("Incubator/static/data/day_SHT1x.csv", header=True)
-	print day_SHT1x_csv
 	humidities_today = day_SHT1x[::(day_SHT1x.count()/10)]
 	index_humidities_today = day_SHT1x.index[::(day_SHT1x.count()/10)]
 	humidities_today_list = zip(index_humidities_today, humidities_today)
