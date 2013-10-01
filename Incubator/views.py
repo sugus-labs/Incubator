@@ -109,3 +109,4 @@ def humidities(request):
 	index_humidities_today = day_SHT1x.index[::(day_SHT1x.count()/10)]
 	humidities_today_list = zip(index_humidities_today, humidities_today)
 	return render_to_response('Incubator/humidities.html', {'humidities_today_list': humidities_today_list})
+

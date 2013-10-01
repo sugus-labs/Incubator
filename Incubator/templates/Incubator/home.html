@@ -16,7 +16,8 @@
       </div>
       <div id="main_alert" class="col-xs-12 col-sm-12 col-md-12 col-lg-6">
         <div class="alert alert-info">
-          <p class="text-right">You have only 30 second of light to dont disturb to the eggs.</p>
+          <p class="text-center">You will only have 30 seconds to see the eggs live, because we don't want the eggs to be disturbed by the light being turned on.</p> 
+          <p class="text-center">Although, you can see pictures of the eggs from days before.</p>
         </div>
       </div>
     </div>
@@ -27,7 +28,7 @@
         <center>
           <h2><span class="label label-success">Current Temperature</span></h2>
           <h1><p class="text-primary"><b id="TEMP">{{TEMP}} ºC</b></p></h1>
-          <p class="text-center">Do you want more detailed temperature information over the time?</p>
+          <p class="text-center"> If you want more detailed data about the temperature of the eggs being hatch clink on the button below.</p>
           <button type="button" id="temperature_button" class="btn btn-default btn-block">Detailed temperatures >></button>
           </center>
       </div>
@@ -35,23 +36,10 @@
         <center>
           <h2><span class="label label-success">Current Humidity</span></h2>
           <h1><p class="text-primary"><b id="HUMI">{{HUMI}} %</b></p></h1>
-          <p class="text-center">Do you want more detailed humidity information over the time?</p>
+          <p class="text-center"> If you want more detailed data about the humidity of the eggs being hatch clink on the button below.</p>
           <button type="button" id="humidity_button" class="btn btn-default btn-block">Detailed humidities >></button>
         </center>
       </div>
-
- <!--        <div id="" class="col-xs-12 col-sm-12 col-md-2 col-lg-2"> 
-          <center></center>
-        </div>
-        <div id="" class="col-xs-12 col-sm-12 col-md-2 col-lg-2"> 
-          <center><a href="download_temp"><img id="day" src="{% static "data/temp_2013-09-28.png" %}" class="img-responsive"/></a></center>
-        </div>
-        <div id="" class="col-xs-12 col-sm-12 col-md-2 col-lg-2"> 
-          <center><a href="download_humi"><img id="day" src="{% static "data/humi_2013-09-28.png" %}" class="img-responsive"/></a></center>
-        </div>
-        <div id="excel_files" class="col-xs-12 col-sm-12 col-md-2 col-lg-2"> 
-          <center><br/><a href="download_excel"><p class="text-primary">Download the data in .xls</p><img id="day" src="{% static "img/excel.png" %}" class="img-responsive"/></center></a>
-        </div> -->
       <hr/>
       <div id="exit_div" class="col-xs-12 col-sm-12 col-md-12 col-lg-2 col-lg-12">
         <center><a id="exit_button" class="btn btn-primary btn-lg btn-block btn-danger">Exit and turn off the lights</a></center>
@@ -71,20 +59,20 @@
             <p class="text-center text-primary">Download images from previous days.</p>
             <div id="subimage_1_panel" class="panel col-xs-12 col-sm-12 col-md-12 col-lg-12">
               <div id="subimage_1_1_panel" class="panel col-xs-4 col-sm-4 col-md-4 col-lg-4">
-                <a href="{% static "img/egg_example.png" %}">
-                  <img id="subimage_1_1" src="{% static "img/egg_example.png" %}" class="img-responsive"/>
+                <a href="{% static "img/eggimage.jpg" %}">
+                  <img id="subimage_1_1" src="{% static "img/eggimage.jpg" %}" class="img-responsive"/>
                   <p class="text-center">27 sept 2013</p>
                 </a>
               </div>
               <div id="subimage_1_2_panel" class="panel col-xs-4 col-sm-4 col-md-4 col-lg-4">
-                <a href="{% static "img/egg_example.png" %}">  
-                  <img id="subimage_1_2" src="{% static "img/egg_example.png" %}" class="img-responsive"/>
+                <a href="{% static "img/eggimage.jpg" %}">  
+                  <img id="subimage_1_2" src="{% static "img/eggimage.jpg" %}" class="img-responsive"/>
                   <p class="text-center">28 sept 2013</p>
                 </a>
               </div>
               <div id="subimage_1_3_panel" class="panel col-xs-4 col-sm-4 col-md-4 col-lg-4">
-                <a href="{% static "img/egg_example.png" %}">
-                  <img id="subimage_1_3" src="{% static "img/egg_example.png" %}" class="img-responsive"/>
+                <a href="{% static "img/eggimage.jpg" %}">
+                  <img id="subimage_1_3" src="{% static "img/eggimage.jpg" %}" class="img-responsive"/>
                   <p class="text-center">29 sept 2013</p>
                 </a>
               </div>
@@ -104,20 +92,20 @@
             <p class="text-center text-primary">Download images from previous days.</p>
             <div id="subimage_2_panel" class="panel col-xs-12 col-sm-12 col-md-12 col-lg-12">
               <div id="subimage_2_1_panel" class="panel col-xs-4 col-sm-4 col-md-4 col-lg-4">
-                <a href="{% static "img/egg_example.png" %}">
-                  <img id="subimage_2_1" src="{% static "img/egg_example.png" %}" class="img-responsive"/>
+                <a href="{% static "img/eggimage.jpg" %}">
+                  <img id="subimage_2_1" src="{% static "img/eggimage.jpg" %}" class="img-responsive"/>
                   <p class="text-center">27 sept 2013</p>
                 </a>
               </div>
               <div id="subimage_2_2_panel" class="panel col-xs-4 col-sm-4 col-md-4 col-lg-4">
-                <a href="{% static "img/egg_example.png" %}">  
-                  <img id="subimage_2_2" src="{% static "img/egg_example.png" %}" class="img-responsive"/>
+                <a href="{% static "img/eggimage.jpg" %}">  
+                  <img id="subimage_2_2" src="{% static "img/eggimage.jpg" %}" class="img-responsive"/>
                   <p class="text-center">28 sept 2013</p>
                 </a>
               </div>
               <div id="subimage_2_3_panel" class="panel col-xs-4 col-sm-4 col-md-4 col-lg-4">
-                <a href="{% static "img/egg_example.png" %}">
-                  <img id="subimage_2_3" src="{% static "img/egg_example.png" %}" class="img-responsive"/>
+                <a href="{% static "img/eggimage.jpg" %}">
+                  <img id="subimage_2_3" src="{% static "img/eggimage.jpg" %}" class="img-responsive"/>
                   <p class="text-center">29 sept 2013</p>
                 </a>
               </div>
@@ -137,20 +125,20 @@
             <p class="text-center text-primary">Download images from previous days.</p>
             <div id="subimage_3_panel" class="panel col-xs-12 col-sm-12 col-md-12 col-lg-12">
               <div id="subimage_3_1_panel" class="panel col-xs-4 col-sm-4 col-md-4 col-lg-4">
-                <a href="{% static "img/egg_example.png" %}">
-                  <img id="subimage_3_1" src="{% static "img/egg_example.png" %}" class="img-responsive"/>
+                <a href="{% static "img/eggimage.jpg" %}">
+                  <img id="subimage_3_1" src="{% static "img/eggimage.jpg" %}" class="img-responsive"/>
                   <p class="text-center">27 sept 2013</p>
                 </a>
               </div>
               <div id="subimage_3_2_panel" class="panel col-xs-4 col-sm-4 col-md-4 col-lg-4">
-                <a href="{% static "img/egg_example.png" %}">  
-                  <img id="subimage_3_2" src="{% static "img/egg_example.png" %}" class="img-responsive"/>
+                <a href="{% static "img/eggimage.jpg" %}">  
+                  <img id="subimage_3_2" src="{% static "img/eggimage.jpg" %}" class="img-responsive"/>
                   <p class="text-center">28 sept 2013</p>
                 </a>
               </div>
               <div id="subimage_3_3_panel" class="panel col-xs-4 col-sm-4 col-md-4 col-lg-4">
-                <a href="{% static "img/egg_example.png" %}">
-                  <img id="subimage_3_3" src="{% static "img/egg_example.png" %}" class="img-responsive"/>
+                <a href="{% static "img/eggimage.jpg" %}">
+                  <img id="subimage_3_3" src="{% static "img/eggimage.jpg" %}" class="img-responsive"/>
                   <p class="text-center">29 sept 2013</p>
                 </a>
               </div>
@@ -159,9 +147,61 @@
           </div>
         </div>
 
-
       </div>
 
+    <!-- take_picture Modal-->
+    <div class="modal fade" id="take_picture_1_modal">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 id="final_time_text" class="modal-title">Current egg Image</h4>
+          </div>
+          <div class="modal-body">
+            <p><center><img src="http://192.168.0.156/image.jpg" width= "100%" class='img-responsive'></center></p>
+          </div>
+          <div class="modal-footer">
+            <a href="http://192.168.0.156/image.jpg" class="btn btn-info" download="eggimage.jpg">Download image</a> 
+            <a href="" id="continue_to_ranking" class="btn btn-default" data-dismiss="modal">Exit!</a>
+          </div>
+        </div><!-- end modal-content -->
+      </div><!-- end modal-dialog -->
+    </div><!-- end ranking_modal --> 
+
+        <!-- take_picture Modal-->
+    <div class="modal fade" id="take_picture_2_modal">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 id="final_time_text" class="modal-title">Current egg Image</h4>
+          </div>
+          <div class="modal-body">
+            <p><center><img src="http://192.168.0.153/image.jpg" width= "100%" class='img-responsive'></center></p>
+          </div>
+          <div class="modal-footer">
+            <a href="http://192.168.0.153/image.jpg" class="btn btn-info" download="eggimage.jpg">Download image</a> 
+            <a href="" id="continue_to_ranking" class="btn btn-default" data-dismiss="modal">Exit!</a>
+          </div>
+        </div><!-- end modal-content -->
+      </div><!-- end modal-dialog -->
+    </div><!-- end ranking_modal --> 
+
+        <!-- take_picture Modal-->
+    <div class="modal fade" id="take_picture_3_modal">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 id="final_time_text" class="modal-title">Current egg Image</h4>
+          </div>
+          <div class="modal-body">
+            <p><center><img src="http://192.168.0.152/image.jpg" width= "100%" class='img-responsive'></center></p>
+          </div>
+          <div class="modal-footer">
+            <a href="http://192.168.0.152/image.jpg" class="btn btn-info" download="eggimage.jpg">Download image</a> 
+            <a href="" id="continue_to_ranking" class="btn btn-default" data-dismiss="modal">Exit!</a>
+          </div>
+        </div><!-- end modal-content -->
+      </div><!-- end modal-dialog -->
+    </div><!-- end ranking_modal --> 
 
   </body>	
 
@@ -169,9 +209,9 @@
 
 lights_ON = 1;
 
-// $( document ).ready(function() {
-//     $.get("lights/ALL/ON");
-// });
+$( document ).ready(function() {
+     $.get("lights/ALL/ON");
+});
 
 var image_1 = document.getElementById('image_1');
 var image_2 = document.getElementById('image_2');
@@ -198,7 +238,7 @@ setInterval(function() {
       $.get("lights/ALL/OFF")
     }
   });
-}, 12000);
+}, 10000);
 
 $("#exit_button").click(function() {  
   $.get("lights/ALL/OFF").done(function( data ) {
@@ -212,6 +252,18 @@ $("#temperature_button").click(function() {
 
 $("#humidity_button").click(function() {  
   window.location.href = "/humidities";
+});
+
+$("#image_1_take_picture").click(function() {  
+  $('#take_picture_1_modal').modal('show');
+});
+
+$("#image_2_take_picture").click(function() {  
+  $('#take_picture_2_modal').modal('show');
+});
+
+$("#image_3_take_picture").click(function() {  
+  $('#take_picture_3_modal').modal('show');
 });
 
 </script>
