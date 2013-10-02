@@ -1,0 +1,29 @@
+#! /bin/sh
+# /etc/init.d/humidificator
+
+### BEGIN INIT INFO
+# Provides:             humidificator
+# Required-Start:       $syslog
+# Required-Stop:        $syslog
+# Default-Start:        2 3 4 5
+# Default-Stop:         0 1 6
+# Short-Description:    Launches incubator humidificator
+# Description:          Launches humidificator and logs temp & humidity into files
+### END INIT INFO
+
+case "$1" in
+        start)
+                echo "starting humidificator"
+                /home/pi/test/sht1x/test
+                ;;
+        stop)
+                echo "Stopping humidificator"
+                killall test
+                ;;
+        *)
+                echo "Usage: /etc/init.d/humidificator {start|stop}"
+                exit 1
+                ;;
+esac
+
+exit 0

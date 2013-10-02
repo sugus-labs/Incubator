@@ -1,0 +1,29 @@
+#! /bin/sh
+# /etc/init.d/thermostate
+
+### BEGIN INIT INFO
+# Provides:             thermostate
+# Required-Start:       $syslog
+# Required-Stop:        $syslog
+# Default-Start:        2 3 4 5
+# Default-Stop:         0 1 6
+# Short-Description:    Launches incubtor thermostate
+# Description:          Launches thermostate and logs temp into sqlite3 database
+### END INIT INFO
+
+case "$1" in
+        start)
+                echo "starting thermostate"
+                /home/pi/test/thermostate/thermostate
+                ;;
+        stop)
+                echo "Stopping thermostate"
+                killall thermostate
+                ;;
+        *)
+                echo "Usage: /etc/init.d/thermostate {start|stop}"
+                exit 1
+                ;;
+esac
+
+exit 0

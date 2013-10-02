@@ -1,1 +1,5 @@
-gcc DBtestSHT1x.c RPi_SHT1x.c -o SHT1x -lbcm2835 -lsqlite3
+# First 18 days
+gcc SHT1x_first_18_days.c RPi_SHT1x.c -o SHT1x -lbcm2835 -lsqlite3
+
+# Last 3 days
+gcc SHT1x_last_3_days.c RPi_SHT1x.c -o SHT1x -lbcm2835 -lsqlite3

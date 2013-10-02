@@ -8,20 +8,14 @@
 
 
 
-    <div id="messages_row" class="row">
-      <div id="main_alert" class="col-xs-12 col-sm-12 col-md-12 col-lg-6">
+    <div id="main_messages_row" class="row">
+      <div id="main_alert" class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
         <div class="alert alert-info">
-          <p class="text-center"><strong>This eggs starts to hatch in {{ last_hatching_data|date:"l d M Y" }} at {{ last_hatching_data|date:"h:i A" }}. {{ last_hatching_data|timesince }} ago. {{ end_date|timeuntil }} remaining.</strong></p>
-        </div>
-      </div>
-      <div id="main_alert" class="col-xs-12 col-sm-12 col-md-12 col-lg-6">
-        <div class="alert alert-info">
-          <p class="text-center">You will only have 30 seconds to see the eggs live, because we don't want the eggs to be disturbed by the light being turned on.</p> 
-          <p class="text-center">Although, you can see pictures of the eggs from days before.</p>
+          <!-- <a class="close" data-dismiss="alert" href="#" aria-hidden="true">&times;</a> -->
+          <p class="text-center"><strong>These eggs starts to hatch in {{ last_hatching_data|date:"l d"}}th {{ last_hatching_data|date:"M Y" }} at {{ last_hatching_data|date:"h:i A" }}. {{ last_hatching_data|timesince }} ago. {{ end_date|timeuntil }} remaining.</strong></p>
         </div>
       </div>
     </div>
-
 
     <div id="gauges_column" class="col-xs-12 col-sm-12 col-md-2 col-lg-2">
       <div id="TEMP_gauge" class="well col-xs-12 col-sm-12 col-md-12 col-lg-12"> 
@@ -46,7 +40,13 @@
       </div> 
     </div>
 
-    <div id="images_panel" class="col-xs-12 col-sm-12 col-md-12 col-lg-10">
+    <div id="images_panel" class="col-xs-12 col-sm-12 col-md-12 col-lg-8">
+
+      <div id="main_alert" class="row alert alert-success col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <a class="close" data-dismiss="alert" href="#" aria-hidden="true">&times;</a>
+          <p class="text-center">You will only have 30 seconds to see the eggs live, because we don't want the eggs to be disturbed by the light being turned on.</p> 
+          <p class="text-center">Although, you can see pictures of the eggs from days before.</p>
+      </div>
       
       <div id="images_1" class="row well col-xs-12 col-sm-12 col-md-12 col-lg-12">    
         <div id="image_1_main_panel" class="panel col-xs-12 col-sm-12 col-md-4 col-lg-5">
@@ -149,6 +149,17 @@
 
       </div>
 
+      <div id="draws_column" class="col-xs-12 col-sm-12 col-md-2 col-lg-2">
+        <div id="daily_draw" class="well col-xs-12 col-sm-12 col-md-12 col-lg-12"> 
+          <center>
+            <h2><span class="label label-success">Expected egg</span></h2>
+            <img src="{% static "img/day_1.png" %}" id="image_draw" class="img-responsive"/>
+            <p class="text-center"> If you want more detailed data about the temperature of the eggs being hatch clink on the button below.</p>
+            <button type="button" id="temperature_button" class="btn btn-default btn-block">Detailed temperatures >></button>
+            </center>
+        </div>
+      </div>
+
     <!-- take_picture Modal-->
     <div class="modal fade" id="take_picture_1_modal">
       <div class="modal-dialog">
@@ -209,9 +220,9 @@
 
 lights_ON = 1;
 
-$( document ).ready(function() {
-     $.get("lights/ALL/ON");
-});
+// $( document ).ready(function() {
+//      $.get("lights/ALL/ON");
+// });
 
 var image_1 = document.getElementById('image_1');
 var image_2 = document.getElementById('image_2');
