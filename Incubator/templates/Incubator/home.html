@@ -23,7 +23,7 @@
           <h2><span class="label label-success">Current Temperature</span></h2>
           <h1><p class="text-primary"><b id="TEMP">{{TEMP}} ºC</b></p></h1>
           <p class="text-center"> If you want more detailed data about the temperature of the eggs being hatch clink on the button below.</p>
-          <button type="button" id="temperature_button" class="btn btn-default btn-block">Detailed temperatures >></button>
+          <button type="button" id="temperature_button" class="btn btn-default btn-block">Temperature in detail >></button>
           </center>
       </div>
       <div id="HUMI_gauge" class="well col-xs-12 col-sm-12 col-md-12 col-lg-12"> 
@@ -31,7 +31,7 @@
           <h2><span class="label label-success">Current Humidity</span></h2>
           <h1><p class="text-primary"><b id="HUMI">{{HUMI}} %</b></p></h1>
           <p class="text-center"> If you want more detailed data about the humidity of the eggs being hatch clink on the button below.</p>
-          <button type="button" id="humidity_button" class="btn btn-default btn-block">Detailed humidities >></button>
+          <button type="button" id="humidity_button" class="btn btn-default btn-block">Humidity in detail >></button>
         </center>
       </div>
       <hr/>
@@ -44,8 +44,9 @@
 
       <div id="main_alert" class="row alert alert-success col-xs-12 col-sm-12 col-md-12 col-lg-12">
           <a class="close" data-dismiss="alert" href="#" aria-hidden="true">&times;</a>
-          <p class="text-center">You will only have 30 seconds to see the eggs live, because we don't want the eggs to be disturbed by the light being turned on.</p> 
-          <p class="text-center">Although, you can see pictures of the eggs from days before.</p>
+          <p class="text-center">You will only have <b>10 seconds</b> to see the eggs live, after click the button <b>"Take picture"</b> from each camera.</p>
+          <p class="text-center">This limit is placed because we don't want the eggs to be disturbed by the light being turned on. </p> 
+          <p class="text-center">Although, <b>you can see pictures of the eggs from days before.</b></p>
       </div>
       
       <div id="images_1" class="row well col-xs-12 col-sm-12 col-md-12 col-lg-12">    
@@ -149,16 +150,19 @@
 
       </div>
 
+
       <div id="draws_column" class="col-xs-12 col-sm-12 col-md-2 col-lg-2">
         <div id="daily_draw" class="well col-xs-12 col-sm-12 col-md-12 col-lg-12"> 
           <center>
             <h2><span class="label label-success">Egg representation</span></h2>
             <img id="image_draw" class="img-responsive"/>
-            <p class="text-center"> The above picture represents the egg with {{days}} of hatching. </p>
+            <p class="text-center"> The above picture represents the egg with {{days}} days of hatching. </p>
             <button type="button" id="temperature_button" class="btn btn-default btn-block">Detailed temperatures >></button>
             </center>
         </div>
+        <div id="svg" class="well col-xs-12 col-sm-12 col-md-12 col-lg-12"></div> 
       </div>
+
 
     <!-- take_picture Modal-->
     <div class="modal fade" id="take_picture_1_modal">
@@ -168,10 +172,10 @@
             <h4 id="final_time_text" class="modal-title">Current egg Image</h4>
           </div>
           <div class="modal-body">
-            <p><center><img src="http://192.168.0.156/image.jpg" width= "100%" class='img-responsive'></center></p>
+            <p><center><img id="image_modal_1" width= "100%" class='img-responsive'></center></p>
           </div>
           <div class="modal-footer">
-            <a href="http://192.168.0.156/image.jpg" class="btn btn-info" download="eggimage.jpg">Download image</a> 
+            <a id="download_image_1_modal" class="btn btn-info" download="egg_1_image.jpg">Download image</a> 
             <a href="" id="continue_to_ranking" class="btn btn-default" data-dismiss="modal">Exit!</a>
           </div>
         </div><!-- end modal-content -->
@@ -186,7 +190,7 @@
             <h4 id="final_time_text" class="modal-title">Current egg Image</h4>
           </div>
           <div class="modal-body">
-            <p><center><img src="http://192.168.0.153/image.jpg" width= "100%" class='img-responsive'></center></p>
+            <p><center><img width= "100%" class='img-responsive'></center></p>
           </div>
           <div class="modal-footer">
             <a href="http://192.168.0.153/image.jpg" class="btn btn-info" download="eggimage.jpg">Download image</a> 
@@ -204,7 +208,7 @@
             <h4 id="final_time_text" class="modal-title">Current egg Image</h4>
           </div>
           <div class="modal-body">
-            <p><center><img src="http://192.168.0.152/image.jpg" width= "100%" class='img-responsive'></center></p>
+            <p><center><img width= "100%" class='img-responsive'></center></p>
           </div>
           <div class="modal-footer">
             <a href="http://192.168.0.152/image.jpg" class="btn btn-info" download="eggimage.jpg">Download image</a> 
@@ -220,7 +224,7 @@
 lights_ON = 1;
 
 $( document ).ready(function() {
-   //  $.get("lights/ALL/ON");
+    //$.get("lights/ALL/ON");
 });
 
 var image_draw = document.getElementById('image_draw');
@@ -248,7 +252,7 @@ setInterval(function() {
     $('b[id=TEMP]').html(parsed_data.TEMP + 'ºC')
     $('b[id=HUMI]').html(parsed_data.HUMI + ' %')
     if (lights_ON == 1) {
-      $.get("lights/ALL/OFF")
+      //$.get("lights/ALL/ON")
     }
   });
 }, 10000);
@@ -267,16 +271,34 @@ $("#humidity_button").click(function() {
   window.location.href = "/humidities";
 });
 
-$("#image_1_take_picture").click(function() {  
-  $('#take_picture_1_modal').modal('show');
+$("#image_1_take_picture").click(function() {
+    $.get("lights/1/ON");
+    setTimeout(function (){
+      image_modal_1.src = 'http://192.168.0.156/image.jpg?rand=' + Math.random();
+      download_image_1_modal.href = image_modal_1.src
+      $('#take_picture_1_modal').modal('show');
+      $.get("lights/1/OFF");
+    }, 2500);
 });
 
 $("#image_2_take_picture").click(function() {  
-  $('#take_picture_2_modal').modal('show');
+    $.get("lights/2/ON");
+    setTimeout(function (){
+      image_modal_1.src = 'http://192.168.0.153/image.jpg?rand=' + Math.random();
+      download_image_1_modal.href = image_modal_1.src
+      $('#take_picture_1_modal').modal('show');
+      $.get("lights/2/OFF");
+    }, 2500); 
 });
 
 $("#image_3_take_picture").click(function() {  
-  $('#take_picture_3_modal').modal('show');
+    $.get("lights/3/ON");
+    setTimeout(function (){
+      image_modal_1.src = 'http://192.168.0.152/image.jpg?rand=' + Math.random();
+      download_image_1_modal.href = image_modal_1.src
+      $('#take_picture_1_modal').modal('show');
+      $.get("lights/3/OFF");
+    }, 2500); 
 });
 
 </script>

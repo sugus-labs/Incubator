@@ -7,6 +7,8 @@ import urllib2, urllib
 import json
 from data_utils import *
 import pytz
+import cv2
+import time
 
 data = Hatching.objects.latest('id')
 last_hatching_data = data.start_datetime
@@ -19,6 +21,12 @@ URL_BASIC = 'http://192.168.0.110:8000/'
 URL_TEMP = URL_BASIC + 'TEMP'
 URL_HUMI = URL_BASIC + 'HUMI'
 URL_list_measures = [URL_TEMP, URL_HUMI]
+
+URL_cam_1 = 'http://192.168.0.156/image.jpg'
+URL_cam_2 = 'http://192.168.0.153/image.jpg'
+URL_cam_3 = 'http://192.168.0.152/image.jpg'
+
+URL_cams = ['', URL_cam_1, URL_cam_2, URL_cam_3]
 
 def request_without_proxy(URL_list):
 	request_data_list = []
@@ -58,8 +66,9 @@ def lights(request, light_number, command):
 			resp = request_without_proxy_POST(URL_BASIC + 'EGGSON', {})
 		else:
 			resp = request_without_proxy_POST(URL_BASIC + 'EGGSOFF', {})
-	# else:
-
+	else:
+		#POST http://192.168.0.110:8000/EGG/1/value/on
+		resp = request_without_proxy_POST(URL_BASIC + 'EGG/' + light_number + '/value/' + command.lower(), {})
 	return HttpResponse("200 OK")
 
 def home(request):
@@ -113,3 +122,25 @@ def humidities(request):
 	humidities_today_list = zip(index_humidities_today, humidities_today)
 	return render_to_response('Incubator/humidities.html', {'humidities_today_list': humidities_today_list})
 
+def retrieve_image(request, cam_number):
+	lights(request, cam_number, 'on')
+	time.sleep(2)
+	localtime = time.localtime()
+	time_now = time.strftime("%Y%m%d%H%M%S", localtime)
+	try:
+		proxy_handler = urllib2.ProxyHandler({})
+		opener = urllib2.build_opener(proxy_handler)
+		urllib2.install_opener(opener)
+		image_path = 'Incubator/static/egg_images/image_%s_%s.jpg' % (cam_number, time_now)
+		with open(image_path,'wb') as f:
+			f.write(urllib2.urlopen(URL_cams[int(cam_number)]).read())
+			f.close()
+		#im = cv2.imread("image.jpg")
+
+	except:
+		print "No connection!"
+	#print cv2.imshow("im", im)
+	lights(request, cam_number, 'off')
+	return HttpResponse("200 OK")
+#def take_picture(request):
+	
