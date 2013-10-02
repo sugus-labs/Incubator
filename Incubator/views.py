@@ -6,6 +6,7 @@ import urllib2, urllib
 #import datetime
 import json
 from data_utils import *
+import pytz
 
 data = Hatching.objects.latest('id')
 last_hatching_data = data.start_datetime
@@ -13,7 +14,6 @@ last_hatching_data = data.start_datetime
 end_date = last_hatching_data + timedelta(days=21)
 
 retrieve_DBs()
-
 
 URL_BASIC = 'http://192.168.0.110:8000/'
 URL_TEMP = URL_BASIC + 'TEMP'
@@ -66,7 +66,10 @@ def home(request):
 	TEMP, HUMI = request_without_proxy(URL_list_measures)
 	TEMP = TEMP[0:5]
 	HUMI = HUMI[0:5]
-	return render_to_response('Incubator/home.html', {'last_hatching_data': last_hatching_data, 'end_date': end_date, 'TEMP': TEMP,  'HUMI': HUMI})
+	now = datetime.now(pytz.utc)
+	days = (now - last_hatching_data).days
+	print days
+	return render_to_response('Incubator/home.html', {'last_hatching_data': last_hatching_data, 'end_date': end_date, 'TEMP': TEMP,  'HUMI': HUMI, 'days': days})
 
 def download_temp(request):
 	return render(request, 'Incubator/home.html')

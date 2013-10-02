@@ -152,9 +152,9 @@
       <div id="draws_column" class="col-xs-12 col-sm-12 col-md-2 col-lg-2">
         <div id="daily_draw" class="well col-xs-12 col-sm-12 col-md-12 col-lg-12"> 
           <center>
-            <h2><span class="label label-success">Expected egg</span></h2>
-            <img src="{% static "img/day_1.png" %}" id="image_draw" class="img-responsive"/>
-            <p class="text-center"> If you want more detailed data about the temperature of the eggs being hatch clink on the button below.</p>
+            <h2><span class="label label-success">Egg representation</span></h2>
+            <img id="image_draw" class="img-responsive"/>
+            <p class="text-center"> The above picture represents the egg with {{days}} of hatching. </p>
             <button type="button" id="temperature_button" class="btn btn-default btn-block">Detailed temperatures >></button>
             </center>
         </div>
@@ -217,12 +217,14 @@
   </body>	
 
 <script type="text/javascript">
-
 lights_ON = 1;
 
-// $( document ).ready(function() {
-//      $.get("lights/ALL/ON");
-// });
+$( document ).ready(function() {
+   //  $.get("lights/ALL/ON");
+});
+
+var image_draw = document.getElementById('image_draw');
+image_draw.src = "{% static "img/day_" %}{{ days}}.png"
 
 var image_1 = document.getElementById('image_1');
 var image_2 = document.getElementById('image_2');
