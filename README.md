@@ -12,6 +12,10 @@ There are many different Technologies implied like Python, Django, JavaScript, J
 
 **Hey, check out WebLab-Deusto project! <http://weblab.deusto.es>**
 
+## The Incubator interface ##
+
+![Interface](https://raw.github.com/gmartinvela/Incubator/master/Incubator/static/img/incubator_home.png)
+
 ## Requirements ##
 
 RoMIE is developed on a Ubuntu 12.04 system, running:
