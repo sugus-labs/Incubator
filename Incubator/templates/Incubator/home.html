@@ -175,7 +175,7 @@
             <p><center><img id="image_modal_1" width= "100%" class='img-responsive'></center></p>
           </div>
           <div class="modal-footer">
-            <a id="download_image_1_modal" class="btn btn-info" download="egg_1_image.jpg">Download image</a> 
+            <a id="download_image_1_modal" class="btn btn-info" download="">Download image</a> 
             <a href="" id="continue_to_ranking" class="btn btn-default" data-dismiss="modal">Exit!</a>
           </div>
         </div><!-- end modal-content -->
@@ -190,10 +190,10 @@
             <h4 id="final_time_text" class="modal-title">Current egg Image</h4>
           </div>
           <div class="modal-body">
-            <p><center><img width= "100%" class='img-responsive'></center></p>
+            <p><center><img id="image_modal_2" width= "100%" class='img-responsive'></center></p>
           </div>
           <div class="modal-footer">
-            <a href="http://192.168.0.153/image.jpg" class="btn btn-info" download="eggimage.jpg">Download image</a> 
+            <a id="download_image_2_modal" class="btn btn-info" download="">Download image</a> 
             <a href="" id="continue_to_ranking" class="btn btn-default" data-dismiss="modal">Exit!</a>
           </div>
         </div><!-- end modal-content -->
@@ -208,10 +208,10 @@
             <h4 id="final_time_text" class="modal-title">Current egg Image</h4>
           </div>
           <div class="modal-body">
-            <p><center><img width= "100%" class='img-responsive'></center></p>
+            <p><center><img id="image_modal_3" width= "100%" class='img-responsive'></center></p>
           </div>
           <div class="modal-footer">
-            <a href="http://192.168.0.152/image.jpg" class="btn btn-info" download="eggimage.jpg">Download image</a> 
+            <a id="download_image_3_modal" class="btn btn-info" download="">Download image</a> 
             <a href="" id="continue_to_ranking" class="btn btn-default" data-dismiss="modal">Exit!</a>
           </div>
         </div><!-- end modal-content -->
@@ -278,7 +278,9 @@ $("#image_1_take_picture").click(function() {
     image_modal_1.src = parsed_data.url_image
     download_image_1_modal.href = parsed_data.url_image
   });
-  $('#take_picture_1_modal').modal('show');
+  setTimeout(function() {
+    $('#take_picture_1_modal').modal('show');
+  }, 1000);
 });
 
 
@@ -289,7 +291,9 @@ $("#image_2_take_picture").click(function() {
     image_modal_2.src = parsed_data.url_image
     download_image_2_modal.href = parsed_data.url_image
   });
-  $('#take_picture_2_modal').modal('show');
+  setTimeout(function() {
+    $('#take_picture_2_modal').modal('show');
+  }, 1000);
 });
 
 $("#image_3_take_picture").click(function() {  
@@ -299,7 +303,9 @@ $("#image_3_take_picture").click(function() {
     image_modal_3.src = parsed_data.url_image
     download_image_3_modal.href = parsed_data.url_image
   });
-  $('#take_picture_3_modal').modal('show');
+  setTimeout(function() {
+    $('#take_picture_3_modal').modal('show');
+  }, 1000);
 });
 
 </script>
