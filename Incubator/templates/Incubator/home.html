@@ -221,7 +221,6 @@
   </body>	
 
 <script type="text/javascript">
-lights_ON = 1;
 
 $( document ).ready(function() {
     //$.get("lights/ALL/ON");
@@ -251,9 +250,6 @@ setInterval(function() {
     parsed_data = $.parseJSON(data);
     $('b[id=TEMP]').html(parsed_data.TEMP + 'ºC')
     $('b[id=HUMI]').html(parsed_data.HUMI + ' %')
-    if (lights_ON == 1) {
-      //$.get("lights/ALL/ON")
-    }
   });
 }, 10000);
 
