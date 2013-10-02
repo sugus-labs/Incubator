@@ -272,33 +272,34 @@ $("#humidity_button").click(function() {
 });
 
 $("#image_1_take_picture").click(function() {
-    $.get("lights/1/ON");
-    setTimeout(function (){
-      image_modal_1.src = 'http://192.168.0.156/image.jpg?rand=' + Math.random();
-      download_image_1_modal.href = image_modal_1.src
-      $('#take_picture_1_modal').modal('show');
-      $.get("lights/1/OFF");
-    }, 2500);
+  $.get("retrieve_image/1", function(data) {
+    parsed_data = $.parseJSON(data);
+    //alert(parsed_data.url_image)
+    image_modal_1.src = parsed_data.url_image
+    download_image_1_modal.href = parsed_data.url_image
+  });
+  $('#take_picture_1_modal').modal('show');
 });
 
+
 $("#image_2_take_picture").click(function() {  
-    $.get("lights/2/ON");
-    setTimeout(function (){
-      image_modal_1.src = 'http://192.168.0.153/image.jpg?rand=' + Math.random();
-      download_image_1_modal.href = image_modal_1.src
-      $('#take_picture_1_modal').modal('show');
-      $.get("lights/2/OFF");
-    }, 2500); 
+  $.get("retrieve_image/2", function(data) {
+    parsed_data = $.parseJSON(data);
+    //alert(parsed_data.url_image)
+    image_modal_2.src = parsed_data.url_image
+    download_image_2_modal.href = parsed_data.url_image
+  });
+  $('#take_picture_2_modal').modal('show');
 });
 
 $("#image_3_take_picture").click(function() {  
-    $.get("lights/3/ON");
-    setTimeout(function (){
-      image_modal_1.src = 'http://192.168.0.152/image.jpg?rand=' + Math.random();
-      download_image_1_modal.href = image_modal_1.src
-      $('#take_picture_1_modal').modal('show');
-      $.get("lights/3/OFF");
-    }, 2500); 
+  $.get("retrieve_image/1", function(data) {
+    parsed_data = $.parseJSON(data);
+    //alert(parsed_data.url_image)
+    image_modal_3.src = parsed_data.url_image
+    download_image_3_modal.href = parsed_data.url_image
+  });
+  $('#take_picture_3_modal').modal('show');
 });
 
 </script>

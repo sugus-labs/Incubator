@@ -136,11 +136,10 @@ def retrieve_image(request, cam_number):
 			f.write(urllib2.urlopen(URL_cams[int(cam_number)]).read())
 			f.close()
 		#im = cv2.imread("image.jpg")
-
 	except:
 		print "No connection!"
-	#print cv2.imshow("im", im)
 	lights(request, cam_number, 'off')
-	return HttpResponse("200 OK")
+	response_json = json.dumps({'url_image': image_path[10:]}, sort_keys=True,indent=4, separators=(',', ': '))
+	return HttpResponse(response_json)
 #def take_picture(request):
 	
