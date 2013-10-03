@@ -34,21 +34,27 @@
 
   <div class="row">
     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-      <div class="well col-xs-12 col-sm-12 col-md-6 col-lg-6">
-        <p>
+      <div class="well col-xs-12 col-sm-12 col-md-12 col-lg-12">
+<!--         <h3 class="text-info text-center"><b>Select the parameters to view the data</b></h3>
+        <p></p>
+        <p></p> -->
+        <p class="text-center">
           <label for="time_amount">Time range (5 mins increments):</label>
           <input type="text" id="time_amount" style="border: 0; color: #f6931f; font-weight: bold;" />
         </p>
         <div id="slider-time"></div>
-
-        <p>
+        <p></p>
+        <p></p>
+        <p class="text-center">
           <label for="datetime_amount">Days range:</label>
           <input type="text" id="datetime_amount" style="border: 0; color: #f6931f; font-weight: bold;" />
         </p>
         <div id="slider-datetime"></div>
+        <p></p>
+        <p></p>
+        <center><button type="button" id="update_button" class="btn btn-info">Update data >></button></center>
       </div>
     </div>
-    <button type="button" id="update_button" class="btn btn-default btn-lg btn-block">Update data >></button>
   </div>
 
   <div class="row">
@@ -72,9 +78,21 @@
         </table>
       </div>
 
-      <div id="svg" class="col-xs-12 col-sm-12 col-md-9 col-lg-9"></div>
+      <!-- <div id="svg" class="col-xs-12 col-sm-12 col-md-9 col-lg-9"></div> -->
     </div>
   </div>
+
+<script>
+$("#update_button").click(function() {
+  time_val = $("#time_amount").val();
+  time_val_splitted = time_val.split(" ")
+
+  date_val = $( "#datetime_amount" ).val() 
+  date_val_splitted = date_val.split(" ")
+
+  $.post("/temperatures", { mins: time_val_splitted[0], start_day: date_val_splitted[1], end_day: date_val_splitted[4]} );
+});
+</script>
 
 <script src="http://d3js.org/d3.v3.js"></script>
 <script>
@@ -146,9 +164,9 @@ d3.csv("/static/data/day_thermo.csv", function(error, data) {
 <script>
   $(function() {
     $( "#slider-time" ).slider({
-      value:60,
-      min: 5,
-      max: 120,
+      value:5,
+      min: 0,
+      max: 180,
       step: 5,
       slide: function( event, ui ) {
         $("#time_amount").val( ui.value + " mins");
@@ -163,7 +181,7 @@ d3.csv("/static/data/day_thermo.csv", function(error, data) {
       range: true,
       min: 1,
       max: 22,
-      values: [2, 3],
+      values: [3, 5],
       slide: function( event, ui ) {
         $( "#datetime_amount" ).val( "day " + ui.values[0] + " to day " + ui.values[ 1 ] );
       }

@@ -60,7 +60,7 @@ def measures(request):
 			return HttpResponse("404 - NOT FOUND")
 
 def lights(request, light_number, command):
-	print "LIGHT: %s. COMMAND: %s" % (light_number, command)
+	#print "LIGHT: %s. COMMAND: %s" % (light_number, command)
 	if light_number == "ALL":
 		if command == "ON":
 			resp = request_without_proxy_POST(URL_BASIC + 'EGGSON', {})
@@ -77,7 +77,7 @@ def home(request):
 	HUMI = HUMI[0:5]
 	now = datetime.now(pytz.utc)
 	days = (now - last_hatching_data).days
-	print days
+	#print days
 	return render_to_response('Incubator/home.html', {'last_hatching_data': last_hatching_data, 'end_date': end_date, 'TEMP': TEMP,  'HUMI': HUMI, 'days': days})
 
 def download_temp(request):
@@ -93,7 +93,7 @@ def new_hatching(request):
 	HatchingFormSet = modelformset_factory(Hatching)
 	if request.method == 'POST':
 		hatching_formset = HatchingFormSet(request.POST, request.FILES)
-		print hatching_formset.errors
+		#print hatching_formset.errors
 		if hatching_formset.is_valid():
 			hatching_formset.save()
 	else:
@@ -109,6 +109,11 @@ def temperatures(request):
 	temperatures_today = day_thermo[::(day_thermo.count()/10)]
 	index_temperatures_today = day_thermo.index[::(day_thermo.count()/10)]
 	temperatures_today_list = zip(index_temperatures_today, temperatures_today)
+	if request.method == 'POST':
+		mins = request.REQUEST["mins"]
+		start_day = request.REQUEST["start_day"]
+		end_day = request.REQUEST["end_day"]
+		print "mins: %s. start_day: %s. end_day: %s." % (mins, start_day, end_day)
 	return render_to_response('Incubator/temperatures.html', {'temperatures_today_list': temperatures_today_list})
 
 def humidities(request):
