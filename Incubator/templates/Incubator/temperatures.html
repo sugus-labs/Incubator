@@ -68,7 +68,7 @@
           </tr>
         </thead>
         <tbody>
-          {% for index, temperature in temperatures_today_list %}
+          {% for index, temperature in temperatures_list %}
             <tr>
               <td>{{ index|date:"d M Y" }} - {{ index|time:"H:i A" }}</td>
               <td>{{ temperature|floatformat:2 }}</td>
