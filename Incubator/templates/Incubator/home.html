@@ -293,7 +293,7 @@ $("#image_2_take_picture").click(function() {
 });
 
 $("#image_3_take_picture").click(function() {  
-  $.get("retrieve_image/1", function(data) {
+  $.get("retrieve_image/3", function(data) {
     parsed_data = $.parseJSON(data);
     //alert(parsed_data.url_image)
     image_modal_3.src = parsed_data.url_image

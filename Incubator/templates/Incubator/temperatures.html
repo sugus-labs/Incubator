@@ -3,6 +3,8 @@
 {% block title %}Temperatures{% endblock %}
 
 {% block custom_head %}
+  
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
     <style>
       .axis path,
       .axis line {
@@ -21,6 +23,8 @@
         stroke-width: 1.5px;
       }
     </style>
+
+
 {% endblock custom_head %}
 
 
@@ -28,27 +32,49 @@
 
   {% load staticfiles %}
 
-  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-    <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
-     <table id="main_table" class="table">
-      <thead>
-        <tr>
-          <th>Time</th>
-          <th>Humidity</th>
-        </tr>
-      </thead>
-      <tbody>
-        {% for index, temperature in temperatures_today_list %}
-          <tr>
-            <td>{{ index|date:"d M Y" }} - {{ index|time:"H:i A" }}</td>
-            <td>{{ temperature|floatformat:2 }}</td>
-          </tr>
-        {% endfor %}
-        </tbody>
-      </table>
-    </div>
+  <div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <div class="well col-xs-12 col-sm-12 col-md-6 col-lg-6">
+        <p>
+          <label for="time_amount">Time range (5 mins increments):</label>
+          <input type="text" id="time_amount" style="border: 0; color: #f6931f; font-weight: bold;" />
+        </p>
+        <div id="slider-time"></div>
 
-  <div id="svg" class="col-xs-12 col-sm-12 col-md-9 col-lg-9"></div>
+        <p>
+          <label for="datetime_amount">Days range:</label>
+          <input type="text" id="datetime_amount" style="border: 0; color: #f6931f; font-weight: bold;" />
+        </p>
+        <div id="slider-datetime"></div>
+      </div>
+    </div>
+    <button type="button" id="update_button" class="btn btn-default btn-lg btn-block">Update data >></button>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+      <table id="main_table" class="table">
+        <thead>
+          <tr>
+            <th>Time</th>
+            <th>temperature</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for index, temperature in temperatures_today_list %}
+            <tr>
+              <td>{{ index|date:"d M Y" }} - {{ index|time:"H:i A" }}</td>
+              <td>{{ temperature|floatformat:2 }}</td>
+            </tr>
+          {% endfor %}
+          </tbody>
+        </table>
+      </div>
+
+      <div id="svg" class="col-xs-12 col-sm-12 col-md-9 col-lg-9"></div>
+    </div>
+  </div>
 
 <script src="http://d3js.org/d3.v3.js"></script>
 <script>
@@ -115,6 +141,38 @@ d3.csv("/static/data/day_thermo.csv", function(error, data) {
       .attr("class", "line")
       .attr("d", line);
 });
-
 </script>
+
+<script>
+  $(function() {
+    $( "#slider-time" ).slider({
+      value:60,
+      min: 5,
+      max: 120,
+      step: 5,
+      slide: function( event, ui ) {
+        $("#time_amount").val( ui.value + " mins");
+      }
+    });
+    $("#time_amount").val($("#slider-time").slider("value") + " mins" );
+  });
+
+
+  $(function() {
+    $( "#slider-datetime" ).slider({
+      range: true,
+      min: 1,
+      max: 22,
+      values: [2, 3],
+      slide: function( event, ui ) {
+        $( "#datetime_amount" ).val( "day " + ui.values[0] + " to day " + ui.values[ 1 ] );
+      }
+    });
+    $( "#datetime_amount" ).val( "day " + $( "#slider-datetime" ).slider( "values", 0 ) +
+      " to day " + $( "#slider-datetime" ).slider( "values", 1 ) );
+  });
+
+
+  </script>
+
 {% endblock %}
