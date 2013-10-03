@@ -136,11 +136,12 @@ def temperatures(request):
 		#print day_thermo
 		#day_thermo_csv = day_thermo.to_csv("Incubator/static/data/day_thermo.csv", header=True)
 		#temperatures = day_thermo[::(day_thermo.count()/10)]
-	temperatures = day_thermo
+	temps_timeseries = day_thermo
 		#index_temperatures = day_thermo.index[::(day_thermo.count()/10)]
-	index_temperatures = day_thermo.index
-	temperatures_list = zip(index_temperatures, temperatures)
+	index_temps_timeseries = day_thermo.index
+	temperatures_list = zip(index_temps_timeseries, temps_timeseries)
 	print type(temperatures)
+	comparing_temps_from_dataframe_by_day(temps_timeseries, temp_param_MAX, temp_param_MIN, temp_MAX, temp_MIN, temp_limit_SUP, temp_limit_INF)
 	return render_to_response('Incubator/temperatures.html', {'temperatures_list': temperatures_list})
 
 def humidities(request):
@@ -174,4 +175,3 @@ def retrieve_image(request, cam_number):
 	response_json = json.dumps({'url_image': image_path[10:]}, sort_keys=True,indent=4, separators=(',', ': '))
 	return HttpResponse(response_json)
 #def take_picture(request):
-	

@@ -12,6 +12,7 @@ import pandas.io.sql as psql
 from pandas import ExcelWriter
 # TODO: Integrate DB directly from the django app!
 import MySQLdb
+import time
 
 db = MySQLdb.connect(host="localhost", # your host, usually localhost
                      user="root", # your username
@@ -213,6 +214,33 @@ def extract_thermo_data_day_by_day(thermo_dataframe, days_list):
     			day_thermo = thermo_dataframe[str(day)]
         		day_thermo.to_excel(writer, sheet_name=str(day))
     	writer.save()
+
+def comparing_temps_from_dataframe_by_day(timeseries_thermo, temp_param_MAX, temp_param_MIN, temp_MAX, temp_MIN, temp_limit_SUP, temp_limit_INF):
+	now = datetime.now()
+	plt.title('Temperatures of today')
+	plt.ylim(temp_limit_INF, temp_limit_SUP)
+ 	y=np.arange(temp_limit_INF, temp_limit_SUP, 0.2)
+ 	plt.grid()
+ 	plt.yticks(y)
+	timeseries_thermo.plot()
+	plt.axhspan(temp_param_MIN, temp_param_MAX, facecolor='g', alpha=0.2)
+	plt.axhspan(temp_MIN, temp_MAX, facecolor='g', alpha=0.2)
+	legend( ('thermo', 'Recommended zone') , loc = 'upper right')
+	plt.ylabel('Temperature (%sC)' % degree_sign)
+	plt.xlabel('Hours')
+	plt.savefig('static/data/web_temps_%s.png' % str(now), orientation='landscape')
+	plt.close()
+
+def retrieve_string_now():
+	'''
+	Retrieve the time since epoch
+		
+	Return: time since epoch multiplied by 100 to do it integer
+	'''	
+	now = time.time()
+	now = int(now * 100)
+	string_now = str(now)
+	return string_now
 
 #retrieve_DBs()
 #SHT1x_dataframe = extract_data_from_DB(datetime_format, local_path_SHT1xdb, SHT1xdb_utils_dict)
