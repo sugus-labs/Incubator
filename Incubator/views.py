@@ -112,26 +112,35 @@ def temperatures(request):
 		end_day = request.REQUEST["end_day"]
 		print "mins: %s. start_day: %s. end_day: %s." % (mins, start_day, end_day)
 		if start_day != end_day:
-			start_date = last_hatching_data + timedelta(days=int(start_day) - 1)
-			end_date = last_hatching_data + timedelta(days=int(end_day) - 1)
-			print "%s - %s" % (start_date.date(), end_date.date())
-			days_thermo = thermo_dataframe['TEMP_LOG'][str(start_date.date()):str(end_date.date())]
-			print days_thermo	
+			start_datetime = last_hatching_data + timedelta(days=int(start_day) - 1)
+			start_date = start_datetime.date()
+			end_datetime = last_hatching_data + timedelta(days=int(end_day) - 1)
+			end_date = end_datetime.date()
+			#print "%s - %s" % (start_date, end_date
+			day_thermo = thermo_dataframe['TEMP_LOG'][str(start_date):str(end_date)]
+			#print days_thermo
 		else:
-			start_end_date = last_hatching_data + timedelta(days=int(start_day) - 1)
-			print "%s" % (start_end_date.date())
-			days_thermo = thermo_dataframe['TEMP_LOG'][str(start_date.date())]
-			print days_thermo
+			start_end_datetime = last_hatching_data + timedelta(days=int(start_day) - 1)
+			start_end_date = start_datetime.date()
+			#print "%s" % start_end_date
+			day_thermo = thermo_dataframe['TEMP_LOG'][str(start_end_date)]
+			#print days_thermo
+		if mins != 0:	
+			day_thermo = day_thermo.resample(mins + 'Min')
+			#print hours_days_thermo
 
 	if request.method == 'GET':
 		day_thermo = thermo_dataframe['TEMP_LOG'][str(today)]
+		day_thermo = day_thermo.resample('60Min')
 		#print type(day_thermo)
 		#print day_thermo
-		day_thermo_csv = day_thermo.to_csv("Incubator/static/data/day_thermo.csv", header=True)
-		temperatures = day_thermo[::(day_thermo.count()/10)]
-		index_temperatures = day_thermo.index[::(day_thermo.count()/10)]
-		temperatures_list = zip(index_temperatures, temperatures)
-
+		#day_thermo_csv = day_thermo.to_csv("Incubator/static/data/day_thermo.csv", header=True)
+		#temperatures = day_thermo[::(day_thermo.count()/10)]
+	temperatures = day_thermo
+		#index_temperatures = day_thermo.index[::(day_thermo.count()/10)]
+	index_temperatures = day_thermo.index
+	temperatures_list = zip(index_temperatures, temperatures)
+	print type(temperatures)
 	return render_to_response('Incubator/temperatures.html', {'temperatures_list': temperatures_list})
 
 def humidities(request):
