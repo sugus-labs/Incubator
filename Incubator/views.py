@@ -124,7 +124,7 @@ def temperatures(request):
 		url_image = comparing_temps_from_dataframe_by_day(day_thermo, temp_param_MAX, temp_param_MIN, temp_MAX, temp_MIN, temp_limit_SUP, temp_limit_INF)
 		url_image_json = json.dumps({'url_image': url_image}, sort_keys=True,indent=4, separators=(',', ': '))
 		print url_image_json
-		return url_image_json
+		return HttpResponse(url_image_json, mimetype="application/json")
 
 	if request.method == 'GET':
 		day_thermo = thermo_dataframe['TEMP_LOG'][str(today)]

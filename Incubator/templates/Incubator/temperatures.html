@@ -4,14 +4,15 @@
 
 {% block custom_head %}
   
-    <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+  {% load staticfiles %}
+    <link rel="stylesheet" href="{% static "css/jquery-ui.css" %}"/>
   
 {% endblock custom_head %}
 
 
 {% block content %} 
 
-  {% load staticfiles %}
+  
 
 
   <div class="row">
@@ -49,8 +50,9 @@ $("#update_button").click(function() {
   date_val_splitted = date_val.split(" ")
 
   $.post( "/temperatures", { mins: time_val_splitted[0], start_day: date_val_splitted[1], end_day: date_val_splitted[4]}, function( data ) {
-  console.log( data.url_image ); // image
-}, "json");
+    url_image_data = data;
+    $("#temps_graphic").attr("src", url_image_data.url_image );
+  });
 
 
 });
