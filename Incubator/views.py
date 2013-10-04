@@ -104,8 +104,6 @@ def temperatures(request):
 	retrieve_DBs()
 	thermo_dataframe = extract_data_from_DB(datetime_format, local_path_thermodb, thermodb_utils_dict)
 	today = date.today()
-	#print type(thermo_dataframe)
-	#print thermo_dataframe
 	if request.method == 'POST':
 		mins = request.REQUEST["mins"]
 		start_day = request.REQUEST["start_day"]
@@ -116,33 +114,26 @@ def temperatures(request):
 			start_date = start_datetime.date()
 			end_datetime = last_hatching_data + timedelta(days=int(end_day) - 1)
 			end_date = end_datetime.date()
-			#print "%s - %s" % (start_date, end_date
 			day_thermo = thermo_dataframe['TEMP_LOG'][str(start_date):str(end_date)]
-			#print days_thermo
 		else:
 			start_end_datetime = last_hatching_data + timedelta(days=int(start_day) - 1)
 			start_end_date = start_datetime.date()
-			#print "%s" % start_end_date
 			day_thermo = thermo_dataframe['TEMP_LOG'][str(start_end_date)]
-			#print days_thermo
 		if mins != 0:	
 			day_thermo = day_thermo.resample(mins + 'Min')
-			#print hours_days_thermo
+		url_image = comparing_temps_from_dataframe_by_day(day_thermo, temp_param_MAX, temp_param_MIN, temp_MAX, temp_MIN, temp_limit_SUP, temp_limit_INF)
+		url_image_json = json.dumps({'url_image': url_image}, sort_keys=True,indent=4, separators=(',', ': '))
+		print url_image_json
+		return url_image_json
 
 	if request.method == 'GET':
 		day_thermo = thermo_dataframe['TEMP_LOG'][str(today)]
-		day_thermo = day_thermo.resample('60Min')
-		#print type(day_thermo)
-		#print day_thermo
+		day_thermo = day_thermo.resample('15Min')
 		#day_thermo_csv = day_thermo.to_csv("Incubator/static/data/day_thermo.csv", header=True)
-		#temperatures = day_thermo[::(day_thermo.count()/10)]
-	temps_timeseries = day_thermo
-		#index_temperatures = day_thermo.index[::(day_thermo.count()/10)]
-	index_temps_timeseries = day_thermo.index
-	temperatures_list = zip(index_temps_timeseries, temps_timeseries)
-	print type(temperatures)
-	comparing_temps_from_dataframe_by_day(temps_timeseries, temp_param_MAX, temp_param_MIN, temp_MAX, temp_MIN, temp_limit_SUP, temp_limit_INF)
-	return render_to_response('Incubator/temperatures.html', {'temperatures_list': temperatures_list})
+		index_temps_timeseries = day_thermo.index
+		temperatures_list = zip(index_temps_timeseries, day_thermo)
+		url_image = comparing_temps_from_dataframe_by_day(day_thermo, temp_param_MAX, temp_param_MIN, temp_MAX, temp_MIN, temp_limit_SUP, temp_limit_INF)
+		return render_to_response('Incubator/temperatures.html', {'temperatures_list': temperatures_list, 'url_image': url_image})
 
 def humidities(request):
 	retrieve_DBs()

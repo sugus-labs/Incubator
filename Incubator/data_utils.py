@@ -43,7 +43,7 @@ humi_MIN = 55.0
 humi_MAX = 70.0
 
 temp_limit_INF = 36.8
-temp_limit_SUP = 39
+temp_limit_SUP = 38.2
 humi_limit_INF = 50
 humi_limit_SUP = 75
 
@@ -216,7 +216,7 @@ def extract_thermo_data_day_by_day(thermo_dataframe, days_list):
     	writer.save()
 
 def comparing_temps_from_dataframe_by_day(timeseries_thermo, temp_param_MAX, temp_param_MIN, temp_MAX, temp_MIN, temp_limit_SUP, temp_limit_INF):
-	now = datetime.now()
+	now = retrieve_string_now()
 	plt.title('Temperatures of today')
 	plt.ylim(temp_limit_INF, temp_limit_SUP)
  	y=np.arange(temp_limit_INF, temp_limit_SUP, 0.2)
@@ -225,11 +225,13 @@ def comparing_temps_from_dataframe_by_day(timeseries_thermo, temp_param_MAX, tem
 	timeseries_thermo.plot()
 	plt.axhspan(temp_param_MIN, temp_param_MAX, facecolor='g', alpha=0.2)
 	plt.axhspan(temp_MIN, temp_MAX, facecolor='g', alpha=0.2)
-	legend( ('thermo', 'Recommended zone') , loc = 'upper right')
+	legend( ('Thermometer', 'Recommended zone') , loc = 'upper right')
 	plt.ylabel('Temperature (%sC)' % degree_sign)
 	plt.xlabel('Hours')
-	plt.savefig('static/data/web_temps_%s.png' % str(now), orientation='landscape')
+	image_path = 'Incubator/static/data/web_temps_%s.png' % now 
+	plt.savefig(image_path, orientation='landscape')
 	plt.close()
+	return image_path[9:]
 
 def retrieve_string_now():
 	'''

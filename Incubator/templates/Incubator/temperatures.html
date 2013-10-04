@@ -5,26 +5,7 @@
 {% block custom_head %}
   
     <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
-    <style>
-      .axis path,
-      .axis line {
-        fill: none;
-        stroke: #000;
-        shape-rendering: crispEdges;
-      }
-
-      .x.axis path {
-        display: none;
-      }
-
-      .line {
-        fill: none;
-        stroke: steelblue;
-        stroke-width: 1.5px;
-      }
-    </style>
-
-
+  
 {% endblock custom_head %}
 
 
@@ -32,12 +13,12 @@
 
   {% load staticfiles %}
 
+
   <div class="row">
     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-      <div class="well col-xs-12 col-sm-12 col-md-12 col-lg-12">
-<!--         <h3 class="text-info text-center"><b>Select the parameters to view the data</b></h3>
-        <p></p>
-        <p></p> -->
+    
+    <div class="col-xs-12 col-sm-12 col-md-5 col-lg-5">
+      <h4><br/>
         <p class="text-center">
           <label for="time_amount">Time range (5 mins increments):</label>
           <input type="text" id="time_amount" style="border: 0; color: #f6931f; font-weight: bold;" />
@@ -50,36 +31,13 @@
           <input type="text" id="datetime_amount" style="border: 0; color: #f6931f; font-weight: bold;" />
         </p>
         <div id="slider-datetime"></div>
-        <p></p>
-        <p></p>
-        <center><button type="button" id="update_button" class="btn btn-info">Update data >></button></center>
-      </div>
-    </div>
-  </div>
+        <br/>
+        <center><button type="button" id="update_button" class="btn btn-lg btn-info">generate graphic >></button></center>
+      </div></h4>
 
-  <div class="row">
-    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-      <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
-      <table id="main_table" class="table">
-        <thead>
-          <tr>
-            <th>Time</th>
-            <th>temperature</th>
-          </tr>
-        </thead>
-        <tbody>
-          {% for index, temperature in temperatures_list %}
-            <tr>
-              <td>{{ index|date:"d M Y" }} - {{ index|time:"H:i A" }}</td>
-              <td>{{ temperature|floatformat:2 }}</td>
-            </tr>
-          {% endfor %}
-          </tbody>
-        </table>
+      <div id="graphics" class="col-xs-12 col-sm-12 col-md-7 col-lg-7"></div>
+        <img id="temps_graphic" src={{ url_image }} class="img-responsive"/>
       </div>
-
-      <!-- <div id="svg" class="col-xs-12 col-sm-12 col-md-9 col-lg-9"></div> -->
-    </div>
   </div>
 
 <script>
@@ -90,81 +48,18 @@ $("#update_button").click(function() {
   date_val = $( "#datetime_amount" ).val() 
   date_val_splitted = date_val.split(" ")
 
-  $.post("/temperatures", { mins: time_val_splitted[0], start_day: date_val_splitted[1], end_day: date_val_splitted[4]} );
-});
-</script>
+  $.post( "/temperatures", { mins: time_val_splitted[0], start_day: date_val_splitted[1], end_day: date_val_splitted[4]}, function( data ) {
+  console.log( data.url_image ); // image
+}, "json");
 
-<script src="http://d3js.org/d3.v3.js"></script>
-<script>
 
-var margin = {top: 20, right: 20, bottom: 30, left: 50},
-    width = 960 - margin.left - margin.right,
-    height = 500 - margin.top - margin.bottom;
-
-var parseDate = d3.time.format("%Y-%m-%d %H:%M:%S").parse;
-
-var x = d3.time.scale()
-    .range([0, width]);
-
-var y = d3.scale.linear()
-    .range([height, 0]);
-
-var xAxis = d3.svg.axis()
-    .scale(x)
-    .orient("bottom");
-
-var yAxis = d3.svg.axis()
-    .scale(y)
-    .orient("left");
-
-var line = d3.svg.line()
-    .x(function(d) { return x(d.date); })
-    .y(function(d) { return y(d.temp); });
-
-var svg = d3.select("body").append("svg")
-    .attr("width", width + margin.left + margin.right)
-    .attr("height", height + margin.top + margin.bottom)
-  .append("g")
-    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-
-d3.csv("/static/data/day_thermo.csv", function(error, data) {
-  data.forEach(function(d) {
-    //alert(d.date);
-    var date_without_timezone = d.DATE_LOG.split("+");
-    //alert(date_without_timezone[0]);
-    d.date = parseDate(date_without_timezone[0]);
-    d.temp = d.TEMP_LOG;
-  });
-
-  x.domain(d3.extent(data, function(d) { return d.date; }));
-  y.domain([37, d3.max(data, function(d) { return d.temp; })]);
-
-  svg.append("g")
-      .attr("class", "x axis")
-      .attr("transform", "translate(0," + height + ")")
-      .call(xAxis);
-
-  svg.append("g")
-      .attr("class", "y axis")
-      .call(yAxis)
-    .append("text")
-      .attr("transform", "rotate(-90)")
-      .attr("y", 6)
-      .attr("dy", ".71em")
-      .style("text-anchor", "end")
-      .text("Temperature");
-
-  svg.append("path")
-      .datum(data)
-      .attr("class", "line")
-      .attr("d", line);
 });
 </script>
 
 <script>
   $(function() {
     $( "#slider-time" ).slider({
-      value:60,
+      value:15,
       min: 0,
       max: 180,
       step: 5,
