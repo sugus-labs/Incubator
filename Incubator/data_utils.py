@@ -37,15 +37,15 @@ temp_param_MAX = 37.5
 temp_param_MIN = 37.4
 temp_MIN = 37.0
 temp_MAX = 38.0
-humi_param_MAX = 60.5
-humi_param_MIN = 55.5
-humi_MIN = 55.0
-humi_MAX = 70.0
+humi_param_MAX = 55.5
+humi_param_MIN = 50.5
+humi_MIN = 45.0
+humi_MAX = 60.0
 
 temp_limit_INF = 36.8
 temp_limit_SUP = 38.2
-humi_limit_INF = 50
-humi_limit_SUP = 75
+humi_limit_INF = 40
+humi_limit_SUP = 65
 
 server = "192.168.0.110"
 host_username = "pi"
@@ -232,11 +232,32 @@ def comparing_temps_from_dataframe_by_day(timeseries_thermo, temp_param_MAX, tem
 	plt.ylabel('Temperature (%sC)' % degree_sign)
 	plt.xlabel('Hours')
 	image_path = 'Incubator/static/data/web_temps_%s.png' % now 
-	print "Generar imagen", time.time() - initial_time
+	print "Generar imagen temps", time.time() - initial_time
 	initial_time = time.time()
 	plt.savefig(image_path, orientation='landscape')
 	plt.close()
-	print "Almacenar imagen", time.time() - initial_time
+	print "Almacenar imagen temps", time.time() - initial_time
+	return image_path[9:]
+
+def comparing_humis_from_dataframe_by_day(timeseries_SHT1x, humi_param_MAX, humi_param_MIN, humi_MAX, humi_MIN, humi_limit_SUP, humi_limit_INF):
+	now = retrieve_string_now()
+	plt.title('Humidities of today')
+	plt.ylim(humi_limit_INF, humi_limit_SUP)
+ 	plt.grid()
+ 	import time
+ 	initial_time = time.time()
+	timeseries_SHT1x.plot()
+	plt.axhspan(humi_param_MIN, humi_param_MAX, facecolor='g', alpha=0.2)
+	plt.axhspan(humi_MIN, humi_MAX, facecolor='g', alpha=0.2)
+	legend( ('Humidity', 'Recommended zone') , loc = 'upper right')
+	plt.ylabel('Humidity (%)')
+	plt.xlabel('Hours')
+	image_path = 'Incubator/static/data/web_humis_%s.png' % now 
+	print "Generar imagen humi", time.time() - initial_time
+	initial_time = time.time()
+	plt.savefig(image_path, orientation='landscape')
+	plt.close()
+	print "Almacenar imagen humi", time.time() - initial_time
 	return image_path[9:]
 
 def retrieve_string_now():

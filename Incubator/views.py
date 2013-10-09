@@ -148,14 +148,47 @@ def temperatures(request):
 def humidities(request):
 	initial_time = time.time()
 	retrieve_DBs()
+	print "retrieve_DBs()", time.time() - initial_time
+	initial_time = time.time()
 	SHT1x_dataframe = extract_data_from_DB(datetime_format, local_path_SHT1xdb, SHT1xdb_utils_dict)
+	print "extract_data_from_DB()", time.time() - initial_time
+	initial_time = time.time()
 	today = date.today()
-	day_SHT1x = SHT1x_dataframe['humi'][str(today)]
-	day_SHT1x_csv = day_SHT1x.to_csv("Incubator/static/data/day_SHT1x.csv", header=True)
-	humidities_today = day_SHT1x[::(day_SHT1x.count()/10)]
-	index_humidities_today = day_SHT1x.index[::(day_SHT1x.count()/10)]
-	humidities_today_list = zip(index_humidities_today, humidities_today)
-	return render_to_response('Incubator/humidities.html', {'humidities_today_list': humidities_today_list})
+	if request.method == 'POST':
+		mins = request.REQUEST["mins"]
+		start_day = request.REQUEST["start_day"]
+		end_day = request.REQUEST["end_day"]
+		#print "mins: %s. start_day: %s. end_day: %s." % (mins, start_day, end_day)
+		if start_day != end_day:
+			start_datetime = last_hatching_data + timedelta(days=int(start_day) - 1)
+			start_date = start_datetime.date()
+			end_datetime = last_hatching_data + timedelta(days=int(end_day) - 1)
+			end_date = end_datetime.date()
+			day_SHT1x = SHT1x_dataframe['humi'][str(start_date):str(end_date)]
+		else:
+			start_end_datetime = last_hatching_data + timedelta(days=int(start_day) - 1)
+			start_end_date = start_datetime.date()
+			day_SHT1x = thermo_dataframe['humi'][str(start_end_date)]
+		if mins != "0":	
+			day_SHT1x = day_SHT1x.resample(mins + 'Min')
+		url_image = comparing_humis_from_dataframe_by_day(day_SHT1x, humi_param_MAX, humi_param_MIN, humi_MAX, humi_MIN, humi_limit_SUP, humi_limit_INF)
+		url_image_json = json.dumps({'url_image': url_image}, sort_keys=True,indent=4, separators=(',', ': '))
+		print url_image_json
+		return HttpResponse(url_image_json, mimetype="application/json")
+
+
+	if request.method == 'GET':
+		new_initial = time.time()
+		day_SHT1x = SHT1x_dataframe['humi'][str(today)]
+		day_SHT1x2 = day_SHT1x
+		day_SHT1x = day_SHT1x.resample('15Min')
+		print "day_SHT1x.resample(15min)", time.time() - new_initial
+		#day_SHT1x_csv = day_SHT1x.to_csv("Incubator/static/data/day_SHT1x.csv", header=True)
+		index_humidities_today = day_SHT1x.index
+		humidities_list = zip(index_humidities_today, day_SHT1x)
+		url_image = comparing_humis_from_dataframe_by_day(day_SHT1x, humi_param_MAX, humi_param_MIN, humi_MAX, humi_MIN, humi_limit_SUP, humi_limit_INF)
+		print "comparing_humis_from_dataframe_by_day()", time.time() - initial_time
+		return render_to_response('Incubator/humidities.html', {'humidities_list': humidities_list, 'url_image': url_image})
 
 def retrieve_image(request, cam_number):
 	lights(request, cam_number, 'on')
