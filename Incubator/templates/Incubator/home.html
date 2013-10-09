@@ -12,7 +12,8 @@
       <div id="main_alert" class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
         <div class="alert alert-info">
           <!-- <a class="close" data-dismiss="alert" href="#" aria-hidden="true">&times;</a> -->
-          <p class="text-center"><strong>These eggs starts to hatch in {{ last_hatching_data|date:"l d"}}th {{ last_hatching_data|date:"M Y" }} at {{ last_hatching_data|date:"h:i A" }}. {{ last_hatching_data|timesince }} ago. {{ end_date|timeuntil }} remaining.</strong></p>
+          {# Translators: "Since time" message in home.html #}
+          <p class="text-center"><strong>{% blocktrans %}These eggs starts to hatch in {{ last_hatching_data|date:"l d"}}th {{ last_hatching_data|date:"M Y" }} at {{ last_hatching_data|date:"h:i A" }}. {{ last_hatching_data|timesince }} ago. {{ end_date|timeuntil }} remaining.{% endblocktrans %}</strong></p>
         </div>
       </div>
     </div>
@@ -20,23 +21,23 @@
     <div id="gauges_column" class="col-xs-12 col-sm-12 col-md-2 col-lg-2">
       <div id="TEMP_gauge" class="well col-xs-12 col-sm-12 col-md-12 col-lg-12"> 
         <center>
-          <h2><span class="label label-success">Current Temperature</span></h2>
+          <h2><span class="label label-success">{% blocktrans %}Current Temperature{% endblocktrans %}</span></h2>
           <h1><p class="text-primary"><b id="TEMP">{{TEMP}} ºC</b></p></h1>
-          <p class="text-center"> If you want more detailed data about the temperature of the eggs being hatch clink on the button below.</p>
-          <button type="button" id="temperature_button" class="btn btn-default btn-block">Temperature in detail >></button>
+          <p class="text-center">{% blocktrans %}If you want more detailed data about the temperature of the eggs being hatch clink on the button below.{% endblocktrans %}</p>
+          <button type="button" id="temperature_button" class="btn btn-default btn-block">{% blocktrans %}Temperature in detail{% endblocktrans %} >></button>
           </center>
       </div>
       <div id="HUMI_gauge" class="well col-xs-12 col-sm-12 col-md-12 col-lg-12"> 
         <center>
-          <h2><span class="label label-success">Current Humidity</span></h2>
+          <h2><span class="label label-success">{% blocktrans %}Current Humidity{% endblocktrans %}</span></h2>
           <h1><p class="text-primary"><b id="HUMI">{{HUMI}} %</b></p></h1>
-          <p class="text-center"> If you want more detailed data about the humidity of the eggs being hatch clink on the button below.</p>
-          <button type="button" id="humidity_button" class="btn btn-default btn-block">Humidity in detail >></button>
+          <p class="text-center">{% blocktrans %}If you want more detailed data about the humidity of the eggs being hatch clink on the button below.{% endblocktrans %}</p>
+          <button type="button" id="humidity_button" class="btn btn-default btn-block">{% blocktrans %}Humidity in detail{% endblocktrans %} >></button>
         </center>
       </div>
       <hr/>
       <div id="exit_div" class="col-xs-12 col-sm-12 col-md-12 col-lg-2 col-lg-12">
-        <center><a id="exit_button" class="btn btn-primary btn-lg btn-block btn-danger">Exit and turn off the lights</a></center>
+        <center><a id="exit_button" class="btn btn-primary btn-lg btn-block btn-danger">{% blocktrans %}Exit and turn off the lights{% endblocktrans %}</a></center>
       </div> 
     </div>
 
@@ -44,20 +45,20 @@
 
       <div id="main_alert" class="row alert alert-success col-xs-12 col-sm-12 col-md-12 col-lg-12">
           <a class="close" data-dismiss="alert" href="#" aria-hidden="true">&times;</a>
-          <p class="text-center">You will only have <b>10 seconds</b> to see the eggs live, after click the button <b>"Take picture"</b> from each camera.</p>
-          <p class="text-center">This limit is placed because we don't want the eggs to be disturbed by the light being turned on. </p> 
-          <p class="text-center">Although, <b>you can see pictures of the eggs from days before.</b></p>
+          <p class="text-center">{% blocktrans %}You will only have <b>10 seconds</b> to see the eggs live, after click the button <b>"Take picture"</b> from each camera.</p>{% endblocktrans %}
+          <p class="text-center">{% blocktrans %}This limit is placed because we don't want the eggs to be disturbed by the light being turned on. </p> {% endblocktrans %}
+          <p class="text-center">{% blocktrans %}Although, <b>you can see pictures of the eggs from days before.</b></p>{% endblocktrans %}
       </div>
       
       <div id="images_1" class="row well col-xs-12 col-sm-12 col-md-12 col-lg-12">    
         <div id="image_1_main_panel" class="panel col-xs-12 col-sm-12 col-md-4 col-lg-5">
           <div id="image_1_panel" class="panel col-xs-12 col-sm-12 col-md-12 col-lg-12">
             <img id="image_1" class="img-responsive"/>
-            <button type="button" id="image_1_take_picture" class="btn btn-info btn-lg btn-block">Take picture</button>
+            <button type="button" id="image_1_take_picture" class="btn btn-info btn-lg btn-block">{% blocktrans %}Take picture{% endblocktrans %}</button>
           </div>
         </div>
         <div id="image_1_second_panel" class="panel col-xs-12 col-sm-12 col-md-4 col-lg-7">
-            <p class="text-center text-primary">Download images from previous days.</p>
+            <p class="text-center text-primary">{% blocktrans %}Download images from previous days.{% endblocktrans %}</p>
             <div id="subimage_1_panel" class="panel col-xs-12 col-sm-12 col-md-12 col-lg-12">
               <div id="subimage_1_1_panel" class="panel col-xs-4 col-sm-4 col-md-4 col-lg-4">
                 <a href="{% static "img/eggimage.jpg" %}">
@@ -78,7 +79,7 @@
                 </a>
               </div>
             </div>
-            <button type="button" id="image_1_button" class="btn btn-default btn-lg btn-block">Show more >></button>
+            <button type="button" id="image_1_button" class="btn btn-default btn-lg btn-block">{% blocktrans %}Show more{% endblocktrans %} >></button>
           </div>
         </div>
 
@@ -86,11 +87,11 @@
         <div id="image_2_main_panel" class="panel col-xs-12 col-sm-12 col-md-4 col-lg-5">
           <div id="image_2_panel" class="panel col-xs-12 col-sm-12 col-md-12 col-lg-12">
             <img id="image_2" class="img-responsive"/>
-            <button type="button" id="image_2_take_picture" class="btn btn-info btn-lg btn-block">Take picture</button>
+            <button type="button" id="image_2_take_picture" class="btn btn-info btn-lg btn-block">{% blocktrans %}Take picture{% endblocktrans %}</button>
           </div>
         </div>
         <div id="image_2_second_panel" class="panel col-xs-12 col-sm-12 col-md-4 col-lg-7">
-            <p class="text-center text-primary">Download images from previous days.</p>
+            <p class="text-center text-primary">{% blocktrans %}Download images from previous days.{% endblocktrans %}</p>
             <div id="subimage_2_panel" class="panel col-xs-12 col-sm-12 col-md-12 col-lg-12">
               <div id="subimage_2_1_panel" class="panel col-xs-4 col-sm-4 col-md-4 col-lg-4">
                 <a href="{% static "img/eggimage.jpg" %}">
@@ -111,7 +112,7 @@
                 </a>
               </div>
             </div>
-            <button type="button" id="image_2_button" class="btn btn-default btn-lg btn-block">Show more >></button>
+            <button type="button" id="image_2_button" class="btn btn-default btn-lg btn-block">{% blocktrans %}Show more{% endblocktrans %} >></button>
           </div>
         </div>
 
@@ -119,11 +120,11 @@
         <div id="image_3_main_panel" class="panel col-xs-12 col-sm-12 col-md-4 col-lg-5">
           <div id="image_3_panel" class="panel col-xs-12 col-sm-12 col-md-12 col-lg-12">
             <img id="image_3" class="img-responsive"/>
-            <button type="button" id="image_3_take_picture" class="btn btn-info btn-lg btn-block">Take picture</button>
+            <button type="button" id="image_3_take_picture" class="btn btn-info btn-lg btn-block">{% blocktrans %}Take picture{% endblocktrans %}</button>
           </div>
         </div>
         <div id="image_3_second_panel" class="panel col-xs-12 col-sm-12 col-md-4 col-lg-7">
-            <p class="text-center text-primary">Download images from previous days.</p>
+            <p class="text-center text-primary">{% blocktrans %}Download images from previous days.{% endblocktrans %}</p>
             <div id="subimage_3_panel" class="panel col-xs-12 col-sm-12 col-md-12 col-lg-12">
               <div id="subimage_3_1_panel" class="panel col-xs-4 col-sm-4 col-md-4 col-lg-4">
                 <a href="{% static "img/eggimage.jpg" %}">
@@ -144,7 +145,7 @@
                 </a>
               </div>
             </div>
-            <button type="button" id="image_3_button" class="btn btn-default btn-lg btn-block">Show more >></button>
+            <button type="button" id="image_3_button" class="btn btn-default btn-lg btn-block">{% blocktrans %}Show more{% endblocktrans %} >></button>
           </div>
         </div>
 
@@ -154,10 +155,10 @@
       <div id="draws_column" class="col-xs-12 col-sm-12 col-md-2 col-lg-2">
         <div id="daily_draw" class="well col-xs-12 col-sm-12 col-md-12 col-lg-12"> 
           <center>
-            <h2><span class="label label-success">Egg representation</span></h2>
+            <h2><span class="label label-success">{% blocktrans %}Egg representation{% endblocktrans %}</span></h2>
             <img id="image_draw" class="img-responsive"/>
-            <p class="text-center"> The above picture represents the egg with {{days}} days of hatching. </p>
-            <button type="button" id="temperature_button" class="btn btn-default btn-block">Detailed temperatures >></button>
+            <p class="text-center"> {% blocktrans %}The above picture represents the egg with {{days}} days of hatching.{% endblocktrans %} </p>
+            <button type="button" id="temperature_button" class="btn btn-default btn-block">{% blocktrans %}Detailed temperatures{% endblocktrans %} >></button>
             </center>
         </div>
         <div id="svg" class="well col-xs-12 col-sm-12 col-md-12 col-lg-12"></div> 
@@ -169,14 +170,14 @@
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
-            <h4 id="final_time_text" class="modal-title">Current egg Image</h4>
+            <h4 id="final_time_text" class="modal-title">{% blocktrans %}Current egg Image{% endblocktrans %}</h4>
           </div>
           <div class="modal-body">
             <p><center><img id="image_modal_1" width= "100%" class='img-responsive'></center></p>
           </div>
           <div class="modal-footer">
-            <a id="download_image_1_modal" class="btn btn-info" download="">Download image</a> 
-            <a href="" id="continue_to_ranking" class="btn btn-default" data-dismiss="modal">Exit!</a>
+            <a id="download_image_1_modal" class="btn btn-info" download="">{% blocktrans %}Download image{% endblocktrans %}</a> 
+            <a href="" id="continue_to_ranking" class="btn btn-default" data-dismiss="modal">{% blocktrans %}Exit!{% endblocktrans %}</a>
           </div>
         </div><!-- end modal-content -->
       </div><!-- end modal-dialog -->
@@ -187,14 +188,14 @@
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
-            <h4 id="final_time_text" class="modal-title">Current egg Image</h4>
+            <h4 id="final_time_text" class="modal-title">{% blocktrans %}Current egg Image{% endblocktrans %}</h4>
           </div>
           <div class="modal-body">
             <p><center><img id="image_modal_2" width= "100%" class='img-responsive'></center></p>
           </div>
           <div class="modal-footer">
-            <a id="download_image_2_modal" class="btn btn-info" download="">Download image</a> 
-            <a href="" id="continue_to_ranking" class="btn btn-default" data-dismiss="modal">Exit!</a>
+            <a id="download_image_2_modal" class="btn btn-info" download="">{% blocktrans %}Download image{% endblocktrans %}</a> 
+            <a href="" id="continue_to_ranking" class="btn btn-default" data-dismiss="modal">{% blocktrans %}Exit!{% endblocktrans %}</a>
           </div>
         </div><!-- end modal-content -->
       </div><!-- end modal-dialog -->
@@ -205,14 +206,14 @@
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
-            <h4 id="final_time_text" class="modal-title">Current egg Image</h4>
+            <h4 id="final_time_text" class="modal-title">{% blocktrans %}Current egg Image{% endblocktrans %}</h4>
           </div>
           <div class="modal-body">
             <p><center><img id="image_modal_3" width= "100%" class='img-responsive'></center></p>
           </div>
           <div class="modal-footer">
-            <a id="download_image_3_modal" class="btn btn-info" download="">Download image</a> 
-            <a href="" id="continue_to_ranking" class="btn btn-default" data-dismiss="modal">Exit!</a>
+            <a id="download_image_3_modal" class="btn btn-info" download="">{% blocktrans %}Download image{% endblocktrans %}</a> 
+            <a href="" id="continue_to_ranking" class="btn btn-default" data-dismiss="modal">{% blocktrans %}Exit!{% endblocktrans %}</a>
           </div>
         </div><!-- end modal-content -->
       </div><!-- end modal-dialog -->

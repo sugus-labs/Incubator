@@ -124,7 +124,7 @@ def temperatures(request):
 			start_end_datetime = last_hatching_data + timedelta(days=int(start_day) - 1)
 			start_end_date = start_datetime.date()
 			day_thermo = thermo_dataframe['TEMP_LOG'][str(start_end_date)]
-		if mins != 0:	
+		if mins != "0":	
 			day_thermo = day_thermo.resample(mins + 'Min')
 		url_image = comparing_temps_from_dataframe_by_day(day_thermo, temp_param_MAX, temp_param_MIN, temp_MAX, temp_MIN, temp_limit_SUP, temp_limit_INF)
 		url_image_json = json.dumps({'url_image': url_image}, sort_keys=True,indent=4, separators=(',', ': '))

@@ -7,6 +7,7 @@
     <meta name="author" content="Gustavo Martin">
     <title>{% block title %}{% endblock %}</title>
 
+    {% load i18n %}
     {% load staticfiles %}
     <link rel="icon" href="{% static "img/incubator_24x24.png" %}" type="image/x-icon" />
     <script type="text/javascript" charset="utf-8" src="{% static "js/jquery-1.9.1.js" %}"></script>
@@ -40,9 +41,9 @@
       <div class="navbar-collapse collapse">
         <div class="navbar-form navbar-right">
           {% if user.is_authenticated %}
-            <a href="#" class="btn btn-success">Hello, {{ user.username }}</a>
+            <a href="#" class="btn btn-success">{% blocktrans %}Hello{% endblocktrans %}, {{ user.username }}</a>
           {% else %}
-            <a href="login" class="btn btn-danger">Sign in</a>
+            <a href="login" class="btn btn-danger">{% endblocktrans %}Sign in{% endblocktrans %}</a>
           {% endif %}
         </div>
       </div><!--/.navbar-collapse -->
