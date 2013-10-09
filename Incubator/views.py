@@ -101,8 +101,13 @@ def new_hatching(request):
 	return render_to_response('Incubator/new_hatching.html', {'hatching_formset': hatching_formset})
 
 def temperatures(request):
+	initial_time = time.time()
 	retrieve_DBs()
+	print time.time() - initial_time
+	initial_time = time.time()
 	thermo_dataframe = extract_data_from_DB(datetime_format, local_path_thermodb, thermodb_utils_dict)
+	print time.time() - initial_time
+	initial_time = time.time()
 	today = date.today()
 	if request.method == 'POST':
 		mins = request.REQUEST["mins"]
@@ -127,12 +132,17 @@ def temperatures(request):
 		return HttpResponse(url_image_json, mimetype="application/json")
 
 	if request.method == 'GET':
+		new_initial = time.time()
 		day_thermo = thermo_dataframe['TEMP_LOG'][str(today)]
+		day_thermo2 = day_thermo
 		day_thermo = day_thermo.resample('15Min')
+		print "day_termo2", time.time() - new_initial
+		print day_thermo2
 		#day_thermo_csv = day_thermo.to_csv("Incubator/static/data/day_thermo.csv", header=True)
 		index_temps_timeseries = day_thermo.index
 		temperatures_list = zip(index_temps_timeseries, day_thermo)
 		url_image = comparing_temps_from_dataframe_by_day(day_thermo, temp_param_MAX, temp_param_MIN, temp_MAX, temp_MIN, temp_limit_SUP, temp_limit_INF)
+		print time.time() - initial_time
 		return render_to_response('Incubator/temperatures.html', {'temperatures_list': temperatures_list, 'url_image': url_image})
 
 def humidities(request):

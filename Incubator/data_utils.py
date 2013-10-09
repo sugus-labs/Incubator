@@ -89,6 +89,7 @@ def retrieve_DBs():
 	get_file_from_remote_host(remote_path_thermodb, local_path_thermodb, sftp_client)
 	sftp_client.close()
 	ssh_client.close()
+	end_time = time.time()
 
 # Extract data from thermo DB
 def extract_data_from_DB(datetime_format, db_local_path, db_utils_dict):
@@ -222,6 +223,8 @@ def comparing_temps_from_dataframe_by_day(timeseries_thermo, temp_param_MAX, tem
  	y=np.arange(temp_limit_INF, temp_limit_SUP, 0.2)
  	plt.grid()
  	plt.yticks(y)
+ 	import time
+ 	initial_time = time.time()
 	timeseries_thermo.plot()
 	plt.axhspan(temp_param_MIN, temp_param_MAX, facecolor='g', alpha=0.2)
 	plt.axhspan(temp_MIN, temp_MAX, facecolor='g', alpha=0.2)
@@ -229,8 +232,11 @@ def comparing_temps_from_dataframe_by_day(timeseries_thermo, temp_param_MAX, tem
 	plt.ylabel('Temperature (%sC)' % degree_sign)
 	plt.xlabel('Hours')
 	image_path = 'Incubator/static/data/web_temps_%s.png' % now 
+	print "Generar imagen", time.time() - initial_time
+	initial_time = time.time()
 	plt.savefig(image_path, orientation='landscape')
 	plt.close()
+	print "Almacenar imagen", time.time() - initial_time
 	return image_path[9:]
 
 def retrieve_string_now():
