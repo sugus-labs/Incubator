@@ -43,7 +43,7 @@
           {% if user.is_authenticated %}
             <a href="#" class="btn btn-success">{% blocktrans %}Hello{% endblocktrans %}, {{ user.username }}</a>
           {% else %}
-            <a href="login" class="btn btn-danger">{% endblocktrans %}Sign in{% endblocktrans %}</a>
+            <a href="login" class="btn btn-danger">{% blocktrans %}Sign in{% endblocktrans %}</a>
           {% endif %}
         </div>
       </div><!--/.navbar-collapse -->

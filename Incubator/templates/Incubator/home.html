@@ -4,6 +4,7 @@
 
 {% block content %} 
 
+  {% load i18n %}
   {% load staticfiles %}
 
 
@@ -13,7 +14,13 @@
         <div class="alert alert-info">
           <!-- <a class="close" data-dismiss="alert" href="#" aria-hidden="true">&times;</a> -->
           {# Translators: "Since time" message in home.html #}
-          <p class="text-center"><strong>{% blocktrans %}These eggs starts to hatch in {{ last_hatching_data|date:"l d"}}th {{ last_hatching_data|date:"M Y" }} at {{ last_hatching_data|date:"h:i A" }}. {{ last_hatching_data|timesince }} ago. {{ end_date|timeuntil }} remaining.{% endblocktrans %}</strong></p>
+          <p class="text-center">
+            <strong>
+              {% blocktrans with last_hatching_day=last_hatching_data|date:"l d" last_hatching_year=last_hatching_data|date:"M Y" last_hatching_hour=last_hatching_data|date:"h:i A" last_hatching_time=last_hatching_data|timesince hatching_end=end_date|timeuntil %}
+              These eggs starts to hatch in {{ last_hatching_day }}th {{ last_hatching_year }} at {{ last_hatching_hour }}. {{ last_hatching_time }} ago. {{ hatching_end }} remaining.
+              {% endblocktrans %}
+            </strong>
+          </p>
         </div>
       </div>
     </div>

@@ -103,17 +103,17 @@ def new_hatching(request):
 def temperatures(request):
 	initial_time = time.time()
 	retrieve_DBs()
-	print time.time() - initial_time
+	print "retrieve_DBs()", time.time() - initial_time
 	initial_time = time.time()
 	thermo_dataframe = extract_data_from_DB(datetime_format, local_path_thermodb, thermodb_utils_dict)
-	print time.time() - initial_time
+	print "extract_data_from_DB()", time.time() - initial_time
 	initial_time = time.time()
 	today = date.today()
 	if request.method == 'POST':
 		mins = request.REQUEST["mins"]
 		start_day = request.REQUEST["start_day"]
 		end_day = request.REQUEST["end_day"]
-		print "mins: %s. start_day: %s. end_day: %s." % (mins, start_day, end_day)
+		#print "mins: %s. start_day: %s. end_day: %s." % (mins, start_day, end_day)
 		if start_day != end_day:
 			start_datetime = last_hatching_data + timedelta(days=int(start_day) - 1)
 			start_date = start_datetime.date()
@@ -136,16 +136,17 @@ def temperatures(request):
 		day_thermo = thermo_dataframe['TEMP_LOG'][str(today)]
 		day_thermo2 = day_thermo
 		day_thermo = day_thermo.resample('15Min')
-		print "day_termo2", time.time() - new_initial
-		print day_thermo2
+		print "day_thermo.resample(15min)", time.time() - new_initial
+		#print day_thermo2
 		#day_thermo_csv = day_thermo.to_csv("Incubator/static/data/day_thermo.csv", header=True)
 		index_temps_timeseries = day_thermo.index
 		temperatures_list = zip(index_temps_timeseries, day_thermo)
 		url_image = comparing_temps_from_dataframe_by_day(day_thermo, temp_param_MAX, temp_param_MIN, temp_MAX, temp_MIN, temp_limit_SUP, temp_limit_INF)
-		print time.time() - initial_time
+		print "comparing_temps_from_dataframe_by_day()", time.time() - initial_time
 		return render_to_response('Incubator/temperatures.html', {'temperatures_list': temperatures_list, 'url_image': url_image})
 
 def humidities(request):
+	initial_time = time.time()
 	retrieve_DBs()
 	SHT1x_dataframe = extract_data_from_DB(datetime_format, local_path_SHT1xdb, SHT1xdb_utils_dict)
 	today = date.today()

@@ -20,7 +20,7 @@ msgstr ""
 
 #: Incubator/templates/base.html:44
 msgid "Hello"
-msgstr ""
+msgstr "Hola"
 
 #. Translators: "Since time" message in home.html
 #: Incubator/templates/Incubator/home.html:16
@@ -109,22 +109,22 @@ msgstr ""
 
 #: Incubator/templates/Incubator/home.html:161
 msgid "Detailed temperatures"
-msgstr ""
+msgstr "Temperaturas en detalle"
 
 #: Incubator/templates/Incubator/home.html:173
 #: Incubator/templates/Incubator/home.html:191
 #: Incubator/templates/Incubator/home.html:209
 msgid "Current egg Image"
-msgstr ""
+msgstr "Recreacion de la imagen actual"
 
 #: Incubator/templates/Incubator/home.html:179
 #: Incubator/templates/Incubator/home.html:197
 #: Incubator/templates/Incubator/home.html:215
 msgid "Download image"
-msgstr ""
+msgstr "Descargar imagen"
 
 #: Incubator/templates/Incubator/home.html:180
 #: Incubator/templates/Incubator/home.html:198
 #: Incubator/templates/Incubator/home.html:216
 msgid "Exit!"
-msgstr ""
+msgstr "Cerrar!"

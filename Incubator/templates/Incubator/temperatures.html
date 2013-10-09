@@ -12,13 +12,11 @@
 
 {% block content %} 
 
-  
-
 
   <div class="row">
     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
     
-    <div class="col-xs-12 col-sm-12 col-md-5 col-lg-5">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
       <h4><br/>
         <p class="text-center">
           <label for="time_amount">Time range (5 mins increments):</label>
@@ -36,13 +34,17 @@
         <center><button type="button" id="update_button" class="btn btn-lg btn-info">generate graphic >></button></center>
       </div></h4>
 
-      <div id="graphics" class="col-xs-12 col-sm-12 col-md-7 col-lg-7"></div>
-        <img id="temps_graphic" src={{ url_image }} class="img-responsive"/>
+      <div id="graphics" class="col-xs-12 col-sm-12 col-md-12 col-lg-12"></div>
+        <p id="generating" class="text-center text-primary"></p>
+        <center><img id="temps_graphic" src={{ url_image }} class="img-responsive"/></center>
       </div>
   </div>
 
 <script>
 $("#update_button").click(function() {
+  $("#temps_graphic").hide();
+  $("#generating").show();
+  $("#generating").html("<br><br><h4><b>Generating graphic!</b></h4><p class=\"text-danger\">This can take several time depending on the parameters selected!</p>");
   time_val = $("#time_amount").val();
   time_val_splitted = time_val.split(" ")
 
@@ -51,7 +53,9 @@ $("#update_button").click(function() {
 
   $.post( "/temperatures", { mins: time_val_splitted[0], start_day: date_val_splitted[1], end_day: date_val_splitted[4]}, function( data ) {
     url_image_data = data;
+    $("#generating").hide()
     $("#temps_graphic").attr("src", url_image_data.url_image );
+    $("#temps_graphic").show();
   });
 
 
@@ -62,7 +66,7 @@ $("#update_button").click(function() {
   $(function() {
     $( "#slider-time" ).slider({
       value:15,
-      min: 0,
+      min: 5,
       max: 180,
       step: 5,
       slide: function( event, ui ) {
