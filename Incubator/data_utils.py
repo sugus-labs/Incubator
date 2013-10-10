@@ -218,7 +218,7 @@ def extract_thermo_data_day_by_day(thermo_dataframe, days_list):
 
 def comparing_temps_from_dataframe_by_day(timeseries_thermo, temp_param_MAX, temp_param_MIN, temp_MAX, temp_MIN, temp_limit_SUP, temp_limit_INF):
 	now = retrieve_string_now()
-	plt.title('Temperatures of today')
+	plt.title('Temperatures')
 	plt.ylim(temp_limit_INF, temp_limit_SUP)
  	y=np.arange(temp_limit_INF, temp_limit_SUP, 0.2)
  	plt.grid()
@@ -241,7 +241,7 @@ def comparing_temps_from_dataframe_by_day(timeseries_thermo, temp_param_MAX, tem
 
 def comparing_humis_from_dataframe_by_day(timeseries_SHT1x, humi_param_MAX, humi_param_MIN, humi_MAX, humi_MIN, humi_limit_SUP, humi_limit_INF):
 	now = retrieve_string_now()
-	plt.title('Humidities of today')
+	plt.title('Humidity')
 	plt.ylim(humi_limit_INF, humi_limit_SUP)
  	plt.grid()
  	import time
