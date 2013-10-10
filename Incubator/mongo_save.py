@@ -16,15 +16,15 @@ def request_without_proxy(URL):
 	request = urllib2.Request(URL)
 	request_data = opener.open(request).read()
 	return request_data
-
-while(1):
-	time.sleep(15)
-	data = request_without_proxy(URL)
-	json_data = json.loads(data)
-	measure = {
-		'date': datetime.datetime.utcnow(),
-		'humi': json_data['HUMI'],
-		'temp': json_data['TEMP']
-	}
-	measure_id = measures_collection.insert(measure)
-	#print measure_id
+def save_in_mongo():
+	while(1):
+		time.sleep(15)
+		data = request_without_proxy(URL)
+		json_data = json.loads(data)
+		measure = {
+			'date': datetime.datetime.utcnow(),
+			'humi': json_data['HUMI'],
+			'temp': json_data['TEMP']
+		}
+		measure_id = measures_collection.insert(measure)
+		print measure_id

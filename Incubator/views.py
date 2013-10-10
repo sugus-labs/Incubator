@@ -10,6 +10,11 @@ import pytz
 import cv2
 import time
 import pymongo
+from mongo_save import save_in_mongo
+import threading
+
+mongo_thread = threading.Thread(target=save_in_mongo, args=())
+mongo_thread.start()
 
 data = Hatching.objects.latest('id')
 last_hatching_data = data.start_datetime
