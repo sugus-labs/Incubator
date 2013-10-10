@@ -209,4 +209,5 @@ def retrieve_image(request, cam_number):
 	lights(request, cam_number, 'off')
 	response_json = json.dumps({'url_image': image_path[10:]}, sort_keys=True,indent=4, separators=(',', ': '))
 	return HttpResponse(response_json)
+
 #def take_picture(request):

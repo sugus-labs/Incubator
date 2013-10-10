@@ -29,6 +29,8 @@ RoMIE is developed on a Ubuntu 12.04 system, running:
    * matplotlib 0.12.0  [matplotlib site](http://matplotlib.org/)
    * SQLite  [SQLite site](http://www.sqlite.org/)
    * pytz 2012h [pytz site](http://pytz.sourceforge.net/)
+   * MongoDB [MongoDB site](http://mongodb.org/)
+   * PyMongo [PyMongo site](http://http://api.mongodb.org/python/current/index.html/)
 
 It might work with other versions.
 
