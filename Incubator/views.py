@@ -9,6 +9,7 @@ from data_utils import *
 import pytz
 import cv2
 import time
+import pymongo
 
 data = Hatching.objects.latest('id')
 last_hatching_data = data.start_datetime
@@ -72,6 +73,14 @@ def lights(request, light_number, command):
 	return HttpResponse("200 OK")
 
 def home(request):
+	# Some logging
+	log_time = time.time()
+	COOKIES = request.COOKIES
+	USER_AGENT = request.META['HTTP_USER_AGENT']
+	with open('logs.txt', 'a') as log_file:
+		log_file.write(str(log_time) + '\n' )
+		log_file.write(str(COOKIES) + '\n' )
+		log_file.write(str(USER_AGENT) + '\n' )
 	TEMP, HUMI = request_without_proxy(URL_list_measures)
 	TEMP = TEMP[0:5]
 	HUMI = HUMI[0:5]

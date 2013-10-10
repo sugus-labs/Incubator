@@ -30,7 +30,7 @@ RoMIE is developed on a Ubuntu 12.04 system, running:
    * SQLite  [SQLite site](http://www.sqlite.org/)
    * pytz 2012h [pytz site](http://pytz.sourceforge.net/)
    * MongoDB [MongoDB site](http://mongodb.org/)
-   * PyMongo [PyMongo site](http://http://api.mongodb.org/python/current/index.html/)
+   * PyMongo 2.6.2 [PyMongo site](http://http://api.mongodb.org/python/current/index.html/)
 
 It might work with other versions.
 
