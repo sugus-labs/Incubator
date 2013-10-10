@@ -82,10 +82,14 @@ def home(request):
 	log_time = time.time()
 	COOKIES = request.COOKIES
 	USER_AGENT = request.META['HTTP_USER_AGENT']
+	ADDR = request.META['REMOTE_ADDR']
+	HOST = request.META['REMOTE_HOST']
 	with open('logs.txt', 'a') as log_file:
-		log_file.write(str(log_time) + '\n' )
-		log_file.write(str(COOKIES) + '\n' )
-		log_file.write(str(USER_AGENT) + '\n' )
+		log_file.write('timestamp: ' + str(log_time) + '\n' )
+		log_file.write('cookies: '+ str(COOKIES) + '\n' )
+		log_file.write('user agent: ' + str(USER_AGENT) + '\n' )
+		log_file.write('remote address: ' + str(ADDR) + '\n' )
+		log_file.write('remote host: ' + str(HOST) + '\n-\n' )
 	TEMP, HUMI = request_without_proxy(URL_list_measures)
 	TEMP = TEMP[0:5]
 	HUMI = HUMI[0:5]

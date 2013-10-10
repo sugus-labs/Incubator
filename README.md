@@ -31,6 +31,7 @@ RoMIE is developed on a Ubuntu 12.04 system, running:
    * pytz 2012h [pytz site](http://pytz.sourceforge.net/)
    * MongoDB [MongoDB site](http://mongodb.org/)
    * PyMongo 2.6.2 [PyMongo site](http://http://api.mongodb.org/python/current/index.html/)
+   * uWSGI
 
 It might work with other versions.
 
@@ -42,3 +43,4 @@ It might work with other versions.
 
 ![Humi_Temp](https://raw.github.com/gmartinvela/Incubator/master/Incubator/static/data/comparing_humi_temps_2013-09-28.png)
 
+https://uwsgi.readthedocs.org/en/latest/tutorials/Django_and_nginx.html
