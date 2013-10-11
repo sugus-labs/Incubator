@@ -16,6 +16,11 @@ import threading
 mongo_thread = threading.Thread(target=save_in_mongo, args=())
 mongo_thread.start()
 
+#today_datetime = datetime.datetime.today()
+#midnight_datetime = datetime.datetime(today_datetime.year, today_datetime.month, today_datetime.day)
+#for measure in measures.find({"date": {"$gt": midnight_datetime}}):
+#print measures
+
 data = Hatching.objects.latest('id')
 last_hatching_data = data.start_datetime
 #print type(data.start_datetime)
