@@ -17,6 +17,7 @@ def request_without_proxy(URL):
 	request_data = opener.open(request).read()
 	return request_data
 def save_in_mongo():
+	print "Saving all the data to mongodb"
 	while(1):
 		time.sleep(15)
 		data = request_without_proxy(URL)
@@ -27,4 +28,4 @@ def save_in_mongo():
 			'temp': json_data['TEMP']
 		}
 		measure_id = measures_collection.insert(measure)
-		print measure_id
+		#print measure_id

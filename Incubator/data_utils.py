@@ -216,9 +216,9 @@ def extract_thermo_data_day_by_day(thermo_dataframe, days_list):
         		day_thermo.to_excel(writer, sheet_name=str(day))
     	writer.save()
 
-def comparing_temps_from_dataframe_by_day(timeseries_thermo, temp_param_MAX, temp_param_MIN, temp_MAX, temp_MIN, temp_limit_SUP, temp_limit_INF):
+def comparing_temps_from_dataframe_by_day(title, timeseries_thermo, temp_param_MAX, temp_param_MIN, temp_MAX, temp_MIN, temp_limit_SUP, temp_limit_INF):
 	now = retrieve_string_now()
-	plt.title('Temperatures')
+	plt.title('Temperatures ' + title)
 	plt.ylim(temp_limit_INF, temp_limit_SUP)
  	y=np.arange(temp_limit_INF, temp_limit_SUP, 0.2)
  	plt.grid()
@@ -232,16 +232,16 @@ def comparing_temps_from_dataframe_by_day(timeseries_thermo, temp_param_MAX, tem
 	plt.ylabel('Temperature (%sC)' % degree_sign)
 	plt.xlabel('Hours')
 	image_path = 'Incubator/static/data/web_temps_%s.png' % now 
-	print "Generar imagen temps", time.time() - initial_time
+	print "Generate image temps", time.time() - initial_time
 	initial_time = time.time()
 	plt.savefig(image_path, orientation='landscape')
 	plt.close()
-	print "Almacenar imagen temps", time.time() - initial_time
+	print "Save on disk image temps", time.time() - initial_time
 	return image_path[9:]
 
-def comparing_humis_from_dataframe_by_day(timeseries_SHT1x, humi_param_MAX, humi_param_MIN, humi_MAX, humi_MIN, humi_limit_SUP, humi_limit_INF):
+def comparing_humis_from_dataframe_by_day(title, timeseries_SHT1x, humi_param_MAX, humi_param_MIN, humi_MAX, humi_MIN, humi_limit_SUP, humi_limit_INF):
 	now = retrieve_string_now()
-	plt.title('Humidity')
+	plt.title('Humidity ' + title)
 	plt.ylim(humi_limit_INF, humi_limit_SUP)
  	plt.grid()
  	import time
@@ -253,11 +253,11 @@ def comparing_humis_from_dataframe_by_day(timeseries_SHT1x, humi_param_MAX, humi
 	plt.ylabel('Humidity (%)')
 	plt.xlabel('Hours')
 	image_path = 'Incubator/static/data/web_humis_%s.png' % now 
-	print "Generar imagen humi", time.time() - initial_time
+	print "Generate image humi", time.time() - initial_time
 	initial_time = time.time()
 	plt.savefig(image_path, orientation='landscape')
 	plt.close()
-	print "Almacenar imagen humi", time.time() - initial_time
+	print "Asve on disk image humi", time.time() - initial_time
 	return image_path[9:]
 
 def retrieve_string_now():
