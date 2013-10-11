@@ -234,7 +234,7 @@ def comparing_temps_from_dataframe_by_day(title, timeseries_thermo, temp_param_M
 	image_path = 'Incubator/static/data/web_temps_%s.png' % now 
 	print "Generate image temps", time.time() - initial_time
 	initial_time = time.time()
-	plt.savefig(image_path, orientation='landscape')
+	plt.savefig(image_path, orientation='landscape', bbox_inches='tight', pad_inches=0)
 	plt.close()
 	print "Save on disk image temps", time.time() - initial_time
 	return image_path[9:]
@@ -255,7 +255,7 @@ def comparing_humis_from_dataframe_by_day(title, timeseries_SHT1x, humi_param_MA
 	image_path = 'Incubator/static/data/web_humis_%s.png' % now 
 	print "Generate image humi", time.time() - initial_time
 	initial_time = time.time()
-	plt.savefig(image_path, orientation='landscape')
+	plt.savefig(image_path, orientation='landscape', bbox_inches='tight', pad_inches=0)
 	plt.close()
 	print "Asve on disk image humi", time.time() - initial_time
 	return image_path[9:]

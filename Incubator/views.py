@@ -136,8 +136,12 @@ def temperatures(request):
 			start_date = start_datetime.date()
 			end_datetime = last_hatching_data + timedelta(days=int(end_day) - 1)
 			end_date = end_datetime.date()
-			day_thermo = thermo_dataframe['TEMP_LOG'][str(start_date):str(end_date)]
-			title = 'from ' + str(start_date) + ' to ' + str(end_date)
+			if today < end_datetime.date():
+				day_thermo = thermo_dataframe['TEMP_LOG'][str(start_date):str(today)]
+				title = 'from ' + str(start_date) + ' to ' + str(today)
+			else:
+				day_thermo = thermo_dataframe['TEMP_LOG'][str(start_date):str(end_date)]
+				title = 'from ' + str(start_date) + ' to ' + str(end_date)
 		else:
 			start_end_datetime = last_hatching_data + timedelta(days=int(start_day) - 1)
 			start_end_date = start_end_datetime.date()
@@ -145,7 +149,7 @@ def temperatures(request):
 			title = 'of ' + str(start_end_date)
 		if mins != "0":	
 			day_thermo = day_thermo.resample(mins + 'Min')
-			title += ' every ' + mins + ' minutes.'
+			title += ' every ' + mins + ' mins.'
 		url_image = comparing_temps_from_dataframe_by_day(title, day_thermo, temp_param_MAX, temp_param_MIN, temp_MAX, temp_MIN, temp_limit_SUP, temp_limit_INF)
 		url_image_json = json.dumps({'url_image': url_image}, sort_keys=True,indent=4, separators=(',', ': '))
 		print url_image_json
@@ -159,7 +163,7 @@ def temperatures(request):
 		print "day_thermo.resample(15min)", time.time() - new_initial
 		#print day_thermo2
 		#day_thermo_csv = day_thermo.to_csv("Incubator/static/data/day_thermo.csv", header=True)
-		title = 'of today, ' + str(today) + ' every 15 minutes'
+		title = 'of today, ' + str(today) + ' every 15 mins'
 		index_temps_timeseries = day_thermo.index
 		temperatures_list = zip(index_temps_timeseries, day_thermo)
 		url_image = comparing_temps_from_dataframe_by_day(title, day_thermo, temp_param_MAX, temp_param_MIN, temp_MAX, temp_MIN, temp_limit_SUP, temp_limit_INF)
@@ -186,8 +190,12 @@ def humidities(request):
 			start_date = start_datetime.date()
 			end_datetime = last_hatching_data + timedelta(days=int(end_day) - 1)
 			end_date = end_datetime.date()
-			day_SHT1x = SHT1x_dataframe['humi'][str(start_date):str(end_date)]
-			title = 'from ' + str(start_date) + ' to ' + str(end_date)
+			if today < end_datetime.date():
+				day_SHT1x = SHT1x_dataframe['humi'][str(start_date):str(today)]
+				title = 'from ' + str(start_date) + ' to ' + str(today)
+			else:
+				day_SHT1x = SHT1x_dataframe['humi'][str(start_date):str(end_date)]
+				title = 'from ' + str(start_date) + ' to ' + str(end_date)
 		else:
 			start_end_datetime = last_hatching_data + timedelta(days=int(start_day) - 1)
 			start_end_date = start_end_datetime.date()
@@ -195,7 +203,7 @@ def humidities(request):
 			title = 'of ' + str(start_end_date)
 		if mins != "0":	
 			day_SHT1x = day_SHT1x.resample(mins + 'Min')
-			title += ' every ' + mins + ' minutes.'
+			title += ' every ' + mins + ' mins.'
 		url_image = comparing_humis_from_dataframe_by_day(day_SHT1x, humi_param_MAX, humi_param_MIN, humi_MAX, humi_MIN, humi_limit_SUP, humi_limit_INF)
 		url_image_json = json.dumps({'url_image': url_image}, sort_keys=True,indent=4, separators=(',', ': '))
 		print url_image_json
@@ -209,7 +217,7 @@ def humidities(request):
 		day_SHT1x = day_SHT1x.resample('15Min')
 		print "day_SHT1x.resample(15min)", time.time() - new_initial
 		#day_SHT1x_csv = day_SHT1x.to_csv("Incubator/static/data/day_SHT1x.csv", header=True)
-		title = 'of today, ' + str(today) + ' every 15 minutes'
+		title = 'of today, ' + str(today) + ' every 15 mins'
 		index_humidities_today = day_SHT1x.index
 		humidities_list = zip(index_humidities_today, day_SHT1x)
 		url_image = comparing_humis_from_dataframe_by_day(day_SHT1x, humi_param_MAX, humi_param_MIN, humi_MAX, humi_MIN, humi_limit_SUP, humi_limit_INF)
