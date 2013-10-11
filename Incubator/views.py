@@ -232,7 +232,9 @@ def logging(request):
 	ADDR = request.META['REMOTE_ADDR']
 	POST = request.POST.lists()
 	GET = request.GET.lists()
+	path = request.path
 	with open('logs.txt', 'a') as log_file:
+		log_file.write('path: ' + str(path) + '\n' )
 		log_file.write('timestamp: ' + str(log_time) + '\n' )
 		log_file.write('GET: ' + str(GET) + '\n' )
 		log_file.write('POST: ' + str(POST) + '\n' )
