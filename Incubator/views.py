@@ -78,18 +78,7 @@ def lights(request, light_number, command):
 	return HttpResponse("200 OK")
 
 def home(request):
-	# Some logging
-	log_time = time.time()
-	COOKIES = request.COOKIES
-	USER_AGENT = request.META['HTTP_USER_AGENT']
-	ADDR = request.META['REMOTE_ADDR']
-	HOST = request.META['REMOTE_HOST']
-	with open('logs.txt', 'a') as log_file:
-		log_file.write('timestamp: ' + str(log_time) + '\n' )
-		log_file.write('cookies: '+ str(COOKIES) + '\n' )
-		log_file.write('user agent: ' + str(USER_AGENT) + '\n' )
-		log_file.write('remote address: ' + str(ADDR) + '\n' )
-		log_file.write('remote host: ' + str(HOST) + '\n-\n' )
+	logging(request)
 	TEMP, HUMI = request_without_proxy(URL_list_measures)
 	TEMP = TEMP[0:5]
 	HUMI = HUMI[0:5]
@@ -99,15 +88,19 @@ def home(request):
 	return render_to_response('Incubator/home.html', {'last_hatching_data': last_hatching_data, 'end_date': end_date, 'TEMP': TEMP,  'HUMI': HUMI, 'days': days})
 
 def download_temp(request):
+	logging(request)
 	return render(request, 'Incubator/home.html')
 
 def download_humi(request):
+	logging(request)
 	return render(request, 'Incubator/home.html')
 
 def download_excel(request):
+	logging(request)
 	return render(request, 'Incubator/home.html')
 
 def new_hatching(request):
+	logging(request)
 	HatchingFormSet = modelformset_factory(Hatching)
 	if request.method == 'POST':
 		hatching_formset = HatchingFormSet(request.POST, request.FILES)
@@ -119,6 +112,7 @@ def new_hatching(request):
 	return render_to_response('Incubator/new_hatching.html', {'hatching_formset': hatching_formset})
 
 def temperatures(request):
+	logging(request)
 	initial_time = time.time()
 	retrieve_DBs()
 	print "retrieve_DBs()", time.time() - initial_time
@@ -164,6 +158,7 @@ def temperatures(request):
 		return render_to_response('Incubator/temperatures.html', {'temperatures_list': temperatures_list, 'url_image': url_image})
 
 def humidities(request):
+	logging(request)
 	initial_time = time.time()
 	retrieve_DBs()
 	print "retrieve_DBs()", time.time() - initial_time
@@ -209,6 +204,7 @@ def humidities(request):
 		return render_to_response('Incubator/humidities.html', {'humidities_list': humidities_list, 'url_image': url_image})
 
 def retrieve_image(request, cam_number):
+	logging(request)	
 	lights(request, cam_number, 'on')
 	time.sleep(2)
 	localtime = time.localtime()
@@ -228,4 +224,18 @@ def retrieve_image(request, cam_number):
 	response_json = json.dumps({'url_image': image_path[10:]}, sort_keys=True,indent=4, separators=(',', ': '))
 	return HttpResponse(response_json)
 
-#def take_picture(request):
+def logging(request):
+	# Some logging
+	log_time = time.time()
+	COOKIES = request.COOKIES
+	USER_AGENT = request.META['HTTP_USER_AGENT']
+	ADDR = request.META['REMOTE_ADDR']
+	POST = request.POST.lists()
+	GET = request.GET.lists()
+	with open('logs.txt', 'a') as log_file:
+		log_file.write('timestamp: ' + str(log_time) + '\n' )
+		log_file.write('GET: ' + str(GET) + '\n' )
+		log_file.write('POST: ' + str(POST) + '\n' )
+		log_file.write('cookies: '+ str(COOKIES) + '\n' )
+		log_file.write('user agent: ' + str(USER_AGENT) + '\n' )
+		log_file.write('remote address: ' + str(ADDR) + '\n-\n' )
