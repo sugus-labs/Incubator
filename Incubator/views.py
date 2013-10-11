@@ -12,10 +12,14 @@ import time
 import pymongo
 from mongo_save import save_in_mongo
 import threading
+from photos_cron import activate_photos_cron
+
+activate_photos_cron()
+print "CRON to take photos hourly activated"
 
 mongo_thread = threading.Thread(target=save_in_mongo, args=())
 mongo_thread.start()
-
+print "Thread to save data in mongodb every 15 seconds activated"
 #today_datetime = datetime.datetime.today()
 #midnight_datetime = datetime.datetime(today_datetime.year, today_datetime.month, today_datetime.day)
 #for measure in measures.find({"date": {"$gt": midnight_datetime}}):
