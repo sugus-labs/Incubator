@@ -334,3 +334,123 @@ cookies: {}
 user agent: Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/30.0.1599.69 Safari/537.36
 remote address: 88.11.204.219
 -
+path: /
+timestamp: 1381604899.49
+GET: []
+POST: []
+cookies: {}
+user agent: Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 5.1; InfoPath.1; .NET CLR 2.0.50727; .NET CLR 1.1.4322; MS-RTC LM 8; .NET CLR 3.0.4506.2152; .NET CLR 3.5.30729)
+remote address: 8.28.16.254
+-
+path: /
+timestamp: 1381604900.1
+GET: []
+POST: []
+cookies: {}
+user agent: Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0)
+remote address: 88.31.199.64
+-
+path: /retrieve_image/1/
+timestamp: 1381604919.01
+GET: []
+POST: []
+cookies: {}
+user agent: Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 5.1; InfoPath.1; .NET CLR 2.0.50727; .NET CLR 1.1.4322; MS-RTC LM 8; .NET CLR 3.0.4506.2152; .NET CLR 3.5.30729)
+remote address: 8.28.16.254
+-
+path: /retrieve_image/1/
+timestamp: 1381604922.05
+GET: []
+POST: []
+cookies: {}
+user agent: Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0)
+remote address: 88.31.199.64
+-
+path: /humidities
+timestamp: 1381604947.98
+GET: []
+POST: []
+cookies: {}
+user agent: Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 5.1; InfoPath.1; .NET CLR 2.0.50727; .NET CLR 1.1.4322; MS-RTC LM 8; .NET CLR 3.0.4506.2152; .NET CLR 3.5.30729)
+remote address: 8.28.16.254
+-
+path: /humidities
+timestamp: 1381604951.39
+GET: []
+POST: []
+cookies: {}
+user agent: Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0)
+remote address: 88.31.199.64
+-
+path: /
+timestamp: 1381604963.18
+GET: []
+POST: []
+cookies: {}
+user agent: Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0)
+remote address: 88.31.199.64
+-
+path: /temperatures
+timestamp: 1381604970.12
+GET: []
+POST: []
+cookies: {}
+user agent: Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 5.1; InfoPath.1; .NET CLR 2.0.50727; .NET CLR 1.1.4322; MS-RTC LM 8; .NET CLR 3.0.4506.2152; .NET CLR 3.5.30729)
+remote address: 8.28.16.254
+-
+path: /temperatures
+timestamp: 1381604973.75
+GET: []
+POST: []
+cookies: {}
+user agent: Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0)
+remote address: 88.31.199.64
+-
+path: /temperatures
+timestamp: 1381605016.11
+GET: []
+POST: [(u'start_day', [u'1']), (u'mins', [u'5']), (u'end_day', [u'18'])]
+cookies: {}
+user agent: Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0)
+remote address: 88.31.199.64
+-
+path: /humidities
+timestamp: 1381607269.85
+GET: []
+POST: []
+cookies: {'csrftoken': 'f1jqXNim3xW60OSeZIx5AbTThZSoWW89', 'sessionid': 'qqlf7tk9w3vwykt79g4nvmb0fh0k7xib'}
+user agent: Mozilla/5.0 (iPhone; CPU iPhone OS 6_1_3 like Mac OS X) AppleWebKit/536.26 (KHTML, like Gecko) CriOS/30.0.1599.16 Mobile/10B329 Safari/8536.25
+remote address: 88.11.204.219
+-
+path: /
+timestamp: 1381607363.62
+GET: []
+POST: []
+cookies: {'csrftoken': 'f1jqXNim3xW60OSeZIx5AbTThZSoWW89', 'sessionid': 'qqlf7tk9w3vwykt79g4nvmb0fh0k7xib'}
+user agent: Mozilla/5.0 (iPhone; CPU iPhone OS 6_1_3 like Mac OS X) AppleWebKit/536.26 (KHTML, like Gecko) CriOS/30.0.1599.16 Mobile/10B329 Safari/8536.25
+remote address: 88.11.204.219
+-
+path: /retrieve_image/3/
+timestamp: 1381607561.47
+GET: []
+POST: []
+cookies: {'csrftoken': 'f1jqXNim3xW60OSeZIx5AbTThZSoWW89', 'sessionid': 'qqlf7tk9w3vwykt79g4nvmb0fh0k7xib'}
+user agent: Mozilla/5.0 (iPhone; CPU iPhone OS 6_1_3 like Mac OS X) AppleWebKit/536.26 (KHTML, like Gecko) CriOS/30.0.1599.16 Mobile/10B329 Safari/8536.25
+remote address: 88.11.204.219
+-
+path: /retrieve_image/1/
+timestamp: 1381607616.88
+GET: []
+POST: []
+cookies: {'csrftoken': 'f1jqXNim3xW60OSeZIx5AbTThZSoWW89', 'sessionid': 'qqlf7tk9w3vwykt79g4nvmb0fh0k7xib'}
+user agent: Mozilla/5.0 (iPhone; CPU iPhone OS 6_1_3 like Mac OS X) AppleWebKit/536.26 (KHTML, like Gecko) CriOS/30.0.1599.16 Mobile/10B329 Safari/8536.25
+remote address: 88.11.204.219
+-
+path: /retrieve_image/2/
+timestamp: 1381607732.64
+GET: []
+POST: []
+cookies: {'csrftoken': 'f1jqXNim3xW60OSeZIx5AbTThZSoWW89', 'sessionid': 'qqlf7tk9w3vwykt79g4nvmb0fh0k7xib'}
+user agent: Mozilla/5.0 (iPhone; CPU iPhone OS 6_1_3 like Mac OS X) AppleWebKit/536.26 (KHTML, like Gecko) CriOS/30.0.1599.16 Mobile/10B329 Safari/8536.25
+remote address: 88.11.204.219
+-
