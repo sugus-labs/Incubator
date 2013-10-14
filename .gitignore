@@ -1,3 +1,10 @@
+# SQLite databases
+*.db
+# logs.txt
+logs.txt
+
+# Python git.ignore, taken from:
+# https://raw.github.com/github/gitignore/master/Python.gitignore
 *.py[cod]
 
 # C extensions
