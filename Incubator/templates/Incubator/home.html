@@ -28,17 +28,17 @@
     <div id="gauges_column" class="col-xs-12 col-sm-12 col-md-2 col-lg-2">
       <div id="TEMP_gauge" class="well col-xs-12 col-sm-12 col-md-12 col-lg-12"> 
         <center>
-          <h2><span class="label label-success">{% blocktrans %}Current Temperature{% endblocktrans %}</span></h2>
+          <h2 class="text-center text-success">{% blocktrans %}Current Temperature{% endblocktrans %}</h2>
           <h1><p class="text-primary"><b id="TEMP">{{TEMP}} ºC</b></p></h1>
-          <p class="text-center">{% blocktrans %}If you want more detailed data about the temperature of the eggs being hatch clink on the button below.{% endblocktrans %}</p>
+          <p class="text-center">{% blocktrans %}Do you want more detailed data about the temperature?{% endblocktrans %}</p>
           <button type="button" id="temperature_button" class="btn btn-default btn-block">{% blocktrans %}Temperature in detail{% endblocktrans %} >></button>
           </center>
       </div>
       <div id="HUMI_gauge" class="well col-xs-12 col-sm-12 col-md-12 col-lg-12"> 
         <center>
-          <h2><span class="label label-success">{% blocktrans %}Current Humidity{% endblocktrans %}</span></h2>
+          <h2 class="text-center text-success">{% blocktrans %}Current Humidity{% endblocktrans %}</h2>
           <h1><p class="text-primary"><b id="HUMI">{{HUMI}} %</b></p></h1>
-          <p class="text-center">{% blocktrans %}If you want more detailed data about the humidity of the eggs being hatch clink on the button below.{% endblocktrans %}</p>
+          <p class="text-center">{% blocktrans %}Do you want more detailed data about the humidity?{% endblocktrans %}</p>
           <button type="button" id="humidity_button" class="btn btn-default btn-block">{% blocktrans %}Humidity in detail{% endblocktrans %} >></button>
         </center>
       </div>
@@ -53,8 +53,8 @@
       <div id="main_alert" class="row alert alert-success col-xs-12 col-sm-12 col-md-12 col-lg-12">
           <a class="close" data-dismiss="alert" href="#" aria-hidden="true">&times;</a>
           <p class="text-center">{% blocktrans %}You will only have <b>10 seconds</b> to see the eggs live, after click the button <b>"Take picture"</b> from each camera.</p>{% endblocktrans %}
-          <p class="text-center">{% blocktrans %}This limit is placed because we don't want the eggs to be disturbed by the light being turned on. </p> {% endblocktrans %}
-          <p class="text-center">{% blocktrans %}Although, <b>you can see pictures of the eggs from days before.</b></p>{% endblocktrans %}
+          <p class="text-center">{% blocktrans %}This limit is placed because we don't want the eggs to be disturbed by the light being turned on. {% endblocktrans %}
+          {% blocktrans %}Although, <b>you can see pictures of the eggs from days before.</b></p>{% endblocktrans %}
       </div>
       
       <div id="images_3" class="row well col-xs-12 col-sm-12 col-md-12 col-lg-12">    
@@ -164,7 +164,7 @@
       <div id="draws_column" class="col-xs-12 col-sm-12 col-md-2 col-lg-2">
         <div id="daily_draw" class="well col-xs-12 col-sm-12 col-md-12 col-lg-12"> 
           <center>
-            <h2><span class="label label-success">{% blocktrans %}Egg representation{% endblocktrans %}</span></h2>
+            <h2 class="text-center text-success">{% blocktrans %}Egg representation{% endblocktrans %}</h2>
             <img id="image_draw" class="img-responsive"/>
             <p class="text-center"> {% blocktrans %}The above picture represents the egg with {{days}} days of hatching.{% endblocktrans %} </p>
             <button type="button" id="temperature_button" class="btn btn-default btn-block">{% blocktrans %}Detailed temperatures{% endblocktrans %} >></button>
@@ -185,7 +185,7 @@
             <p><center><img id="image_modal_1" width= "100%" class='img-responsive'></center></p>
           </div>
           <div class="modal-footer">
-            <a id="download_image_1_modal" class="btn btn-info" download="">{% blocktrans %}Download image{% endblocktrans %}</a> 
+            <a id="download_image_1_modal" class="btn btn-info" href="" target="_blank">{% blocktrans %}Download image{% endblocktrans %}</a> 
             <a href="" id="continue_to_ranking" class="btn btn-default" data-dismiss="modal">{% blocktrans %}Exit!{% endblocktrans %}</a>
           </div>
         </div><!-- end modal-content -->
@@ -203,7 +203,7 @@
             <p><center><img id="image_modal_2" width= "100%" class='img-responsive'></center></p>
           </div>
           <div class="modal-footer">
-            <a id="download_image_2_modal" class="btn btn-info" download="">{% blocktrans %}Download image{% endblocktrans %}</a> 
+            <a id="download_image_2_modal" class="btn btn-info" href="" target="_blank">{% blocktrans %}Download image{% endblocktrans %}</a> 
             <a href="" id="continue_to_ranking" class="btn btn-default" data-dismiss="modal">{% blocktrans %}Exit!{% endblocktrans %}</a>
           </div>
         </div><!-- end modal-content -->
@@ -221,7 +221,7 @@
             <p><center><img id="image_modal_3" width= "100%" class='img-responsive'></center></p>
           </div>
           <div class="modal-footer">
-            <a id="download_image_3_modal" class="btn btn-info" download="">{% blocktrans %}Download image{% endblocktrans %}</a> 
+            <a id="download_image_3_modal" class="btn btn-info" href="" target="_blank">{% blocktrans %}Download image{% endblocktrans %}</a> 
             <a href="" id="continue_to_ranking" class="btn btn-default" data-dismiss="modal">{% blocktrans %}Exit!{% endblocktrans %}</a>
           </div>
         </div><!-- end modal-content -->
@@ -244,15 +244,15 @@ var image_2 = document.getElementById('image_2');
 var image_3 = document.getElementById('image_3');
 
 setInterval(function() {
-  image_1.src = 'http://192.168.0.156/image.jpg?rand=' + Math.random();
+  image_1.src = 'http://www.weblab.deusto.es/webcam/proxied.py/incubator1?rand=' + Math.random();
 }, 3000);
 
 setInterval(function() {
-  image_2.src = 'http://192.168.0.153/image.jpg?rand=' + Math.random();
+  image_2.src = 'http://www.weblab.deusto.es/webcam/proxied.py/incubator2?rand=' + Math.random();
 }, 3000);
 
 setInterval(function() {
-  image_3.src = 'http://192.168.0.152/image.jpg?rand=' + Math.random();
+  image_3.src = 'http://www.weblab.deusto.es/webcam/proxied.py/incubator3?rand=' + Math.random();
 }, 3000);
 
 setInterval(function() {
@@ -317,3 +317,8 @@ $("#image_3_take_picture").click(function() {
 </script>
 
 {% endblock %}
+<!--
+http://www.weblab.deusto.es/webcam/incubator1/video.mjpeg
+http://www.weblab.deusto.es/webcam/incubator2/video.mjpeg
+http://www.weblab.deusto.es/webcam/incubator3/video.mjpeg
+-->

@@ -208,7 +208,7 @@ def humidities(request):
 		if mins != "0":	
 			day_SHT1x = day_SHT1x.resample(mins + 'Min')
 			title += ' every ' + mins + ' mins.'
-		url_image = comparing_humis_from_dataframe_by_day(day_SHT1x, humi_param_MAX, humi_param_MIN, humi_MAX, humi_MIN, humi_limit_SUP, humi_limit_INF)
+		url_image = comparing_humis_from_dataframe_by_day(title, day_SHT1x, humi_param_MAX, humi_param_MIN, humi_MAX, humi_MIN, humi_limit_SUP, humi_limit_INF)
 		url_image_json = json.dumps({'url_image': url_image}, sort_keys=True,indent=4, separators=(',', ': '))
 		print url_image_json
 		return HttpResponse(url_image_json, mimetype="application/json")
@@ -224,7 +224,7 @@ def humidities(request):
 		title = 'of today, ' + str(today) + ' every 15 mins'
 		index_humidities_today = day_SHT1x.index
 		humidities_list = zip(index_humidities_today, day_SHT1x)
-		url_image = comparing_humis_from_dataframe_by_day(day_SHT1x, humi_param_MAX, humi_param_MIN, humi_MAX, humi_MIN, humi_limit_SUP, humi_limit_INF)
+		url_image = comparing_humis_from_dataframe_by_day(title, day_SHT1x, humi_param_MAX, humi_param_MIN, humi_MAX, humi_MIN, humi_limit_SUP, humi_limit_INF)
 		print "comparing_humis_from_dataframe_by_day()", time.time() - initial_time
 		return render_to_response('Incubator/humidities.html', {'humidities_list': humidities_list, 'url_image': url_image})
 
