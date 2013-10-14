@@ -24,7 +24,7 @@ def retrieve_images():
 				proxy_handler = urllib2.ProxyHandler({})
 				opener = urllib2.build_opener(proxy_handler)
 				urllib2.install_opener(opener)
-				image_path = '/home/weblord/Desktop/Incubator/Incubator/static/egg_programmed_images/image_%s_%s.jpg' % (str(int(cam_num) + 1), time_now)
+				image_path = '/home/weblord/Desktop/Incubator/Incubator/static/egg_programmed_images/image_%s_%s.jpg' % (str(int(cam_num) + 1), time_now[0:-2])
 				try:
 					with open(image_path,'wb') as f:
 						f.write(urllib2.urlopen(cam).read())

@@ -31,7 +31,7 @@
           <h2 class="text-center text-success">{% blocktrans %}Current Temperature{% endblocktrans %}</h2>
           <h1><p class="text-primary"><b id="TEMP">{{TEMP}} ºC</b></p></h1>
           <p class="text-center">{% blocktrans %}Do you want more detailed data about the temperature?{% endblocktrans %}</p>
-          <button type="button" id="temperature_button" class="btn btn-default btn-block">{% blocktrans %}Temperature in detail{% endblocktrans %} >></button>
+          <button type="button" id="temperature_button" class="btn btn-success btn-block">{% blocktrans %}Temperature in detail{% endblocktrans %} >></button>
           </center>
       </div>
       <div id="HUMI_gauge" class="well col-xs-12 col-sm-12 col-md-12 col-lg-12"> 
@@ -39,13 +39,13 @@
           <h2 class="text-center text-success">{% blocktrans %}Current Humidity{% endblocktrans %}</h2>
           <h1><p class="text-primary"><b id="HUMI">{{HUMI}} %</b></p></h1>
           <p class="text-center">{% blocktrans %}Do you want more detailed data about the humidity?{% endblocktrans %}</p>
-          <button type="button" id="humidity_button" class="btn btn-default btn-block">{% blocktrans %}Humidity in detail{% endblocktrans %} >></button>
+          <button type="button" id="humidity_button" class="btn btn-success btn-block">{% blocktrans %}Humidity in detail{% endblocktrans %} >></button>
         </center>
       </div>
       <hr/>
-      <div id="exit_div" class="col-xs-12 col-sm-12 col-md-12 col-lg-2 col-lg-12">
+      <!-- <div id="exit_div" class="col-xs-12 col-sm-12 col-md-12 col-lg-2 col-lg-12">
         <center><a id="exit_button" class="btn btn-primary btn-lg btn-block btn-danger">{% blocktrans %}Exit and turn off the lights{% endblocktrans %}</a></center>
-      </div> 
+      </div>  -->
     </div>
 
     <div id="images_panel" class="col-xs-12 col-sm-12 col-md-12 col-lg-8">
@@ -57,40 +57,6 @@
           {% blocktrans %}Although, <b>you can see pictures of the eggs from days before.</b></p>{% endblocktrans %}
       </div>
       
-      <div id="images_3" class="row well col-xs-12 col-sm-12 col-md-12 col-lg-12">    
-        <div id="image_3_main_panel" class="panel col-xs-12 col-sm-12 col-md-4 col-lg-5">
-          <div id="image_3_panel" class="panel col-xs-12 col-sm-12 col-md-12 col-lg-12">
-            <img id="image_3" class="img-responsive"/>
-            <button type="button" id="image_3_take_picture" class="btn btn-info btn-lg btn-block">{% blocktrans %}Take picture{% endblocktrans %}</button>
-          </div>
-        </div>
-        <div id="image_3_second_panel" class="panel col-xs-12 col-sm-12 col-md-4 col-lg-7">
-            <p class="text-center text-primary">{% blocktrans %}Download images from previous days.{% endblocktrans %}</p>
-            <div id="subimage_3_panel" class="panel col-xs-12 col-sm-12 col-md-12 col-lg-12">
-              <div id="subimage_3_1_panel" class="panel col-xs-4 col-sm-4 col-md-4 col-lg-4">
-                <a href="{% static "egg_images/image_3_20131004171010.jpg" %}">
-                  <img id="subimage_3_1" src="{% static "egg_images/image_3_20131004171010.jpg" %}" class="img-responsive"/>
-                  <p class="text-center">04 oct 2013</p>
-                </a>
-              </div>
-              <div id="subimage_3_2_panel" class="panel col-xs-4 col-sm-4 col-md-4 col-lg-4">
-                <a href="{% static "egg_images/image_3_20131006142135.jpg" %}">  
-                  <img id="subimage_3_2" src="{% static "egg_images/image_3_20131006142135.jpg" %}" class="img-responsive"/>
-                  <p class="text-center">06 oct 2013</p>
-                </a>
-              </div>
-              <div id="subimage_3_3_panel" class="panel col-xs-4 col-sm-4 col-md-4 col-lg-4">
-                <a href="{% static "egg_images/image_3_20131007222436.jpg" %}">
-                  <img id="subimage_3_3" src="{% static "egg_images/image_3_20131007222436.jpg" %}" class="img-responsive"/>
-                  <p class="text-center">08 oct 2013</p>
-                </a>
-              </div>
-            </div>
-            <button type="button" id="image_3_button" class="btn btn-default btn-lg btn-block">{% blocktrans %}Show more{% endblocktrans %} >></button>
-          </div>
-        </div>
-
-
       <div id="images_1" class="row well col-xs-12 col-sm-12 col-md-12 col-lg-12">    
         <div id="image_1_main_panel" class="panel col-xs-12 col-sm-12 col-md-4 col-lg-5">
           <div id="image_1_panel" class="panel col-xs-12 col-sm-12 col-md-12 col-lg-12">
@@ -102,21 +68,21 @@
             <p class="text-center text-primary">{% blocktrans %}Download images from previous days.{% endblocktrans %}</p>
             <div id="subimage_1_panel" class="panel col-xs-12 col-sm-12 col-md-12 col-lg-12">
               <div id="subimage_1_1_panel" class="panel col-xs-4 col-sm-4 col-md-4 col-lg-4">
-                <a href="{% static "egg_images/image_1_20131004091405.jpg" %}">
-                  <img id="subimage_1_1" src="{% static "egg_images/image_1_20131004091405.jpg" %}" class="img-responsive"/>
-                  <p class="text-center">04 oct 2013</p>
+                <a id="href_subimage_1_1" href="">
+                  <img id="subimage_1_1" src="" class="img-responsive"/>
+                  <p class="text-center">{{ two_days_date }}</p>
                 </a>
               </div>
               <div id="subimage_1_2_panel" class="panel col-xs-4 col-sm-4 col-md-4 col-lg-4">
-                <a href="{% static "egg_images/image_1_20131006093031.jpg" %}">  
-                  <img id="subimage_1_2" src="{% static "egg_images/image_1_20131006093031.jpg" %}" class="img-responsive"/>
-                  <p class="text-center">06 oct 2013</p>
+                <a id="href_subimage_1_2" href="">  
+                  <img id="subimage_1_2" src="" class="img-responsive"/>
+                  <p class="text-center">{{ four_days_date }}</p>
                 </a>
               </div>
               <div id="subimage_1_3_panel" class="panel col-xs-4 col-sm-4 col-md-4 col-lg-4">
-                <a href="{% static "egg_images/image_1_20131008094412.jpg" %}">
-                  <img id="subimage_1_3" src="{% static "egg_images/image_1_20131008094412.jpg" %}" class="img-responsive"/>
-                  <p class="text-center">08 oct 2013</p>
+                <a id="href_subimage_1_3" href="">
+                  <img id="subimage_1_3" src="" class="img-responsive"/>
+                  <p class="text-center">{{ six_days_date }}</p>
                 </a>
               </div>
             </div>
@@ -135,21 +101,21 @@
             <p class="text-center text-primary">{% blocktrans %}Download images from previous days.{% endblocktrans %}</p>
             <div id="subimage_2_panel" class="panel col-xs-12 col-sm-12 col-md-12 col-lg-12">
               <div id="subimage_2_1_panel" class="panel col-xs-4 col-sm-4 col-md-4 col-lg-4">
-                <a href="{% static "egg_images/image_2_20131004091358.jpg" %}">
-                  <img id="subimage_2_1" src="{% static "egg_images/image_2_20131004091358.jpg" %}" class="img-responsive"/>
-                  <p class="text-center">04 oct 2013</p>
+                <a id="href_subimage_2_1" href="">
+                  <img id="subimage_2_1" src="" class="img-responsive"/>
+                  <p class="text-center">{{ two_days_date }}</p>
                 </a>
               </div>
               <div id="subimage_2_2_panel" class="panel col-xs-4 col-sm-4 col-md-4 col-lg-4">
-                <a href="{% static "egg_images/image_2_20131006093023.jpg" %}">  
-                  <img id="subimage_2_2" src="{% static "egg_images/image_2_20131006093023.jpg" %}" class="img-responsive"/>
-                  <p class="text-center">06 oct 2013</p>
+                <a id="href_subimage_2_2" href="">  
+                  <img id="subimage_2_2" src="" class="img-responsive"/>
+                  <p class="text-center">{{ four_days_date }}</p>
                 </a>
               </div>
               <div id="subimage_2_3_panel" class="panel col-xs-4 col-sm-4 col-md-4 col-lg-4">
-                <a href="{% static "egg_images/image_2_20131008094359.jpg" %}">
-                  <img id="subimage_2_3" src="{% static "egg_images/image_2_20131008094359.jpg" %}" class="img-responsive"/>
-                  <p class="text-center">08 oct 2013</p>
+                <a id="href_subimage_1_3" href="">
+                  <img id="subimage_2_3" src="" class="img-responsive"/>
+                  <p class="text-center">{{ six_days_date }}</p>
                 </a>
               </div>
             </div>
@@ -157,6 +123,38 @@
           </div>
         </div>
 
+      <div id="images_3" class="row well col-xs-12 col-sm-12 col-md-12 col-lg-12">    
+        <div id="image_3_main_panel" class="panel col-xs-12 col-sm-12 col-md-4 col-lg-5">
+          <div id="image_3_panel" class="panel col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <img id="image_3" class="img-responsive"/>
+            <button type="button" id="image_3_take_picture" class="btn btn-info btn-lg btn-block">{% blocktrans %}Take picture{% endblocktrans %}</button>
+          </div>
+        </div>
+        <div id="image_3_second_panel" class="panel col-xs-12 col-sm-12 col-md-4 col-lg-7">
+            <p class="text-center text-primary">{% blocktrans %}Download images from previous days.{% endblocktrans %}</p>
+            <div id="subimage_3_panel" class="panel col-xs-12 col-sm-12 col-md-12 col-lg-12">
+              <div id="subimage_3_1_panel" class="panel col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                <a id="href_subimage_3_1" href="">
+                  <img id="subimage_3_1" src="" class="img-responsive"/>
+                  <p class="text-center">{{ two_days_date }}</p>
+                </a>
+              </div>
+              <div id="subimage_3_2_panel" class="panel col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                <a id="href_subimage_3_2" href="">  
+                  <img id="subimage_3_2" src="" class="img-responsive"/>
+                  <p class="text-center">{{ four_days_date }}</p>
+                </a>
+              </div>
+              <div id="subimage_3_3_panel" class="panel col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                <a id="href_subimage_3_3" href="">
+                  <img id="subimage_3_3" src="" class="img-responsive"/>
+                  <p class="text-center">{{ six_days_date }}</p>
+                </a>
+              </div>
+            </div>
+            <button type="button" id="image_3_button" class="btn btn-default btn-lg btn-block">{% blocktrans %}Show more{% endblocktrans %} >></button>
+          </div>
+        </div>
 
       </div>
 
@@ -167,7 +165,7 @@
             <h2 class="text-center text-success">{% blocktrans %}Egg representation{% endblocktrans %}</h2>
             <img id="image_draw" class="img-responsive"/>
             <p class="text-center"> {% blocktrans %}The above picture represents the egg with {{days}} days of hatching.{% endblocktrans %} </p>
-            <button type="button" id="temperature_button" class="btn btn-default btn-block">{% blocktrans %}Detailed temperatures{% endblocktrans %} >></button>
+            <!--<button type="button" id="temperature_button" class="btn btn-default btn-block">{% blocktrans %}Detailed temperatures{% endblocktrans %} >></button>-->
             </center>
         </div>
         <div id="svg" class="well col-xs-12 col-sm-12 col-md-12 col-lg-12"></div> 
@@ -231,6 +229,49 @@
   </body>	
 
 <script type="text/javascript">
+
+two_days_date = {{ two_days_date }}
+four_days_date = {{ four_days_date }}
+six_days_date = {{ six_days_date }}
+
+var href_subimage_1_1 = document.getElementById('href_subimage_1_1');
+var subimage_1_1 = document.getElementById('subimage_1_1');
+subimage_1_1.src =  "{% static "egg_programmed_images/image_1_" %}{{ two_days_date }}0000.jpg"
+href_subimage_1_1.href = "{% static "egg_programmed_images/image_1_" %}{{ two_days_date }}0000.jpg"
+// var href_subimage_1_2 = document.getElementById('href_subimage_1_2');
+// var subimage_1_2 = document.getElementById('subimage_1_2');
+// subimage_1_2.src =  "{% static "egg_programmed_images/image_1_" %}{{ four_days_date }}0000.jpg"
+// href_subimage_1_2.href = "{% static "egg_programmed_images/image_1_" %}{{ four_days_date }}0000.jpg"
+// var href_subimage_1_3 = document.getElementById('href_subimage_1_3');
+// var subimage_1_3 = document.getElementById('subimage_1_3');
+// subimage_1_3.src =  "{% static "egg_programmed_images/image_1_" %}{{ six_days_date }}0000.jpg"
+// href_subimage_1_3.href = "{% static "egg_programmed_images/image_1_" %}{{ six_days_date }}0000.jpg"
+
+var href_subimage_2_1 = document.getElementById('href_subimage_2_1');
+var subimage_2_1 = document.getElementById('subimage_2_1');
+subimage_2_1.src =  "{% static "egg_programmed_images/image_2_" %}{{ two_days_date }}0000.jpg"
+href_subimage_2_1.href = "{% static "egg_programmed_images/image_2_" %}{{ two_days_date }}0000.jpg"
+// var href_subimage_2_2 = document.getElementById('href_subimage_2_2');
+// var subimage_2_2 = document.getElementById('subimage_2_2');
+// subimage_2_2.src =  "{% static "egg_programmed_images/image_2_" %}{{ four_days_date }}0000.jpg"
+// href_subimage_2_2.href = "{% static "egg_programmed_images/image_2_" %}{{ four_days_date }}0000.jpg"
+// var href_subimage_2_3 = document.getElementById('href_subimage_2_3');
+// var subimage_2_3 = document.getElementById('subimage_2_3');
+// subimage_2_3.src =  "{% static "egg_programmed_images/image_2_" %}{{ six_days_date }}0000.jpg"
+// href_subimage_2_3.href = "{% static "egg_programmed_images/image_2_" %}{{ six_days_date }}0000.jpg"
+
+var href_subimage_3_1 = document.getElementById('href_subimage_3_1');
+var subimage_3_1 = document.getElementById('subimage_3_1');
+subimage_3_1.src =  "{% static "egg_programmed_images/image_3_" %}{{ two_days_date }}0000.jpg"
+href_subimage_3_1.href = "{% static "egg_programmed_images/image_3_" %}{{ two_days_date }}0000.jpg"
+// var href_subimage_3_2 = document.getElementById('href_subimage_3_2');
+// var subimage_3_2 = document.getElementById('subimage_3_2');ç
+// subimage_3_2.src =  "{% static "egg_programmed_images/image_3_" %}{{ four_days_date }}0000.jpg"
+// href_subimage_3_2.href = "{% static "egg_programmed_images/image_3_" %}{{ four_days_date }}0000.jpg"
+// var href_subimage_3_3 = document.getElementById('href_subimage_3_3');
+// var subimage_3_3 = document.getElementById('subimage_3_3');
+// subimage_3_3.src =  "{% static "egg_programmed_images/image_3_" %}{{ six_days_date }}0000.jpg"
+// href_subimage_3_3.href = "{% static "egg_programmed_images/image_3_" %}{{ six_days_date }}0000.jpg"
 
 $( document ).ready(function() {
     //$.get("lights/ALL/ON");

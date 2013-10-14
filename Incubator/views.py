@@ -88,13 +88,33 @@ def lights(request, light_number, command):
 
 def home(request):
 	logging(request)
+	# TODO: These two lines can do only in one
+	today = date.today()
+	now = datetime.now(pytz.utc)
+	###
+	days = (now - last_hatching_data).days
+	last_hatching_data_date = last_hatching_data.date()
+	two_days_ago = today - timedelta(days=2)
+	if two_days_ago >= last_hatching_data_date:
+		two_days_date = two_days_ago.strftime("%Y%m%d") + "0000"
+	else:
+		two_days_date = ""
+	four_days_ago = today - timedelta(days=4)
+	if four_days_ago >= last_hatching_data_date:
+		four_days_date = four_days_ago.strftime("%Y%m%d") + "0000"
+	else:
+		four_days_date = ""
+	six_days_ago = today - timedelta(days=6)
+	if six_days_ago >= last_hatching_data_date:
+		six_days_date = six_days_ago.strftime("%Y%m%d") + "0000"
+	else:
+		six_days_date = ""
 	TEMP, HUMI = request_without_proxy(URL_list_measures)
 	TEMP = TEMP[0:5]
 	HUMI = HUMI[0:5]
-	now = datetime.now(pytz.utc)
-	days = (now - last_hatching_data).days
 	#print days -< days [0, 1, 2, ...]
-	return render_to_response('Incubator/home.html', {'last_hatching_data': last_hatching_data, 'end_date': end_date, 'TEMP': TEMP,  'HUMI': HUMI, 'days': days})
+	return render_to_response('Incubator/home.html', {'last_hatching_data': last_hatching_data, 'end_date': end_date, 'TEMP': TEMP,  'HUMI': HUMI, 'days': days,
+		'two_days_date': two_days_date, 'four_days_date': four_days_date, 'six_days_date': six_days_date})
 
 def download_temp(request):
 	logging(request)
