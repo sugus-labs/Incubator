@@ -1950,3 +1950,395 @@ cookies: {'csrftoken': '40ANn7A8jZ5YbrHmQW0kFYzlcaYBAqF8', 'sessionid': 'suarq9a
 user agent: Mozilla/5.0 (X11; Linux i686) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/30.0.1599.66 Safari/537.36
 remote address: 127.0.0.1
 -
+path: /
+timestamp: 1381835805.49
+GET: []
+POST: []
+cookies: {'csrftoken': '40ANn7A8jZ5YbrHmQW0kFYzlcaYBAqF8', 'sessionid': 'suarq9ayapermb49h4aycioksz8refmv'}
+user agent: Mozilla/5.0 (X11; Linux i686) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/30.0.1599.66 Safari/537.36
+remote address: 127.0.0.1
+-
+path: /
+timestamp: 1381837245.42
+GET: []
+POST: []
+cookies: {}
+user agent: Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/30.0.1599.69 Safari/537.36
+remote address: 88.11.204.219
+-
+path: /show_more/1/
+timestamp: 1381837275.54
+GET: []
+POST: []
+cookies: {}
+user agent: Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/30.0.1599.69 Safari/537.36
+remote address: 88.11.204.219
+-
+path: /temperatures
+timestamp: 1381837392.28
+GET: []
+POST: []
+cookies: {}
+user agent: Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/30.0.1599.69 Safari/537.36
+remote address: 88.11.204.219
+-
+path: /temperatures
+timestamp: 1381837410.26
+GET: []
+POST: [(u'start_day', [u'3']), (u'mins', [u'5']), (u'end_day', [u'5'])]
+cookies: {}
+user agent: Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/30.0.1599.69 Safari/537.36
+remote address: 88.11.204.219
+-
+path: /humidities
+timestamp: 1381837452.44
+GET: []
+POST: []
+cookies: {}
+user agent: Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/30.0.1599.69 Safari/537.36
+remote address: 88.11.204.219
+-
+path: /humidities
+timestamp: 1381837488.89
+GET: []
+POST: [(u'start_day', [u'1']), (u'mins', [u'60']), (u'end_day', [u'16'])]
+cookies: {}
+user agent: Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/30.0.1599.69 Safari/537.36
+remote address: 88.11.204.219
+-
+path: /
+timestamp: 1381837505.93
+GET: []
+POST: []
+cookies: {'csrftoken': '40ANn7A8jZ5YbrHmQW0kFYzlcaYBAqF8', 'sessionid': 'suarq9ayapermb49h4aycioksz8refmv'}
+user agent: Mozilla/5.0 (X11; Linux i686) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/30.0.1599.66 Safari/537.36
+remote address: 127.0.0.1
+-
+path: /
+timestamp: 1381837522.53
+GET: []
+POST: []
+cookies: {'csrftoken': '40ANn7A8jZ5YbrHmQW0kFYzlcaYBAqF8', 'sessionid': 'suarq9ayapermb49h4aycioksz8refmv'}
+user agent: Mozilla/5.0 (X11; Linux i686) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/30.0.1599.66 Safari/537.36
+remote address: 127.0.0.1
+-
+path: /
+timestamp: 1381837534.89
+GET: []
+POST: []
+cookies: {'csrftoken': '40ANn7A8jZ5YbrHmQW0kFYzlcaYBAqF8', 'sessionid': 'suarq9ayapermb49h4aycioksz8refmv'}
+user agent: Mozilla/5.0 (X11; Linux i686) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/30.0.1599.66 Safari/537.36
+remote address: 127.0.0.1
+-
+path: /
+timestamp: 1381837568.25
+GET: []
+POST: []
+cookies: {'csrftoken': '40ANn7A8jZ5YbrHmQW0kFYzlcaYBAqF8', 'sessionid': 'suarq9ayapermb49h4aycioksz8refmv'}
+user agent: Mozilla/5.0 (X11; Linux i686) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/30.0.1599.66 Safari/537.36
+remote address: 127.0.0.1
+-
+path: /
+timestamp: 1381837578.3
+GET: []
+POST: []
+cookies: {'csrftoken': '40ANn7A8jZ5YbrHmQW0kFYzlcaYBAqF8', 'sessionid': 'suarq9ayapermb49h4aycioksz8refmv'}
+user agent: Mozilla/5.0 (X11; Linux i686) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/30.0.1599.66 Safari/537.36
+remote address: 127.0.0.1
+-
+path: /
+timestamp: 1381837592.74
+GET: []
+POST: []
+cookies: {'csrftoken': '40ANn7A8jZ5YbrHmQW0kFYzlcaYBAqF8', 'sessionid': 'suarq9ayapermb49h4aycioksz8refmv'}
+user agent: Mozilla/5.0 (X11; Linux i686) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/30.0.1599.66 Safari/537.36
+remote address: 127.0.0.1
+-
+path: /
+timestamp: 1381837655.55
+GET: []
+POST: []
+cookies: {'csrftoken': '40ANn7A8jZ5YbrHmQW0kFYzlcaYBAqF8', 'sessionid': 'suarq9ayapermb49h4aycioksz8refmv'}
+user agent: Mozilla/5.0 (X11; Linux i686) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/30.0.1599.66 Safari/537.36
+remote address: 127.0.0.1
+-
+path: /show_more/2/
+timestamp: 1381837667.75
+GET: []
+POST: []
+cookies: {}
+user agent: Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/30.0.1599.69 Safari/537.36
+remote address: 88.11.204.219
+-
+path: /
+timestamp: 1381837672.49
+GET: []
+POST: []
+cookies: {'csrftoken': '40ANn7A8jZ5YbrHmQW0kFYzlcaYBAqF8', 'sessionid': 'suarq9ayapermb49h4aycioksz8refmv'}
+user agent: Mozilla/5.0 (X11; Linux i686) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/30.0.1599.66 Safari/537.36
+remote address: 127.0.0.1
+-
+path: /show_more/1/
+timestamp: 1381837688.98
+GET: []
+POST: []
+cookies: {}
+user agent: Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/30.0.1599.69 Safari/537.36
+remote address: 88.11.204.219
+-
+path: /
+timestamp: 1381837694.25
+GET: []
+POST: []
+cookies: {'csrftoken': '40ANn7A8jZ5YbrHmQW0kFYzlcaYBAqF8', 'sessionid': 'suarq9ayapermb49h4aycioksz8refmv'}
+user agent: Mozilla/5.0 (X11; Linux i686) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/30.0.1599.66 Safari/537.36
+remote address: 127.0.0.1
+-
+path: /
+timestamp: 1381837710.13
+GET: []
+POST: []
+cookies: {'csrftoken': '40ANn7A8jZ5YbrHmQW0kFYzlcaYBAqF8', 'sessionid': 'suarq9ayapermb49h4aycioksz8refmv'}
+user agent: Mozilla/5.0 (X11; Linux i686) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/30.0.1599.66 Safari/537.36
+remote address: 127.0.0.1
+-
+path: /
+timestamp: 1381837742.72
+GET: []
+POST: []
+cookies: {'csrftoken': '40ANn7A8jZ5YbrHmQW0kFYzlcaYBAqF8', 'sessionid': 'suarq9ayapermb49h4aycioksz8refmv'}
+user agent: Mozilla/5.0 (X11; Linux i686) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/30.0.1599.66 Safari/537.36
+remote address: 127.0.0.1
+-
+path: /
+timestamp: 1381837751.85
+GET: []
+POST: []
+cookies: {'csrftoken': '40ANn7A8jZ5YbrHmQW0kFYzlcaYBAqF8', 'sessionid': 'suarq9ayapermb49h4aycioksz8refmv'}
+user agent: Mozilla/5.0 (X11; Linux i686) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/30.0.1599.66 Safari/537.36
+remote address: 127.0.0.1
+-
+path: /
+timestamp: 1381837762.81
+GET: []
+POST: []
+cookies: {'csrftoken': '40ANn7A8jZ5YbrHmQW0kFYzlcaYBAqF8', 'sessionid': 'suarq9ayapermb49h4aycioksz8refmv'}
+user agent: Mozilla/5.0 (X11; Linux i686) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/30.0.1599.66 Safari/537.36
+remote address: 127.0.0.1
+-
+path: /
+timestamp: 1381837774.97
+GET: []
+POST: []
+cookies: {'csrftoken': '40ANn7A8jZ5YbrHmQW0kFYzlcaYBAqF8', 'sessionid': 'suarq9ayapermb49h4aycioksz8refmv'}
+user agent: Mozilla/5.0 (X11; Linux i686) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/30.0.1599.66 Safari/537.36
+remote address: 127.0.0.1
+-
+path: /
+timestamp: 1381837795.98
+GET: []
+POST: []
+cookies: {'csrftoken': '40ANn7A8jZ5YbrHmQW0kFYzlcaYBAqF8', 'sessionid': 'suarq9ayapermb49h4aycioksz8refmv'}
+user agent: Mozilla/5.0 (X11; Linux i686) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/30.0.1599.66 Safari/537.36
+remote address: 127.0.0.1
+-
+path: /
+timestamp: 1381837820.63
+GET: []
+POST: []
+cookies: {'csrftoken': '40ANn7A8jZ5YbrHmQW0kFYzlcaYBAqF8', 'sessionid': 'suarq9ayapermb49h4aycioksz8refmv'}
+user agent: Mozilla/5.0 (X11; Linux i686) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/30.0.1599.66 Safari/537.36
+remote address: 127.0.0.1
+-
+path: /show_more/2/
+timestamp: 1381837826.03
+GET: []
+POST: []
+cookies: {'csrftoken': '40ANn7A8jZ5YbrHmQW0kFYzlcaYBAqF8', 'sessionid': 'suarq9ayapermb49h4aycioksz8refmv'}
+user agent: Mozilla/5.0 (X11; Linux i686) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/30.0.1599.66 Safari/537.36
+remote address: 127.0.0.1
+-
+path: /show_more/3/
+timestamp: 1381837833.57
+GET: []
+POST: []
+cookies: {'csrftoken': '40ANn7A8jZ5YbrHmQW0kFYzlcaYBAqF8', 'sessionid': 'suarq9ayapermb49h4aycioksz8refmv'}
+user agent: Mozilla/5.0 (X11; Linux i686) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/30.0.1599.66 Safari/537.36
+remote address: 127.0.0.1
+-
+path: /
+timestamp: 1381837843.66
+GET: []
+POST: []
+cookies: {'csrftoken': '40ANn7A8jZ5YbrHmQW0kFYzlcaYBAqF8', 'sessionid': 'suarq9ayapermb49h4aycioksz8refmv'}
+user agent: Mozilla/5.0 (X11; Linux i686) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/30.0.1599.66 Safari/537.36
+remote address: 127.0.0.1
+-
+path: /
+timestamp: 1381837862.92
+GET: []
+POST: []
+cookies: {'csrftoken': '40ANn7A8jZ5YbrHmQW0kFYzlcaYBAqF8', 'sessionid': 'suarq9ayapermb49h4aycioksz8refmv'}
+user agent: Mozilla/5.0 (X11; Linux i686) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/30.0.1599.66 Safari/537.36
+remote address: 127.0.0.1
+-
+path: /
+timestamp: 1381837886.43
+GET: []
+POST: []
+cookies: {'csrftoken': '40ANn7A8jZ5YbrHmQW0kFYzlcaYBAqF8', 'sessionid': 'suarq9ayapermb49h4aycioksz8refmv'}
+user agent: Mozilla/5.0 (X11; Linux i686) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/30.0.1599.66 Safari/537.36
+remote address: 127.0.0.1
+-
+path: /
+timestamp: 1381837903.12
+GET: []
+POST: []
+cookies: {'csrftoken': '40ANn7A8jZ5YbrHmQW0kFYzlcaYBAqF8', 'sessionid': 'suarq9ayapermb49h4aycioksz8refmv'}
+user agent: Mozilla/5.0 (X11; Linux i686) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/30.0.1599.66 Safari/537.36
+remote address: 127.0.0.1
+-
+path: /retrieve_image/1/
+timestamp: 1381838071.71
+GET: []
+POST: []
+cookies: {}
+user agent: Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/30.0.1599.69 Safari/537.36
+remote address: 88.11.204.219
+-
+path: /
+timestamp: 1381846004.9
+GET: []
+POST: []
+cookies: {'csrftoken': '40ANn7A8jZ5YbrHmQW0kFYzlcaYBAqF8', 'sessionid': 'suarq9ayapermb49h4aycioksz8refmv'}
+user agent: Mozilla/5.0 (X11; Linux i686) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/30.0.1599.66 Safari/537.36
+remote address: 127.0.0.1
+-
+path: /
+timestamp: 1381846175.83
+GET: []
+POST: []
+cookies: {'csrftoken': '40ANn7A8jZ5YbrHmQW0kFYzlcaYBAqF8', 'sessionid': 'suarq9ayapermb49h4aycioksz8refmv'}
+user agent: Mozilla/5.0 (X11; Linux i686) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/30.0.1599.66 Safari/537.36
+remote address: 127.0.0.1
+-
+path: /temperatures
+timestamp: 1381846181.63
+GET: []
+POST: []
+cookies: {'csrftoken': '40ANn7A8jZ5YbrHmQW0kFYzlcaYBAqF8', 'sessionid': 'suarq9ayapermb49h4aycioksz8refmv'}
+user agent: Mozilla/5.0 (X11; Linux i686) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/30.0.1599.66 Safari/537.36
+remote address: 127.0.0.1
+-
+path: /humidities
+timestamp: 1381846191.8
+GET: []
+POST: []
+cookies: {'csrftoken': '40ANn7A8jZ5YbrHmQW0kFYzlcaYBAqF8', 'sessionid': 'suarq9ayapermb49h4aycioksz8refmv'}
+user agent: Mozilla/5.0 (X11; Linux i686) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/30.0.1599.66 Safari/537.36
+remote address: 127.0.0.1
+-
+path: /show_more/1/
+timestamp: 1381846199.04
+GET: []
+POST: []
+cookies: {'csrftoken': '40ANn7A8jZ5YbrHmQW0kFYzlcaYBAqF8', 'sessionid': 'suarq9ayapermb49h4aycioksz8refmv'}
+user agent: Mozilla/5.0 (X11; Linux i686) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/30.0.1599.66 Safari/537.36
+remote address: 127.0.0.1
+-
+path: /show_more/2/
+timestamp: 1381846207.2
+GET: []
+POST: []
+cookies: {'csrftoken': '40ANn7A8jZ5YbrHmQW0kFYzlcaYBAqF8', 'sessionid': 'suarq9ayapermb49h4aycioksz8refmv'}
+user agent: Mozilla/5.0 (X11; Linux i686) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/30.0.1599.66 Safari/537.36
+remote address: 127.0.0.1
+-
+path: /
+timestamp: 1381849711.44
+GET: []
+POST: []
+cookies: {}
+user agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/30.0.1599.66 Safari/537.36
+remote address: 213.99.84.24
+-
+path: /retrieve_image/1/
+timestamp: 1381849743.59
+GET: []
+POST: []
+cookies: {}
+user agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/30.0.1599.66 Safari/537.36
+remote address: 213.99.84.24
+-
+path: /show_more/1/
+timestamp: 1381849786.54
+GET: []
+POST: []
+cookies: {}
+user agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/30.0.1599.66 Safari/537.36
+remote address: 213.99.84.24
+-
+path: /
+timestamp: 1381849855.37
+GET: []
+POST: []
+cookies: {'csrftoken': '40ANn7A8jZ5YbrHmQW0kFYzlcaYBAqF8', 'sessionid': 'suarq9ayapermb49h4aycioksz8refmv'}
+user agent: Mozilla/5.0 (X11; Linux i686) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/30.0.1599.66 Safari/537.36
+remote address: 127.0.0.1
+-
+path: /temperatures
+timestamp: 1381849943.53
+GET: []
+POST: []
+cookies: {}
+user agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/30.0.1599.66 Safari/537.36
+remote address: 95.126.58.21
+-
+path: /temperatures
+timestamp: 1381849946.87
+GET: []
+POST: []
+cookies: {}
+user agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/30.0.1599.66 Safari/537.36
+remote address: 95.126.58.21
+-
+path: /temperatures
+timestamp: 1381850032.62
+GET: []
+POST: [(u'start_day', [u'2']), (u'mins', [u'5']), (u'end_day', [u'22'])]
+cookies: {}
+user agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/30.0.1599.66 Safari/537.36
+remote address: 95.126.58.21
+-
+path: /temperatures
+timestamp: 1381850064.33
+GET: []
+POST: [(u'start_day', [u'1']), (u'mins', [u'5']), (u'end_day', [u'3'])]
+cookies: {}
+user agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/30.0.1599.66 Safari/537.36
+remote address: 95.126.58.21
+-
+path: /humidities
+timestamp: 1381850107.17
+GET: []
+POST: []
+cookies: {}
+user agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/30.0.1599.66 Safari/537.36
+remote address: 95.126.58.21
+-
+path: /humidities
+timestamp: 1381850125.12
+GET: []
+POST: [(u'start_day', [u'1']), (u'mins', [u'5']), (u'end_day', [u'3'])]
+cookies: {}
+user agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/30.0.1599.66 Safari/537.36
+remote address: 95.126.58.21
+-
+path: /humidities
+timestamp: 1381850148.24
+GET: []
+POST: [(u'start_day', [u'1']), (u'mins', [u'5']), (u'end_day', [u'5'])]
+cookies: {}
+user agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/30.0.1599.66 Safari/537.36
+remote address: 95.126.58.21
+-

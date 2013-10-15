@@ -113,7 +113,7 @@
                 </a>
               </div>
               <div id="subimage_2_3_panel" class="panel col-xs-4 col-sm-4 col-md-4 col-lg-4">
-                <a id="href_subimage_1_3" href="">
+                <a id="href_subimage_2_3" href="">
                   <img id="subimage_2_3" src="" class="img-responsive"/>
                   <p class="text-center">{{ six_days }}</p>
                 </a>
@@ -123,7 +123,7 @@
           </div>
         </div>
 
-<!--       <div id="images_3" class="row well col-xs-12 col-sm-12 col-md-12 col-lg-12">    
+       <div id="images_3" class="row well col-xs-12 col-sm-12 col-md-12 col-lg-12">    
         <div id="image_3_main_panel" class="panel col-xs-12 col-sm-12 col-md-5 col-lg-5">
           <div id="image_3_panel" class="panel col-xs-12 col-sm-12 col-md-12 col-lg-12">
             <img id="image_3" class="img-responsive"/>
@@ -155,7 +155,7 @@
             <button type="button" id="image_3_button" class="btn btn-default btn-lg btn-block">{% blocktrans %}Show more{% endblocktrans %} >></button>
           </div>
         </div>
- -->
+ 
       </div>
 
 
@@ -237,44 +237,44 @@ four_days = four_days_date.toString();
 six_days_date = {{ six_days_date }}
 six_days = six_days_date.toString();
 
-//var href_subimage_1_1 = document.getElementById('href_subimage_1_1');
+var href_subimage_1_1 = document.getElementById('href_subimage_1_1');
 var subimage_1_1 = document.getElementById('subimage_1_1');
 subimage_1_1.src =  "{% static "egg_programmed_images/image_1_" %}{{ two_days_date }}0000.jpg"
-//href_subimage_1_1.href = "{% static "egg_programmed_images/image_1_" %}{{ two_days_date }}0000.jpg"
-//var href_subimage_1_2 = document.getElementById('href_subimage_1_2');
+href_subimage_1_1.href = "{% static "egg_programmed_images/image_1_" %}{{ two_days_date }}0000.jpg"
+var href_subimage_1_2 = document.getElementById('href_subimage_1_2');
 var subimage_1_2 = document.getElementById('subimage_1_2');
 subimage_1_2.src =  "{% static "egg_programmed_images/image_1_" %}{{ four_days_date }}0000.jpg"
-//href_subimage_1_2.href = "{% static "egg_programmed_images/image_1_" %}{{ four_days_date }}0000.jpg"
-//var href_subimage_1_3 = document.getElementById('href_subimage_1_3');
+href_subimage_1_2.href = "{% static "egg_programmed_images/image_1_" %}{{ four_days_date }}0000.jpg"
+var href_subimage_1_3 = document.getElementById('href_subimage_1_3');
 var subimage_1_3 = document.getElementById('subimage_1_3');
 subimage_1_3.src =  "{% static "egg_programmed_images/image_1_" %}{{ six_days_date }}0000.jpg"
-//href_subimage_1_3.href = "{% static "egg_programmed_images/image_1_" %}{{ six_days_date }}0000.jpg"
+href_subimage_1_3.href = "{% static "egg_programmed_images/image_1_" %}{{ six_days_date }}0000.jpg"
 
-//var href_subimage_2_1 = document.getElementById('href_subimage_2_1');
+var href_subimage_2_1 = document.getElementById('href_subimage_2_1');
 var subimage_2_1 = document.getElementById('subimage_2_1');
 subimage_2_1.src =  "{% static "egg_programmed_images/image_2_" %}{{ two_days_date }}0000.jpg"
-//href_subimage_2_1.href = "{% static "egg_programmed_images/image_2_" %}{{ two_days_date }}0000.jpg"
-//var href_subimage_2_2 = document.getElementById('href_subimage_2_2');
+href_subimage_2_1.href = "{% static "egg_programmed_images/image_2_" %}{{ two_days_date }}0000.jpg"
+var href_subimage_2_2 = document.getElementById('href_subimage_2_2');
 var subimage_2_2 = document.getElementById('subimage_2_2');
 subimage_2_2.src =  "{% static "egg_programmed_images/image_2_" %}{{ four_days_date }}0000.jpg"
-//href_subimage_2_2.href = "{% static "egg_programmed_images/image_2_" %}{{ four_days_date }}0000.jpg"
-//var href_subimage_2_3 = document.getElementById('href_subimage_2_3');
+href_subimage_2_2.href = "{% static "egg_programmed_images/image_2_" %}{{ four_days_date }}0000.jpg"
+var href_subimage_2_3 = document.getElementById('href_subimage_2_3');
 var subimage_2_3 = document.getElementById('subimage_2_3');
 subimage_2_3.src =  "{% static "egg_programmed_images/image_2_" %}{{ six_days_date }}0000.jpg"
-//href_subimage_2_3.href = "{% static "egg_programmed_images/image_2_" %}{{ six_days_date }}0000.jpg"
+href_subimage_2_3.href = "{% static "egg_programmed_images/image_2_" %}{{ six_days_date }}0000.jpg"
 
-// var href_subimage_3_1 = document.getElementById('href_subimage_3_1');
-// var subimage_3_1 = document.getElementById('subimage_3_1');
-// subimage_3_1.src =  "{% static "egg_programmed_images/image_3_" %}{{ two_days_date }}0000.jpg"
-// href_subimage_3_1.href = "{% static "egg_programmed_images/image_3_" %}{{ two_days_date }}0000.jpg"
-// var href_subimage_3_2 = document.getElementById('href_subimage_3_2');
-// var subimage_3_2 = document.getElementById('subimage_3_2');ç
-// subimage_3_2.src =  "{% static "egg_programmed_images/image_3_" %}{{ four_days_date }}0000.jpg"
-// href_subimage_3_2.href = "{% static "egg_programmed_images/image_3_" %}{{ four_days_date }}0000.jpg"
-// var href_subimage_3_3 = document.getElementById('href_subimage_3_3');
-// var subimage_3_3 = document.getElementById('subimage_3_3');
-// subimage_3_3.src =  "{% static "egg_programmed_images/image_3_" %}{{ six_days_date }}0000.jpg"
-// href_subimage_3_3.href = "{% static "egg_programmed_images/image_3_" %}{{ six_days_date }}0000.jpg"
+var href_subimage_3_1 = document.getElementById('href_subimage_3_1');
+var subimage_3_1 = document.getElementById('subimage_3_1');
+subimage_3_1.src =  "{% static "egg_programmed_images/image_3_" %}{{ two_days_date }}0000.jpg"
+href_subimage_3_1.href = "{% static "egg_programmed_images/image_3_" %}{{ two_days_date }}0000.jpg"
+var href_subimage_3_2 = document.getElementById('href_subimage_3_2');
+var subimage_3_2 = document.getElementById('subimage_3_2');
+subimage_3_2.src =  "{% static "egg_programmed_images/image_3_" %}{{ four_days_date }}0000.jpg"
+href_subimage_3_2.href = "{% static "egg_programmed_images/image_3_" %}{{ four_days_date }}0000.jpg"
+var href_subimage_3_3 = document.getElementById('href_subimage_3_3');
+var subimage_3_3 = document.getElementById('subimage_3_3');
+subimage_3_3.src =  "{% static "egg_programmed_images/image_3_" %}{{ six_days_date }}0000.jpg"
+href_subimage_3_3.href = "{% static "egg_programmed_images/image_3_" %}{{ six_days_date }}0000.jpg"
 
 $( document ).ready(function() {
     //$.get("lights/ALL/ON");
@@ -285,19 +285,19 @@ image_draw.src = "{% static "img/day_" %}{{ days}}.png"
 
 var image_1 = document.getElementById('image_1');
 var image_2 = document.getElementById('image_2');
-//var image_3 = document.getElementById('image_3');
+var image_3 = document.getElementById('image_3');
 
 setInterval(function() {
   image_1.src = 'http://www.weblab.deusto.es/webcam/proxied.py/incubator1?rand=' + Math.random();
-}, 600);
+}, 200);
 
 setInterval(function() {
   image_2.src = 'http://www.weblab.deusto.es/webcam/proxied.py/incubator2?rand=' + Math.random();
-}, 600);
+}, 6000);
 
-// setInterval(function() {
-//   image_3.src = 'http://www.weblab.deusto.es/webcam/proxied.py/incubator3?rand=' + Math.random();
-// }, 3000);
+setInterval(function() {
+   image_3.src = 'http://www.weblab.deusto.es/webcam/proxied.py/incubator3?rand=' + Math.random();
+}, 6000);
 
 setInterval(function() {
   $.get("measures", function(data) {

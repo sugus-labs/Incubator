@@ -103,6 +103,11 @@ def extract_data_from_DB(datetime_format, db_local_path, db_utils_dict):
 	    dataframe_sqlite_MAD = dataframe_sqlite_UTC.tz_convert(MAD)
 	return dataframe_sqlite_MAD
 
+def extract_last_row_from_DB(datetime_format, db_local_path, db_utils_dict):
+	cursor = sqlite3.execute('SELECT max(id) FROM db_local_path')
+	max_id = cursor.fetchone()[0]
+
+
 def save_humi_from_dataframe_by_day(dataframe, string_day, humi_param_MAX, humi_param_MIN, humi_MAX, humi_MIN, humi_limit_SUP, humi_limit_INF):
 	plt.title('Humidity of day %s' % string_day)
 	today_plot = dataframe.humi[string_day]
