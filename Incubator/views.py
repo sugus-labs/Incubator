@@ -94,27 +94,46 @@ def home(request):
 	###
 	days = (now - last_hatching_data).days
 	last_hatching_data_date = last_hatching_data.date()
-	two_days_ago = today - timedelta(days=2)
+	two_days_ago = today - timedelta(days=1)
 	if two_days_ago >= last_hatching_data_date:
-		two_days_date = two_days_ago.strftime("%Y%m%d") + "0000"
+		two_days_date = two_days_ago.strftime("%Y%m%d")
+		two_days = two_days_ago.strftime("%d/%m/%Y")
 	else:
 		two_days_date = ""
-	four_days_ago = today - timedelta(days=4)
+		two_days = ""
+	four_days_ago = today - timedelta(days=2)
 	if four_days_ago >= last_hatching_data_date:
-		four_days_date = four_days_ago.strftime("%Y%m%d") + "0000"
+		four_days_date = four_days_ago.strftime("%Y%m%d")
+		four_days = four_days_ago.strftime("%d/%m/%Y")
 	else:
 		four_days_date = ""
-	six_days_ago = today - timedelta(days=6)
+		four_days = ""
+	six_days_ago = today - timedelta(days=3)
 	if six_days_ago >= last_hatching_data_date:
-		six_days_date = six_days_ago.strftime("%Y%m%d") + "0000"
+		six_days_date = six_days_ago.strftime("%Y%m%d")
+		six_days = six_days_ago.strftime("%d/%m/%Y")
 	else:
 		six_days_date = ""
+		six_days = ""
 	TEMP, HUMI = request_without_proxy(URL_list_measures)
 	TEMP = TEMP[0:5]
 	HUMI = HUMI[0:5]
 	#print days -< days [0, 1, 2, ...]
 	return render_to_response('Incubator/home.html', {'last_hatching_data': last_hatching_data, 'end_date': end_date, 'TEMP': TEMP,  'HUMI': HUMI, 'days': days,
-		'two_days_date': two_days_date, 'four_days_date': four_days_date, 'six_days_date': six_days_date})
+		'two_days_date': two_days_date, 'four_days_date': four_days_date, 'six_days_date': six_days_date, 'two_days': two_days, 'four_days': four_days, 'six_days': six_days })
+
+def show_more(request, cam_number):
+	logging(request)
+	#import glob
+	import os
+	#images_list = []
+	path = "/home/weblord/Desktop/Incubator/Incubator/static/egg_programmed_images"
+	images_list = [f for f in os.listdir(path) if f.startswith("image_"+ cam_number)]
+	#os.chdir("/home/weblord/Desktop/Incubator/Incubator/static/egg_programmed_images")
+	# for image in glob.glob("image_"+ cam_number + "*"):
+	# 	#print files
+	# 	images_list.append(image)
+	return render_to_response('Incubator/show_more.html', {'images_list': images_list})
 
 def download_temp(request):
 	logging(request)

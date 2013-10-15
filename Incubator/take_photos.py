@@ -16,7 +16,7 @@ def retrieve_images():
 	on_request = urllib2.urlopen('http://localhost:8008/lights/ALL/ON')
 	on_response = on_request.read()
 	if on_response == '200 OK':
-		time.sleep(2)
+		time.sleep(3)
 		localtime = time.localtime()
 		time_now = time.strftime("%Y%m%d%H%M%S", localtime)
 		for cam_num, cam in enumerate(URL_cams):

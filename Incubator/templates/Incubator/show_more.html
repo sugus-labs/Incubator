@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block title %}Incubator{% endblock %}
+
+{% block content %} 
+
+  {% load i18n %}
+  {% load staticfiles %}
+
+{% for image in images_list %}
+  <img src="../../static/egg_programmed_images/{{image}}" height="100px"/>
+{% endfor %}
+
+<script type="text/javascript">
+</script>
+
+{% endblock %}
