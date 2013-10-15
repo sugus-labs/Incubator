@@ -40,4 +40,8 @@ nosetests.xml
 # Mr Developer
 .mr.developer.cfg
 .project
+<<<<<<< HEAD
 .pydevproject
+=======
+.pydevproject
+>>>>>>> ebe4394d727e2b989c3bfda4f664bf9f78ed4039
