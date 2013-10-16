@@ -1,19 +1,23 @@
 import sqlite3
 import pandas.io.sql as psql
-from data_utils import retrieve_DBs, extract_data_from_DB
+#from data_utils import retrieve_DBs, extract_data_from_DB
 import pandas as pd
+from pymongo import MongoClient
+import datetime
 
 mongo_client = MongoClient()
 mongo_db = mongo_client.incubator
 measures_collection = mongo_db.measures
 
-local_path_SHT1xdb = "/home/weblord/Desktop/Incubator/Incubator/static/data/SHT1x.db"
+#local_path_SHT1xdb = "/home/weblord/Desktop/Incubator/Incubator/static/data/SHT1x.db"
+local_path_SHT1xdb = "/home/gustavo/Desktop/Incubator/Incubator/static/data/SHT1x.db"
 SQL_execute_SHT1xdb = "select max(date), humi from READ"
 index_SHT1xdb = "date"
 SQL_remove_last_SHT1xdb = "select date, humi from READ"
 SHT1x = [local_path_SHT1xdb, SQL_execute_SHT1xdb, index_SHT1xdb, SQL_remove_last_SHT1xdb]
 
-local_path_thermodb = "/home/weblord/Desktop/Incubator/Incubator/static/data/thermo.db"
+#local_path_thermodb = "/home/weblord/Desktop/Incubator/Incubator/static/data/thermo.db"
+local_path_thermodb = "/home/gustavo/Desktop/Incubator/Incubator/static/data/thermo.db"
 SQL_execute_thermodb = "select max(DATE_LOG), TEMP_LOG from LOG"
 index_thermodb = "DATE_LOG"
 SQL_remove_last_thermodb = "select DATE_LOG, TEMP_LOG from LOG"
@@ -24,10 +28,13 @@ def enter_row_to_mongodb(humi, temp, desired_date, dataframe_date):
 
 DBs = [SHT1x, THERMO]
 
-retrieve_DBs()
+#retrieve_DBs()
 
 dataframes_sqlite = []
 all_DBs_list = []
+
+now = datetime.datetime.utcnow()
+print str(now)
 
 for DB in DBs:	
 	with sqlite3.connect(DB[0], detect_types=sqlite3.PARSE_DECLTYPES) as conn:
@@ -35,6 +42,9 @@ for DB in DBs:
 		all_db.index = pd.to_datetime(all_db.pop(DB[2]))
 		# TODO: This is an approximation. We need data every 15 seconds minimum. In these moments SHT1x go 1:13 seconds 
 		all_db = all_db.resample('15S', fill_method='ffill')
+		all_db_last = all_db.humi["2013-10-16 10:44"]
+		
+		print all_db_last
 		#print all_db.humi[all_db.count() - 1].iloc[0]
 	all_DBs_list.append(all_db)
 		#print all_db.humi[all_db.count() - 1].iloc[0]
