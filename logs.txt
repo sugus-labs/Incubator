@@ -2702,3 +2702,11 @@ cookies: {'csrftoken': '40ANn7A8jZ5YbrHmQW0kFYzlcaYBAqF8', 'sessionid': 'suarq9a
 user agent: Mozilla/5.0 (X11; Linux i686) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/30.0.1599.66 Safari/537.36
 remote address: 127.0.0.1
 -
+path: /
+timestamp: 1381941539.97
+GET: []
+POST: []
+cookies: {'csrftoken': '40ANn7A8jZ5YbrHmQW0kFYzlcaYBAqF8', 'sessionid': 'suarq9ayapermb49h4aycioksz8refmv'}
+user agent: Mozilla/5.0 (X11; Linux i686) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/30.0.1599.66 Safari/537.36
+remote address: 127.0.0.1
+-

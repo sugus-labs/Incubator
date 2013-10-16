@@ -25,7 +25,7 @@ URL = 'http://localhost:8008/measures'
 
 data_lost = []
 
-def retrieve_last_row_from_DBS(DBs):
+def retrieve_last_row_from_DBS(DBs, rows):
 	dataframes_sqlite = []
 	for DB in DBs:
 		with sqlite3.connect(DB[0], detect_types=sqlite3.PARSE_DECLTYPES) as conn:
@@ -49,16 +49,17 @@ def request_without_proxy(URL):
 def save_in_mongo():
 	print "Saving all the data to mongodb"
 	while(1):
-		if data_lost:
-			try:
-				retrieve_DBs()
-				retrieve_last_row_from_DBS(DBs)
-			except:
-				print "Impossible to retrive DB. Fix the problems in the net!"
-				time.sleep(10)
+		# if data_lost:
+		# 	try:
+		# 		retrieve_DBs()
+		# 		retrieve_rows_from_DBS(DBs, len(data_lost))
+		# 	except:
+		# 		print "Impossible to retrive DB. Fix the problems in the net!"
+		# 		time.sleep(10)
 
-		else:
-			time.sleep(15)
+		# else:
+		# 	time.sleep(15)
+		time.sleep(15)
 		try:
 			data = request_without_proxy(URL)
 			json_data = json.loads(data)

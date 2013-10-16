@@ -14,8 +14,9 @@ from mongo_save import save_in_mongo
 import threading
 from photos_cron import activate_photos_cron
 
-activate_photos_cron()
-print "CRON to take photos hourly activated"
+# Uncomment in production!
+#activate_photos_cron()
+#print "CRON to take photos hourly activated"
 
 mongo_thread = threading.Thread(target=save_in_mongo, args=())
 mongo_thread.start()
@@ -77,7 +78,7 @@ def measures(request):
 def lights(request, light_number, command):
 	#print "LIGHT: %s. COMMAND: %s" % (light_number, command)
 	if light_number == "ALL":
-		if command == "ON_2":
+		if command == "ON":
 			resp = request_without_proxy_POST(URL_BASIC + 'EGGSON', {})
 		else:
 			resp = request_without_proxy_POST(URL_BASIC + 'EGGSOFF', {})
