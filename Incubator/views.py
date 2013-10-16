@@ -77,7 +77,7 @@ def measures(request):
 def lights(request, light_number, command):
 	#print "LIGHT: %s. COMMAND: %s" % (light_number, command)
 	if light_number == "ALL":
-		if command == "ON":
+		if command == "ON_2":
 			resp = request_without_proxy_POST(URL_BASIC + 'EGGSON', {})
 		else:
 			resp = request_without_proxy_POST(URL_BASIC + 'EGGSOFF', {})

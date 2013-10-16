@@ -26,17 +26,18 @@ URL = 'http://localhost:8008/measures'
 data_lost = []
 
 def retrieve_last_row_from_DBS(DBs):
-	dataframe_sqlite = []
+	dataframes_sqlite = []
 	for DB in DBs:
 		with sqlite3.connect(DB[0], detect_types=sqlite3.PARSE_DECLTYPES) as conn:
-			dataframe_sqlite.append(psql.frame_query(DB[1], con=conn))
-			#print dataframe_sqlite
-			#	 max(date)      	  humi
-			# 0  2013-10-15 16:48:15  51.02198
-			#    max(DATE_LOG)        TEMP_LOG
-			# 0  2013-10-15 16:49:09  37.375
-	print max(dataframe_sqlite[0]['max(date)'], dataframe_sqlite[1]['max(DATE_LOG)'])
-	return
+			read_sqlite = psql.frame_query(DB[1], con=conn)
+			read_sqlite.index = pd.to_datetime(read_sqlite.pop(DB[2]))
+			dataframes_sqlite.append(read_sqlite)
+			# Remove the row
+			
+	print max(dataframes_sqlite[0].index, dataframes_sqlite[1].index)
+	print "HUMI: %.2f" % dataframes_sqlite[0].humi.iloc[0]
+	print "TEMP: %.2f" % dataframes_sqlite[1].TEMP_LOG.iloc[0]
+	# Remove this row
 
 def request_without_proxy(URL):
 	proxy_handler = urllib2.ProxyHandler({})
