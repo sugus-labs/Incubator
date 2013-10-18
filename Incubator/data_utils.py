@@ -37,15 +37,21 @@ temp_param_MAX = 37.5
 temp_param_MIN = 37.4
 temp_MIN = 37.0
 temp_MAX = 38.0
-humi_param_MAX = 55.5
-humi_param_MIN = 50.5
-humi_MIN = 45.0
-humi_MAX = 60.0
+# humi_param_MAX = 55.5
+# humi_param_MIN = 50.5
+# humi_MIN = 45.0
+# humi_MAX = 60.0
+humi_param_MAX = 70.5
+humi_param_MIN = 65.5
+humi_MIN = 60.0
+humi_MAX = 80.0
 
 temp_limit_INF = 36.8
 temp_limit_SUP = 38.2
-humi_limit_INF = 40
-humi_limit_SUP = 65
+# humi_limit_INF = 40
+# humi_limit_SUP = 65
+humi_limit_INF = 55
+humi_limit_SUP = 75
 
 server = "192.168.0.110"
 host_username = "pi"

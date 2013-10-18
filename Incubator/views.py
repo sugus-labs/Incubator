@@ -13,6 +13,7 @@ import pymongo
 from mongo_save import save_in_mongo
 import threading
 from photos_cron import activate_photos_cron
+import os
 
 # Uncomment in production!
 #activate_photos_cron()
@@ -88,7 +89,7 @@ def lights(request, light_number, command):
 	return HttpResponse("200 OK")
 
 def home(request):
-	logging(request)
+	#logging(request)
 	# TODO: These two lines can do only in one
 	today = date.today()
 	now = datetime.now(pytz.utc)
@@ -124,7 +125,7 @@ def home(request):
 		'two_days_date': two_days_date, 'four_days_date': four_days_date, 'six_days_date': six_days_date, 'two_days': two_days, 'four_days': four_days, 'six_days': six_days })
 
 def show_more(request, cam_number):
-	logging(request)
+	#logging(request)
 	#import glob
 	import os
 	#images_list = []
@@ -149,7 +150,7 @@ def download_excel(request):
 	return render(request, 'Incubator/home.html')
 
 def new_hatching(request):
-	logging(request)
+	#logging(request)
 	HatchingFormSet = modelformset_factory(Hatching)
 	if request.method == 'POST':
 		hatching_formset = HatchingFormSet(request.POST, request.FILES)
@@ -161,7 +162,7 @@ def new_hatching(request):
 	return render_to_response('Incubator/new_hatching.html', {'hatching_formset': hatching_formset})
 
 def temperatures(request):
-	logging(request)
+	#logging(request)
 	initial_time = time.time()
 	retrieve_DBs()
 	print "retrieve_DBs()", time.time() - initial_time
@@ -215,7 +216,7 @@ def temperatures(request):
 		return render_to_response('Incubator/temperatures.html', {'temperatures_list': temperatures_list, 'url_image': url_image})
 
 def humidities(request):
-	logging(request)
+	#logging(request)
 	initial_time = time.time()
 	retrieve_DBs()
 	print "retrieve_DBs()", time.time() - initial_time
@@ -269,7 +270,7 @@ def humidities(request):
 		return render_to_response('Incubator/humidities.html', {'humidities_list': humidities_list, 'url_image': url_image})
 
 def retrieve_image(request, cam_number):
-	logging(request)	
+	#logging(request)	
 	lights(request, cam_number, 'on')
 	time.sleep(2)
 	localtime = time.localtime()

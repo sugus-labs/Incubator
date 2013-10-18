@@ -289,15 +289,15 @@ var image_3 = document.getElementById('image_3');
 
 setInterval(function() {
   image_1.src = 'http://www.weblab.deusto.es/webcam/proxied.py/incubator1?rand=' + Math.random();
-}, 200);
+}, 500);
 
-setInterval(function() {
-  image_2.src = 'http://www.weblab.deusto.es/webcam/proxied.py/incubator2?rand=' + Math.random();
-}, 6000);
+// setInterval(function() {
+//   image_2.src = 'http://www.weblab.deusto.es/webcam/proxied.py/incubator2?rand=' + Math.random();
+// }, 6000);
 
-setInterval(function() {
-   image_3.src = 'http://www.weblab.deusto.es/webcam/proxied.py/incubator3?rand=' + Math.random();
-}, 6000);
+// setInterval(function() {
+//    image_3.src = 'http://www.weblab.deusto.es/webcam/proxied.py/incubator3?rand=' + Math.random();
+// }, 6000);
 
 setInterval(function() {
   $.get("measures", function(data) {
