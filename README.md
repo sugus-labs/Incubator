@@ -47,9 +47,9 @@ These images was taken automatically from the Incubator web camera system in dif
 
 ![Egg_23](https://raw.github.com/gmartinvela/Incubator/master/Incubator/static/egg_programmed_images/image_1_20131013230003.jpg)
 
-![Egg_00](https://github.com/gmartinvela/Incubator/blob/master/Incubator/static/egg_programmed_images/image_1_201310140000.jpg)
+![Egg_00](https://raw.github.com/gmartinvela/Incubator/master/Incubator/static/egg_programmed_images/image_1_201310140000.jpg)
 
-You can see a video of the egg hatching clicking in the next image.
+You can see a video of the eggs hatching clicking in the image below.
 
 [![Video](https://raw.github.com/gmartinvela/Incubator/master/Incubator/static/img/egg_evolution_draws.png)](http://youtu.be/MLYnsBkTM9Y)
 
